@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toyo Toys - Accessible Store</title>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 { color: #333; }
+
+        /* Search Section */
+        .search-box {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        input {
+            padding: 15px;
+            width: 300px;
+            border-radius: 30px;
+            border: 2px solid #333;
+            font-size: 16px;
+        }
+
+        /* Mic Button */
+        #mic-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: #ff9900;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 20px;
+            color: white;
+            transition: 0.3s;
+        }
+
+        #mic-btn:hover, #mic-btn.listening {
+            background-color: #cc0000;
+            transform: scale(1.1);
+        }
+
+        /* Product Grid */
+        .products-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        /* Jab product par focus ho (Tab key se) */
+        .product-card:focus {
+            border-color: #ff9900;
+            box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
+            outline: none;
+            transform: scale(1.05);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 150px;
+            background-color: #eee;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .btn-buy {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧸 Toyo Toys (Accessibility Mode)</h1>
+    <p>Press <b>TAB</b> to navigate or click Mic to speak.</p>
+
+    <div class="search-box">
+        <input type="text" id="search-bar" placeholder="Speak or type to search...">
+        <button id="mic-btn" onclick="startVoiceSearch()">🎤</button>
+    </div>
+
+    <div class="products-container" id="product-list">
+        
+        <div class="product-card" tabindex="0" 
+             data-name="Red Racing Car" 
+             data-price="2000" 
+             data-desc="High speed remote control car with lights.">
+            <div class="product-img">🏎️</div>
+            <h3>Red Racing Car</h3>
+            <p>Rs. 2000</p>
+            <button class="btn-buy" onclick="addToCart('Red Racing Car')">Add to Cart</button>
+        </div>
+
+        <div class="product-card" tabindex="0" 
+             data-name="Talking Doll" 
+             data-price="1500" 
+             data-desc="Cute doll that sings poems. Soft material.">
+            <div class="product-img">👧</div>
+            <h3>Talking Doll</h3>
+            <p>Rs. 1500</p>
+            <button class="btn-buy" onclick="addToCart('Talking Doll')">Add to Cart</button>
+        </div>
+
+        <div class="product-card" tabindex="0" 
+             data-name="Building Blocks" 
+             data-price="800" 
+             data-desc="Colorful plastic blocks set for creativity.">
+            <div class="product-img">🧱</div>
+            <h3>Building Blocks</h3>
+            <p>Rs. 800</p>
+            <button class="btn-buy" onclick="addToCart('Building Blocks')">Add to Cart</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- 1. SETUP TEXT TO SPEECH (Bolanay ki taqat) ---
+        const synth = window.speechSynthesis;
+
+        function speak(text) {
+            // Agar pehle kuch bol raha hai to chup karayein
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 1; // Speed normal
+            utterance.pitch = 1; 
+            // English voice use karega (Browser default)
+            utterance.lang = 'en-US'; 
+            synth.speak(utterance);
+        }
+
+        // Website Load hotay hi Welcome Message
+        window.onload = () => {
+            setTimeout(() => {
+                speak("Welcome to Toyo Toys. Use the Tab key to browse toys, or click the mic button to search.");
+            }, 1000);
+        };
+
+        // --- 2. KEYBOARD NAVIGATION (TAB KEY) ---
+        // Har product card par focus event lagayenge
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+            product.addEventListener('focus', () => {
+                const name = product.getAttribute('data-name');
+                const price = product.getAttribute('data-price');
+                const desc = product.getAttribute('data-desc');
+                
+                // Sound effect (optional click sound)
+                playBeep();
+                
+                // Details bolega
+                speak(`${name}. Price ${price} rupees. ${desc}. Press Enter to add to cart.`);
+            });
+
+            // Enter dabane par "Add to Cart" maana jaye
+            product.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const name = product.getAttribute('data-name');
+                    addToCart(name);
+                }
+            });
+        });
+
+        function addToCart(itemName) {
+            playSuccessSound();
+            speak(`${itemName} added to your cart successfully.`);
+            alert(`${itemName} Added!`);
+        }
+
+        // --- 3. VOICE SEARCH (Sunnay ki taqat) ---
+     // --- 3. VOICE SEARCH (Improved Logic) ---
+function startVoiceSearch() {
+    const micBtn = document.getElementById('mic-btn');
+    const searchBar = document.getElementById('search-bar');
+    
+    // Step 1: Agar pehle se kuch bol raha hai to foran chup karao
+    if (synth.speaking) {
+        synth.cancel();
+    }
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (SpeechRecognition) {
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US'; // English/Urdu commands
+
+        // Step 2: User ko batao ke ab bolna hai (Mic abhi OFF hai)
+        const instruction = new SpeechSynthesisUtterance("Please speak after the beep.");
+        instruction.rate = 1; 
+        
+        // Step 3: Jab Computer bol chuka ho, tab Mic ON karein
+        instruction.onend = function() {
+            playBeep(); // Beep bajayen taake blind user ko pata chale signal mil gaya
+            recognition.start(); // Asli mic yahan start hoga
+            micBtn.classList.add("listening");
+        };
+
+        // Instruction bolna shuru karein
+        synth.speak(instruction);
+
+        // --- Result Handle Karna ---
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript.toLowerCase();
+            searchBar.value = transcript;
+            micBtn.classList.remove("listening");
+            
+            // Result milne par feedback
+            speak(`Searching for ${transcript}`);
+            filterProducts(transcript);
+        };
+
+        // --- Error/End Handle Karna ---
+        recognition.onerror = () => {
+            micBtn.classList.remove("listening");
+            speak("Sorry, I could not hear you.");
+        };
+
+        recognition.onend = () => {
+            micBtn.classList.remove("listening");
+        };
+
+    } else {
+        alert("Browser not supported");
+    }
+}
+        // --- 4. FILTER LOGIC ---
+        function filterProducts(query) {
+            const cards = document.querySelectorAll('.product-card');
+            let found = false;
+
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                if (name.includes(query)) {
+                    card.style.display = "block";
+                    if (!found) {
+                        card.focus(); // Pehle result par focus le jao
+                        found = true;
+                    }
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            if (!found) speak("No toys found with that name.");
+        }
+
+        // --- 5. SOUND EFFECTS (Earcons) ---
+        function playBeep() {
+            // Choti si beep generate karna (Bina external file ke)
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            osc.connect(ctx.destination);
+            osc.frequency.value = 400; // Frequency
+            osc.start();
+            osc.stop(ctx.currentTime + 0.1); // 0.1 sec ki beep
+        }
+
+        function playSuccessSound() {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            osc.type = 'triangle';
+            osc.connect(ctx.destination);
+            osc.frequency.value = 600;
+            osc.start();
+            osc.frequency.exponentialRampToValueAtTime(1000, ctx.currentTime + 0.1);
+            osc.stop(ctx.currentTime + 0.3);
+        }
+
+    </script>
+</body>
+</html>

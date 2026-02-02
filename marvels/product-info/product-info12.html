@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scarlet Witch | Multiverse of Madness Edition</title>
+    <link rel="stylesheet" href="info.css">
+</head>
+<body class="marvel-theme">
+
+    <header>
+        <a href="../index.html" class="back-btn">EXIT WESTVIEW</a>
+        <div class="tech-line"></div>
+    </header>
+
+    <main class="product-container">
+        <section class="image-gallery">
+            <div class="main-img-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyEXclQiqExRfltK1P-e8PjJ-yChFHodtyWA&s" alt="Scarlet Witch Figure">
+                <div class="scanner-line"></div>
+            </div>
+        </section>
+
+        <section class="product-details">
+            <span class="brand-tag">NEXUS BEING CLASS</span>
+            <h1 class="product-title">SCARLET <span>WITCH</span></h1>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="label">PRICE</span>
+                    <span class="value">PKR 58,800</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">MAGIC</span>
+                    <span class="value">Chaos Energy</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">EDITION</span>
+                    <span class="value">Multiverse Special</span>
+                </div>
+            </div>
+
+            <div class="extra-details">
+                <h4>SCARLET WITCH COLLECTIBLE INTEL:</h4>
+                <ul>
+                    <li><strong>Authentic Costume:</strong> Features a meticulously tailored fabric costume based on the 'Multiverse of Madness' look, including the iconic tiara.</li>
+                    <li><strong>Chaos Magic Effects:</strong> Includes two pairs of translucent red power-using effect hands and several magical accessories.</li>
+                    <li><strong>Luminous Paint:</strong> The figure’s eyes and power effects are treated with specially applied luminous reflective paint.</li>
+                    <li><strong>Darkhold Accessory:</strong> Comes with a 1/6 scale replica of the Darkhold book, featuring weathered pages and arcane details.</li>
+                    <li><strong>Premium Articulation:</strong> Over 28 points of movement allow for cinematic levitation and spell-casting poses.</li>
+                </ul>
+            </div>
+
+            <div class="product-description-box">
+                <p>
+                    "You break the rules and become a hero. I do it and I become the enemy." Witness the full power of Wanda Maximoff as the Scarlet Witch. This highly detailed figure captures the intensity of the Nexus Being, complete with her corruption-darkened fingertips and the formidable Darkhold in hand.
+                </p>
+            </div>
+
+            <button class="buy-now">UNLEASH CHAOS</button>
+
+            <p style="margin-top: 30px; color: var(--stark-gold); font-size: 0.9rem; font-family: 'Orbitron';">📄 Product Documentation:</p>
+            <button onclick="downloadProductInfo('SCARLET WITCH', 'PKR 58,800')" style="background: #e20112; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;">⬇️ DOWNLOAD PDF</button>
+        </section>
+    </main>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const content = `Product: ${productName}\nPrice: ${price}\n\nThank you for your interest in this Marvel product!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <a href="/home/index.html" class="logo">
+            <img src="/home/Adobe Express - file.png" alt="Toyo Logo" class="logo-img">
+        </a>
+
+        <div class="nav-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="nav-location-text">
+                <span class="nav-line-1">Deliver to ALL Over</span>
+                <span class="nav-line-2" id="glow-ingress-line2">Pakistan</span>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="/home/index.html">Home</a></li>
+            <li><a href="/wwe/wwe.html">WWE</a></li>
+            <li><a href="/lego/lego.htm">LEGO</a></li>
+            <li><a href="/marvels/index.html">MARVELS</a></li>
+            <li><a href="/HOT WHEELS/index.html">HOT WHEELS</a></li>
+            <li><a href="contact2.html">CONTACT</a></li>
+            <li>
+                
+            </li>
+        </ul>
+    </nav>
+        <div class="ott-dropdown" id="ottDropdown">
+        <button class="ott-trigger" onclick="toggleOTT()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg>
+        </button>
+
+        <div class="ottBOX">
+            <a href="netflix_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRlargt0M45QcYkeUNoL9PxeE3R6OCTycNQ&s" class="setOTT-img"></a>
+            <a href="prime_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuES2ggtgtmwrLis-dq71BGz8vkwEBdSQHuA&s" class="setOTT-img"></a>
+            <a href="google_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCUhfkqiO9E9M2I7LIM7-6ZdLtpZVzXRD93A&s" class="setOTT-img"></a>
+            <a href="disney_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx6T7k02Vxh5Znyxfk-RJgcZiorbFEs5YRlQ&s" class="setOTT-img"></a>
+        </div>
+    </div>
+
+</header>
+    <section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="bg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <h1 data-aos="zoom-in">UNLEASH THE <span>HERO</span></h1>
+        <p data-aos="fade-up" data-aos-delay="200">Experience the power of the Avengers with our premium collectibles.</p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
+            <a href="#products" class="hero-main-btn">EXPLORE NOW</a>
+            <a href="#contact" class="hero-alt-btn">JOIN THE TEAM</a>
+        </div>
+    </div>
+</section>
+    <!-- Replace VIDEO_EMBED_URL with the YouTube embed URL (e.g. https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=VIDEO_ID) -->
+
+</style>
+
+    <section class="container">
+    <div class="product-card" data-brand="MARVEL" data-age="8+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfC5SKthFm8QtUZXzlbMhswIU3f-J8u12iag&s" alt="Iron Man" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">MARVEL</span>
+        <h3>Iron Man MK-85</h3>
+        <p>Premium electronic helmet and figure with LED lights and sound effects.</p>
+        <a href="product-info/product-info1.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Iron Man MK-85', 'PKR 23,800')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="HASBRO" data-age="6+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAVf18z5xrrLQabVgdxvvdDwj444KK4MX95Q&s" alt="Captain America" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">HASBRO</span>
+        <h3>Captain America Shield</h3>
+        <p>Full-scale premium replica shield with adjustable leather straps.</p>
+        <a href="product-info/product-info2.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Captain America Shield', 'PKR 14,000')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="HOT TOYS" data-age="12+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFg_rCU6yTdp_2bidcQLaLcmwHrhoH1At6yw&s" alt="Spider-Man" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">HOT TOYS</span>
+        <h3>Spider-Man No Way Home</h3>
+        <p>Integrated suit edition with multiple web accessories and 30+ points of articulation.</p>
+        <a href="product-info/product-info3.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Spider-Man No Way Home', 'PKR 33,600')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="MATTEL" data-age="9+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrKpVGUl3OIl3K6I1X9Pbzlwe9BoT3T8Ef1g&s" alt="Thor" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">MATTEL</span>
+        <h3>Thor Mjolnir Hammer</h3>
+        <p>Electronic hammer featuring thunder sound effects and lightning lights.</p>
+        <a href="product-info/product=info4.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Thor Mjolnir Hammer', 'PKR 28,000')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="MARVEL" data-age="8+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkgQfZNfLe2CqTy6Wu7c-ak27EljGXF2sitA&s" alt="Black Panther" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">MARVEL</span>
+        <h3>Black Panther Claw</h3>
+        <p>Vibranium-inspired claw gear with retractable lights.</p>
+        <a href="product-info/product-info5.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Black Panther Claw', 'PKR 19,600')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="HASBRO" data-age="4+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJvm9CnJzfzDkgDDllHHyhxZniTh2VcERJJQ&s" alt="Hulk" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">HASBRO</span>
+        <h3>Hulk Smash Fists</h3>
+        <p>Giant gamma-grip fists for ultimate crushing power during playtime.</p>
+        <a href="product-info/product-info6.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Hulk Smash Fists', 'PKR 16,800')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="HOT TOYS" data-age="14+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRoDqrLLE5u_A_xLrPNXJlJc-8KbfAxttqTw&s" alt="Black Widow" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">HOT TOYS</span>
+        <h3>Black Widow Figure</h3>
+        <p>Highly detailed 1/6 scale figure with movie-accurate combat gear.</p>
+        <a href="product-info/product-info7.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Black Widow Figure', 'PKR 42,000')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="LEGO" data-age="10+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQW7zSZfJaez62NF6HPxzeS93oxrJYlC_aPw&s" alt="Doctor Strange" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">LEGO</span>
+        <h3>Sanctum Sanctorum</h3>
+        <p>Lego set with 2,700 pieces and 9 exclusive Marvel minifigures.</p>
+        <a href="product-info/product-info8.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Sanctum Sanctorum', 'PKR 112,000')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="MARVEL" data-age="12+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf2FulV_tgHs75XsiTOj7plm6bxW-bq9KlIA&s" alt="Thanos" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">MARVEL</span>
+        <h3>Infinity Gauntlet</h3>
+        <p>Authentic gauntlet with glowing infinity stones and snapping sound.</p>
+        <a href="product-info/product-info9.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Infinity Gauntlet', 'PKR 35,000')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="MATTEL" data-age="5+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPlswZF5LWiHBZWBMLNLluYe-yYAzoelm_A&s" alt="Groot" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">MATTEL</span>
+        <h3>Dancing Baby Groot</h3>
+        <p>Sound-activated Groot figure that dances to your favorite music.</p>
+        <a href="product-info/product-info10.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Dancing Baby Groot', 'PKR 14,000')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="HASBRO" data-age="6+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGzf_RXKFJV9rELG4FvunPLaB8D_0DRwEtMg&s" alt="Ant-Man" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">HASBRO</span>
+        <h3>Ant-Man Tech Helmet</h3>
+        <p>Roleplay helmet with red/blue LED light effects like the movies.</p>
+        <a href="product-info/product-info11.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Ant-Man Tech Helmet', 'PKR 21,000')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="HOT TOYS" data-age="15+ YEARS" data-aos="fade-up" data-aos-duration="2000">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyEXclQiqExRfltK1P-e8PjJ-yChFHodtyWA&s" alt="Wanda" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">HOT TOYS</span>
+        <h3>Scarlet Witch (Multiverse)</h3>
+        <p>Premium figure with chaos magic effects and luminous paint.</p>
+        <a href="product-info/product-info12.html" class="doc-link">SEE MORE</a>
+        <button class="buy-btn" onclick="addToCart('Scarlet Witch (Multiverse)', 'PKR 49,000')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+    </div>
+</div>
+    </section>
+
+<div class="toyo-ai-bot" id="toyoAI">
+    <div class="ai-chat-window" id="aiWindow">
+        <div class="ai-header">
+            <img src="ai-avatar.png" alt="TOYO AI">
+            <span>TOYO AI Assistant</span>
+            <button onclick="toggleAI()">×</button>
+        </div>
+        <div class="ai-body" id="aiBody">
+            <p class="ai-msg">Hi! Main TOYO AI hoon. Aapke liye perfect toy dhoondne mein help karun?</p>
+            <div class="ai-options">
+                <button onclick="askAge()">Zaroor, Help karo!</button>
+            </div>
+        </div>
+    </div>
+    <button class="ai-trigger-btn" onclick="toggleAI()">
+        <i class="fas fa-robot"></i> <span>Ask TOYO AI</span>
+    </button>
+</div>
+
+<script>
+       // 1. OTT Dropdown Logic
+    function toggleOTT() {
+        const dropdown = document.getElementById('ottDropdown');
+        dropdown.classList.toggle('active');
+    }
+// 1. Toggle Chat Window (Open/Close)
+function toggleAI() {
+    const window = document.getElementById('aiWindow');
+    const currentDisplay = window.style.display;
+
+    if (currentDisplay === 'none' || currentDisplay === '') {
+        window.style.display = 'flex';
+    } else {
+        window.style.display = 'none';
+    }
+}
+
+// 2. Helper Function: Message add karne ke liye
+function addMessage(text, type = 'ai') {
+    const chatBody = document.getElementById('aiBody');
+    const msgDiv = document.createElement('p');
+
+    msgDiv.className = type === 'user' ? 'ai-msg user-msg' : 'ai-msg';
+    msgDiv.innerText = text;
+
+    chatBody.appendChild(msgDiv);
+
+    // Auto scroll to bottom
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// 3. Helper Function: Options (Buttons) add karne ke liye
+function addOptions(options) {
+    const chatBody = document.getElementById('aiBody');
+    const optionsDiv = document.createElement('div');
+    optionsDiv.className = 'ai-options';
+
+    options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.innerText = opt.text;
+        btn.onclick = () => handleSelection(opt.text, opt.action, optionsDiv);
+        optionsDiv.appendChild(btn);
+    });
+
+    chatBody.appendChild(optionsDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// 4. Handle Logic (Step 1: Start)
+function askAge() {
+    // Purane buttons hatao
+    const oldOptions = document.querySelector('.ai-options');
+    if(oldOptions) oldOptions.remove();
+
+    addMessage("Zaroor! Help karo.", 'user');
+
+    setTimeout(() => {
+        addMessage("Sabse pehle, yeh toy kiske liye hai?");
+        addOptions([
+            { text: "Boy (Action Lover)", action: 'boy' },
+            { text: "Creative Kid (Builder)", action: 'creative' },
+            { text: "Superhero Fan", action: 'hero' },
+            { text: "Speed Racer (Car Lover)", action: 'racer' }
+        ]);
+    }, 500);
+}
+
+// 5. Main Logic Controller
+function handleSelection(text, action, parentDiv) {
+    // User ka selection dikhao aur buttons hata do
+    parentDiv.remove();
+    addMessage(text, 'user');
+
+    setTimeout(() => {
+        if (action === 'boy') {
+            addMessage("Boys ke liye hamare paas WWE Figures best hain! 💪");
+            addMessage("Kya aap WWE collection dekhna chahenge?");
+            addOptions([
+                { text: "Haan, WWE dikhao", action: 'goto_wwe' },
+                { text: "Nahi, kuch aur", action: 'start_over' }
+            ]);
+        }
+        else if (action === 'creative') {
+            addMessage("Creative bachon ke liye LEGO se behtar kuch nahi! 🧱");
+            addOptions([
+                { text: "Lego Sets dikhao", action: 'goto_lego' },
+                { text: "Wapis shuru karo", action: 'start_over' }
+            ]);
+        }
+        else if (action === 'hero') {
+            addMessage("Superheroes? Hamare paas Marvels ka poora universe hai! 🦸‍♂️");
+            addOptions([
+                { text: "Marvels Collection", action: 'goto_marvel' },
+                { text: "Start Over", action: 'start_over' }
+            ]);
+        }
+        else if (action === 'racer') {
+            addMessage("Speed Racer! Hamare paas HOT WHEELS ka ekdum fierce collection hai! 🏎️");
+            addMessage("Kya aap HOT WHEELS dekhna chahenge?");
+            addOptions([
+                { text: "Haan, HOT WHEELS dikhao", action: 'goto_hotwheels' },
+                { text: "Nahi, kuch aur", action: 'start_over' }
+            ]);
+        }
+        // --- REDIRECTION LOGIC (Links yahan hain) ---
+        else if (action === 'goto_wwe') {
+            addMessage("Redirecting to WWE World...");
+            window.location.href = '/wwe/wwe.html';
+        }
+        else if (action === 'goto_lego') {
+            addMessage("Chalo Lego world chalte hain...");
+            window.location.href = '/lego/lego.htm';
+        }
+        else if (action === 'goto_marvel') {
+            addMessage("Avengers Assemble! Redirecting...");
+            window.location.href = '/marvels/index.html';
+        }
+        else if (action === 'goto_hotwheels') {
+            addMessage("Buckle up! Heading to HOT WHEELS track...");
+            window.location.href = '/HOT WHEELS/index.html';
+        }
+        else if (action === 'start_over') {
+            askAge(); // Wapis shuru se
+        }
+    }, 600);
+}
+</script>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col" data-aos="fade-up">
+                <h2 class="footer-logo">TOYO <span>TOYS</span></h2>
+                <p>Your one-stop shop for premium Marvel collectibles and action figures. Latest releases with official warranty.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/home/index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Products</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Marvel Figures</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Avengers Collection</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Superheroes</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Collectibles</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</p>
+                    <p><i class="fas fa-phone"></i> +92 300 1234567</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Toyo Toys</p>
+        </div>
+    </footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({
+    duration: 1000,
+    once: true,
+});
+</script>
+
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+<script>
+    // Lenis Initialize karna
+    const lenis = new Lenis({
+      duration: 1.2,   // Scrolling ki speed (jitna zyada, utna smooth)
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smoothness ka formula
+      smoothWheel: true
+    })
+
+    // Frame-by-frame update ke liye function
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+</script>
+
+<script>
+// ===== SHOPPING CART SYSTEM FOR MARVEL =====
+let cart = [];
+
+function addToCart(productName, price) {
+    cart.push({ name: productName, price: price, id: Date.now() });
+    showThankYouOverlay(productName, price);
+    console.log('Cart:', cart);
+}
+
+function removeFromCart(itemId) {
+    cart = cart.filter(item => item.id !== itemId);
+}
+
+function getCart() {
+    return cart;
+}
+
+function clearCart() {
+    cart = [];
+}
+
+function showThankYouOverlay(productName, price) {
+    const overlay = document.createElement('div');
+    overlay.className = 'thank-you-overlay';
+    overlay.innerHTML = `
+        <div class="thank-you-container">
+            <button class="close-thank-you" onclick="this.parentElement.parentElement.remove()">✕</button>
+            <div class="thank-you-icon">🎉</div>
+            <h2>Thank You For Your Purchase!</h2>
+            <p class="product-details">
+                <strong>${productName}</strong><br>
+                Price: <strong>${price}</strong>
+            </p>
+            <p class="thank-you-message">We appreciate your order. Your product will be delivered soon!</p>
+            <button class="continue-btn" onclick="this.parentElement.parentElement.remove()">Continue Shopping</button>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+}
+
+// Add CSS for Thank You Overlay & Cart Buttons
+const style = document.createElement('style');
+style.textContent = `
+    .thank-you-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10001;
+        animation: popUp 0.4s ease;
+    }
+    
+    .thank-you-container {
+        background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+        border: 2px solid #e20112;
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        max-width: 400px;
+        position: relative;
+        box-shadow: 0 0 30px rgba(226, 1, 18, 0.3);
+        animation: slideUp 0.5s ease;
+    }
+    
+    .thank-you-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+        animation: bounce 0.6s ease;
+    }
+    
+    .thank-you-container h2 {
+        color: #e20112;
+        font-size: 1.8rem;
+        margin: 15px 0;
+        font-family: 'Poppins', sans-serif;
+        letter-spacing: 1px;
+    }
+    
+    .product-details {
+        background: rgba(226, 1, 18, 0.1);
+        border-left: 3px solid #e20112;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        color: #e0e0e0;
+        font-size: 0.95rem;
+    }
+    
+    .thank-you-message {
+        color: #a0a0a0;
+        margin: 15px 0;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .continue-btn {
+        background: linear-gradient(135deg, #e20112, #a80009);
+        color: #fff;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+    }
+    
+    .continue-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(226, 1, 18, 0.4);
+    }
+    
+    .close-thank-you {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: #e20112;
+        font-size: 24px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .close-thank-you:hover {
+        color: #fff;
+        transform: scale(1.2);
+    }
+
+    /* Add to Cart Button Hover Effects */
+    .buy-btn {
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .buy-btn:hover {
+        transform: translateY(-3px) scale(1.05) !important;
+        box-shadow: 0 10px 25px rgba(226, 1, 18, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.2) !important;
+        letter-spacing: 1px;
+    }
+
+    .buy-btn:active {
+        transform: translateY(-1px) scale(0.98) !important;
+    }
+    
+    @keyframes slideUp {
+        from { transform: translateY(30px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>

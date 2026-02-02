@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Man MK-85 | Stark Industries</title>
+    <link rel="stylesheet" href="../product-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="info.css">
+</head>
+<body class="marvel-theme">
+
+    <header>
+        <a href="../index.html" class="back-btn">← BACK TO STORE</a>
+        <div class="tech-line"></div>
+    </header>
+
+    <main class="product-container">
+        <section class="image-gallery">
+            <div class="main-img-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfC5SKthFm8QtUZXzlbMhswIU3f-J8u12iag&s" alt="Iron Man" id="mainImg">
+                <div class="scanner-line"></div> </div>
+        </section>
+
+        <section class="product-details">
+            <span class="brand-tag">STARK INDUSTRIES</span>
+            <h1 class="product-title">IRON MAN <span>MK-85</span></h1>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="label">PRICE</span>
+                    <span class="value">PKR 23,800</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">MATERIAL</span>
+                    <span class="value">Die-cast Metal</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">BATTERY</span>
+                    <span class="value">Required (LED)</span>
+                </div>
+            </div>
+
+            <p class="description">
+                Experience the pinnacle of Stark Tech. This MK-85 replica features premium electronic light-up functions, movie-accurate weathering, and interchangeable parts. Perfect for any Avengers base.
+            </p>
+
+            <button class="buy-now">INITIALIZE PURCHASE</button>
+            
+            <div class="download-section" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <p style="margin: 0;">📄 Product Documentation:</p>
+                <button class="download-link" onclick="downloadProductInfo('Iron Man MK-85', 'PKR 23,800')" style="background: #e20112; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;">⬇️ DOWNLOAD PDF</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const text = `PRODUCT INFORMATION\n\nProduct: ${productName}\nPrice: ${price}\nBrand: MARVEL STUDIOS\nMaterial: Die-cast Metal\nBattery: Required (LED)\n\nThank you for your interest!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+
+</body>
+</html>

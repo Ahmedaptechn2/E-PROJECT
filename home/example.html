@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WWE Infinite Smooth Slider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --wwe-red: #e10600;
+            --card-width: 180px;
+            --gap: 25px;
+            --font-main: 'Oswald', sans-serif;
+            /* Speed control: Zyada seconds = slow motion, kam seconds = fast */
+            --speed: 20s; 
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: #000;
+            margin: 0;
+            padding: 50px 0;
+            overflow-x: hidden; /* Bahar nikalte cards chhupane ke liye */
+        }
+
+        .quicklinks-container {
+            background: linear-gradient(180deg, #1a1a1a, #000);
+            padding: 40px 0;
+            border-top: 4px solid var(--wwe-red);
+            position: relative;
+        }
+
+        /* --- THE MAGIC PART: SLIDER TRACK --- */
+        .slider-viewport {
+            width: 100%;
+             /* Extra cards ko hide karne ke liye */
+            position: relative;
+        }
+
+        .slider-track {
+            display: flex;
+            width: max-content; /* Saare cards ko ek line mein rakhega */
+            gap: var(--gap);
+            animation: scroll-left var(--speed) linear infinite;
+        }
+
+        /* Keyframes: cards ko left move karne ke liye */
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50%)); } /* Half way par wapas jump karega (seamless) */
+        }
+
+        /* Hover par ruk jaye (Pause) */
+        .slider-viewport:hover .slider-track {
+            animation-play-state: paused;
+        }
+
+        /* --- CARD STYLES --- */
+        .nav-card {
+            flex: 0 0 var(--card-width);
+            text-decoration: none;
+            text-align: center;
+            gap: 50px;
+        }
+
+        .image-square {
+            width: 100%;
+            height: 180px;
+            background-color: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 3px solid #fff;
+            transition: 0.3s;
+        }
+
+        .image-square img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%);
+            transition: 0.3s;
+        }
+
+        .nav-card:hover .image-square {
+            border-color: var(--wwe-red);
+            transform: scale(1.05);
+        }
+
+        .label {
+            display: block;
+            margin-top: 10px;
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="quicklinks-container">
+    <div class="slider-viewport">
+        <div class="slider-track">
+            
+            <a href="#" class="nav-card">
+                <div class="image-square"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb2HCef1wiB6dOrz3M2R_EjiKGonnaYM2FhQ&s"></div>
+                <span class="label">Roman Reigns</span>
+            </a>
+            <a href="#" class="nav-card">
+                <div class="image-square"><img src="https://gsp-image-cdn.wmsports.io/cms/prod/bleacher-report/getty_images/2221137434_large_cropped_0.jpg"></div>
+                <span class="label">Cody Rhodes</span>
+            </a>
+            <a href="#" class="nav-card">
+                <div class="image-square"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZPm0a0VUVAwETuMfh7uJWvQxqjulF05cVAg&s"></div>
+                <span class="label">Rhea Ripley</span>
+            </a>
+            <a href="#" class="nav-card">
+                <div class="image-square"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGsIFIJWu8cj0IhzbLwxkW6ZV9WeLwORao6g&s"></div>
+                <span class="label">Seth Rollins</span>
+            </a>
+            <a href="#" class="nav-card">
+                <div class="image-square"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWAYu3fBX7lX6S_k8e41jYNtgyStrgm34-dQ&s"></div>
+                <span class="label">CM Punk</span>
+            </a>
+
+            <a href="#" class="nav-card">
+                <div class="image-square"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb2HCef1wiB6dOrz3M2R_EjiKGonnaYM2FhQ&s"></div>
+                <span class="label">Roman Reigns</span>
+            </a>
+            <a href="#" class="nav-card">
+                <div class="image-square"><img src="https://gsp-image-cdn.wmsports.io/cms/prod/bleacher-report/getty_images/2221137434_large_cropped_0.jpg"></div>
+                <span class="label">Cody Rhodes</span>
+            </a>
+            <a href="#" class="nav-card">
+                <div class="image-square"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZPm0a0VUVAwETuMfh7uJWvQxqjulF05cVAg&s"></div>
+                <span class="label">Rhea Ripley</span>
+            </a>
+            <a href="#" class="nav-card">
+                <div class="image-square"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGsIFIJWu8cj0IhzbLwxkW6ZV9WeLwORao6g&s"></div>
+                <span class="label">Seth Rollins</span>
+            </a>
+            <a href="#" class="nav-card">
+                <div class="image-square"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWAYu3fBX7lX6S_k8e41jYNtgyStrgm34-dQ&s"></div>
+                <span class="label">CM Punk</span>
+            </a>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

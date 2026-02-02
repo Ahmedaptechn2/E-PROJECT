@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Millennium Falcon™</title>
+
+    <style>
+        /* =====================
+           ROOT THEME VARIABLES (RED)
+        ====================== */
+        :root {
+            --bg-main: #120606;
+            --bg-card: #1b0c0c;
+            --bg-border: #3a1414;
+
+            --text-main: #ffffff;
+            --text-muted: #ffd6d6;
+            --text-dark: #000000;
+
+            --accent-primary: #ff2e2e;
+            --accent-secondary: #ff7c7c;
+
+            --shadow-main: 0 12px 35px rgba(0, 0, 0, 0.7);
+            --radius-main: 12px;
+            --radius-pill: 30px;
+
+            --font-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: var(--radius-main);
+            box-shadow: var(--shadow-main);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(
+                135deg,
+                var(--accent-primary),
+                var(--accent-secondary)
+            );
+            color: var(--text-dark);
+            padding: 6px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        .details-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .details-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--bg-border);
+        }
+
+        .details-list li strong {
+            color: var(--text-main);
+        }
+
+        .extra-content p {
+            padding-left: 12px;
+            border-left: 3px solid var(--accent-primary);
+            margin-bottom: 12px;
+        }
+
+        .download-section {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid var(--bg-border);
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: linear-gradient(
+                135deg,
+                var(--accent-primary),
+                var(--accent-secondary)
+            );
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: var(--radius-pill);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="../lego.htm" class="back-link">← Back to Store</a>
+
+        <h1>Millennium Falcon™</h1>
+        <span class="badge">Star Wars™ • Legendary Starship</span>
+
+        <h3>Starship Overview</h3>
+        <p>
+            The iconic Corellian freighter from Star Wars™, famous for its speed,
+            rotating laser turrets, and legendary missions across the galaxy.
+            Designed for smuggling, modified for battle, and piloted by Han Solo.
+        </p>
+
+        <h3>Technical Details</h3>
+        <ul class="details-list">
+            <li><strong>Type:</strong> Corellian YT-1300f Light Freighter</li>
+            <li><strong>Features:</strong> Rotating turrets, detailed cockpit</li>
+            <li><strong>Minifigures:</strong> 7 included</li>
+            <li><strong>Universe:</strong> Star Wars™</li>
+        </ul>
+
+        <h3>Why This Ship?</h3>
+        <div class="extra-content">
+            <p>• <strong>Galactic Icon:</strong> One of the most famous ships ever.</p>
+            <p>• <strong>Battle Ready:</strong> Dual rotating laser turrets.</p>
+            <p>• <strong>Minifigure Scale:</strong> Includes 7 characters.</p>
+            <p>• <strong>Collector Favorite:</strong> Must-have for Star Wars fans.</p>
+            <p>• <strong>Display Ready:</strong> Perfect for shelf or play.</p>
+        </div>
+
+        <div class="download-section">
+            <p><strong>📄 Product Documentation:</strong></p>
+            <button class="download-btn" onclick="downloadProductInfo('Millennium Falcon™', 'Premium Collector')">
+                ⬇️ Download
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const content = `Product Information\n\nName: ${productName}\nPrice: ${price}\nDownload Date: ${new Date().toLocaleDateString()}\n\nThank you for your purchase!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', productName.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>

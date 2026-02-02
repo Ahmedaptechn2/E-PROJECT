@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captain America Shield | Avengers Gear</title>
+    <link rel="stylesheet" href="../product-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="info.css">
+</head>
+<body class="marvel-theme">
+
+    <header>
+        <a href="../index.html" class="back-btn">← RETURN TO BASE</a>
+        <div class="tech-line" style="background: var(--tech-blue); height: 2px;"></div>
+    </header>
+
+    <main class="product-container">
+        <section class="image-gallery">
+            <div class="main-img-container" style="border-color: var(--tech-blue);">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAVf18z5xrrLQabVgdxvvdDwj444KK4MX95Q&s" alt="Captain America Shield">
+                <div class="scanner-line"></div>
+            </div>
+        </section>
+
+        <section class="product-details">
+            <span class="brand-tag" style="background: var(--tech-blue);">LEGACY REPLICA</span>
+            <h1 class="product-title">CAPTAIN <span>AMERICA</span> SHIELD</h1>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="label">PRICE</span>
+                    <span class="value">PKR 14,000</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">MATERIAL</span>
+                    <span class="value">ABS Plastic</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">WEIGHT</span>
+                    <span class="value">1.2 kg</span>
+                </div>
+            </div>
+
+            <p class="description">
+                The ultimate symbol of freedom and justice. This premium 1:1 scale replica of Captain America's shield features adjustable leather straps and a high-gloss metallic finish. Designed for both display and roleplay, it's a must-have for every Marvel fan.
+            </p>
+
+            <button class="buy-now" style="border-color: var(--tech-blue); color: var(--tech-blue);">ACQUIRE GEAR</button>
+            
+            <div class="download-section" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <p style="margin: 0;">📄 Product Documentation:</p>
+                <button class="download-link" onclick="downloadProductInfo('Captain America Shield', 'PKR 14,000')" style="background: #e20112; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;">⬇️ DOWNLOAD PDF</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const text = `PRODUCT INFORMATION\n\nProduct: ${productName}\nPrice: ${price}\nBrand: HASBRO TOYS\nMaterial: ABS Plastic\nWeight: 1.2 kg\n\nThank you for your interest!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+
+</body>
+</html>

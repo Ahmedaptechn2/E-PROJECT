@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        :root {
+            --wwe-red: #e20112;
+            --wwe-black: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--wwe-black);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(226, 1, 18, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(226, 1, 18, 0.1) 0%, transparent 40%);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Top Accent Bar */
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--wwe-red), transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--wwe-red);
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 30px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-link:hover {
+            color: #fff;
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .badge {
+            background: linear-gradient(45deg, var(--wwe-red), #ff4d4d);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(226, 1, 18, 0.3);
+            letter-spacing: 1px;
+        }
+
+        h3 {
+            color: var(--wwe-red);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-top: 30px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+
+        h3::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--glass-border);
+            margin-left: 15px;
+        }
+
+        p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* --- Stylish Details List --- */
+        .details-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .details-list li {
+            background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            transition: 0.3s;
+        }
+
+        .details-list li:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--wwe-red);
+        }
+
+        .details-list li strong {
+            color: #fff;
+            display: block;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        /* --- Feature Grid --- */
+        .extra-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--wwe-red);
+        }
+
+        .feature-item strong {
+            color: #fff;
+            display: block;
+        }
+
+        /* --- Download Section --- */
+       .download-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap; /* mobile fix */
+}
+
+.download-link {
+    display: inline-flex;          /* IMPORTANT */
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+/* Hover effect */
+
+
+        .download-link:hover {
+        
+            background: var(--wwe-red);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(226, 1, 18, 0.4);
+        }
+
+        @media (max-width: 600px) {
+            .extra-content { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <a href="../wwe.html" class="back-link">← Back to Store</a>
+    <h1>Roman Reigns: The Head of the Table</h1>
+    <span class="badge">Elite Collection Series</span>
+    
+    <h3>Character Biography</h3>
+    <p>Roman Reigns has redefined the modern era of professional wrestling. As the leader of The Bloodline and the longest-reigning Universal Champion of the 21st century, he demands acknowledgment. This figure captures him at the height of his power, representing his transition from a powerhouse to the ultimate "Tribal Chief."</p>
+
+    <h3>Technical Specifications</h3>
+    <ul class="details-list">
+        <li><strong>Height:</strong> 7 Inches (1/12 Scale)</li>
+        <li><strong>Material:</strong> High-Grade ABS and PVC Plastic</li>
+        <li><strong>Articulation:</strong> 27+ Points of movement</li>
+        <li><strong>Finish:</strong> Matte skin tone with high-gloss title plating</li>
+    </ul>
+
+    <h3>Why This Figure?</h3>
+    <div class="extra-content">
+        <p>• <strong>The Ula Fala:</strong> Includes the traditional Samoan lei, a symbol of the Tribal Chief's authority.</p>
+        <p>• <strong>Iconic Tattoos:</strong> Features the complete Polynesian sleeve artwork, replicated with digital precision.</p>
+        <p>• <strong>Superior Posing:</strong> Designed with double-jointed elbows and knees to recreate the Spear and Superman Punch.</p>
+        <p>• <strong>Championship Glory:</strong> Comes with the blue Universal Championship belt featuring side plates specific to Reigns.</p>
+        <p>• <strong>Collector Packaging:</strong> Ships in a premium window box with "Bloodline" branding.</p>
+        <p>• <strong>True-FX Technology:</strong> Facescan technology provides an 11% increase in life-like accuracy compared to previous models.</p>
+    </div>
+
+    <div class="download-section">
+        <p>📄 Product Documentation:</p>
+        <button class="download-link" onclick="downloadProductInfo('Roman Reigns Elite', 'PKR 7,000')">⬇️ Download</button>
+    </div>
+</div>
+
+<script>
+    function downloadProductInfo(productName, price) {
+        const text = `PRODUCT INFORMATION\n\nProduct: ${productName}\nPrice: ${price}\nBrand: MATTEL\nMaterial: Vinyl/Plastic\nHeight: 7 Inches (1/12 Scale)\nArticulation: 27+ Points\n\nThank you for your interest!`;
+        const element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+</script>
+</body>
+</html>

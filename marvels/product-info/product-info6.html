@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hulk Smash Fists | Gamma Powered Gear</title>
+    <link rel="stylesheet" href="../product-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="info.css">
+</head>
+<body class="marvel-theme">
+
+    <header>
+        <a href="../index.html" class="back-btn">← EXIT LAB</a>
+        <div class="tech-line" style="background: linear-gradient(to right, #000, var(--stark-gold), #000); height: 2px;"></div>
+    </header>
+
+    <main class="product-container">
+        <section class="image-gallery">
+            <div class="main-img-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJvm9CnJzfzDkgDDllHHyhxZniTh2VcERJJQ&s" alt="Hulk Smash Fists">
+                <div class="scanner-line"></div>
+            </div>
+        </section>
+
+        <section class="product-details">
+            <span class="brand-tag" style="background: var(--marvel-red); border: 1px solid var(--stark-gold);">GAMMA-LEVEL HAZARD</span>
+            <h1 class="product-title">HULK <span>SMASH</span> FISTS</h1>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="label">PRICE</span>
+                    <span class="value">PKR 7,000</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">DENSITY</span>
+                    <span class="value">High-Impact Foam</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">USER AGE</span>
+                    <span class="value">4+ Years</span>
+                </div>
+            </div>
+
+            <div class="extra-details" style="margin-top: 25px;">
+                <h4 style="color: var(--stark-gold); font-family: 'Orbitron'; margin-bottom: 12px; font-size: 1rem; letter-spacing: 1px;">COMBAT FEATURES & INTEL:</h4>
+                <ul style="color: #ccc; font-size: 0.9rem; line-height: 1.7; padding-left: 20px; list-style-type: square;">
+                    <li><strong>Grip-and-Grab Technology:</strong> Internal handle bars allow users to grip tightly and even grab objects while wearing the fists.</li>
+                    <li><strong>Impact Absorption:</strong> Made from premium, heavy-duty soft foam that provides a satisfying "thud" without causing damage to furniture or friends.</li>
+                    <li><strong>Authentic Detailing:</strong> Sculpted with oversized veins, massive knuckles, and Hulk’s signature green skin texture for maximum realism.</li>
+                    <li><strong>One Size Fits All:</strong> Flexible internal sleeve ensures a secure fit for both kids and "kid-at-heart" adults.</li>
+                    <li><strong>Gamma Strength Branding:</strong> Official Avengers license with Marvel/Hasbro authenticity stamps.</li>
+                </ul>
+            </div>
+
+            <div class="product-description-box" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 3px solid var(--stark-gold);">
+                <p style="color: #eee; font-style: italic; font-size: 0.85rem; line-height: 1.5;">
+                    "SMASH LIKE THE STRONGEST AVENGER! Whether you're taking down an army of Chitauri or just practicing your smash in the backyard, these Gamma-Grip Fists put the power of Bruce Banner's alter-ego right in your hands. Designed for high-impact roleplay, they turn any ordinary human into a crushing force of nature."
+                </p>
+            </div>
+
+            <button class="buy-now" style="border-color: var(--stark-gold); color: var(--stark-gold); margin-top: 30px;">HULK SMASH!</button>
+
+            <p style="margin-top: 30px; color: var(--stark-gold); font-size: 0.9rem; font-family: 'Orbitron';">📄 Product Documentation:</p>
+            <button onclick="downloadProductInfo('HULK SMASH FISTS', 'PKR 7,000')" style="background: #e20112; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;">⬇️ DOWNLOAD PDF</button>
+        </section>
+    </main>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const content = `Product: ${productName}\nPrice: ${price}\n\nThank you for your interest in this Marvel product!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* =====================
+           ROOT THEME VARIABLES
+        ====================== */
+        :root {
+            --bg-main: #0b1220;
+            --bg-card: #121c33;
+            --bg-border: #22345c;
+
+            --text-main: #ffffff;
+            --text-muted: #cfd8ff;
+            --text-dark: #000000;
+
+            --accent-primary: #2ea8ff;
+            --accent-secondary: #7cd3ff;
+
+            --shadow-main: 0 12px 35px rgba(0, 0, 0, 0.7);
+            --radius-main: 12px;
+            --radius-pill: 30px;
+
+            --font-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: var(--radius-main);
+            box-shadow: var(--shadow-main);
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Headings */
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            background: linear-gradient(
+                135deg,
+                var(--accent-primary),
+                var(--accent-secondary)
+            );
+            color: var(--text-dark);
+            padding: 6px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* Text */
+        p {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        /* Details List */
+        .details-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .details-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--bg-border);
+        }
+
+        .details-list li strong {
+            color: var(--text-main);
+        }
+
+        /* Extra Content */
+        .extra-content p {
+            padding-left: 12px;
+            border-left: 3px solid var(--accent-primary);
+            margin-bottom: 12px;
+        }
+
+        /* Download Section */
+        .download-section {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid var(--bg-border);
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: linear-gradient(
+                135deg,
+                var(--accent-primary),
+                var(--accent-secondary)
+            );
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: var(--radius-pill);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- =====================
+     CARD 4
+===================== -->
+<div class="container">
+    <a href="index.html" class="back-link">← Back to Store</a>
+
+    <h1>2024 Lucid Air Safari (v2)</h1>
+    <span class="badge">Green Speed • Rugged Electric Sedan</span>
+
+    <h3>Vehicle Biography</h3>
+    <p>
+        The 2024 Lucid Air Safari (v2) builds on the original concept with a tougher,
+        more rugged design for off-road adventures. This green electric sedan combines
+        all-electric performance with all-terrain capability and luxury comfort.
+    </p>
+
+    <h3>Technical Specifications</h3>
+    <ul class="details-list">
+        <li><strong>Powertrain:</strong> Dual-Motor AWD</li>
+        <li><strong>Estimated Range:</strong> 420+ miles (WLTP)</li>
+        <li><strong>0–60 mph:</strong> ~3.2 seconds</li>
+        <li><strong>Suspension:</strong> Raised adaptive air suspension</li>
+    </ul>
+
+    <h3>Why This Vehicle?</h3>
+    <div class="extra-content">
+        <p>• Rugged EV design for off-road performance</p>
+        <p>• Luxury interior with premium materials</p>
+        <p>• Green Speed – sustainable high-performance electric sedan</p>
+        <p>• Collector-worthy for EV enthusiasts</p>
+    </div>
+
+    <div class="download-section">
+        <p>📄 Product Information:</p>
+        <button onclick="downloadProductInfo('2024 Lucid Air Safari (v2)', 'Premium')" style="background: #ff0000; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">⬇️ Download</button>
+    </div>
+</div>
+
+<script>
+    function downloadProductInfo(productName, price) {
+        const content = `Product: ${productName}\nPrice: ${price}\nCategory: Hot Wheels\nDate Downloaded: ${new Date().toLocaleDateString()}`;
+        const element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+        element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+</script>
+
+</body>
+</html>

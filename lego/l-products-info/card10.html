@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Man Armory</title>
+
+    <style>
+        /* =====================
+           ROOT THEME VARIABLES (RED)
+        ====================== */
+        :root {
+            --bg-main: #120606;
+            --bg-card: #1b0c0c;
+            --bg-border: #3a1414;
+
+            --text-main: #ffffff;
+            --text-muted: #ffd6d6;
+            --text-dark: #000000;
+
+            --accent-primary: #ff2e2e;
+            --accent-secondary: #ff7c7c;
+
+            --shadow-main: 0 12px 35px rgba(0, 0, 0, 0.7);
+            --radius-main: 12px;
+            --radius-pill: 30px;
+
+            --font-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: var(--radius-main);
+            box-shadow: var(--shadow-main);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));
+            color: var(--text-dark);
+            padding: 6px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        .details-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .details-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--bg-border);
+        }
+
+        .details-list li strong {
+            color: var(--text-main);
+        }
+
+        .extra-content p {
+            padding-left: 12px;
+            border-left: 3px solid var(--accent-primary);
+            margin-bottom: 12px;
+        }
+
+        .download-section {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid var(--bg-border);
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: var(--radius-pill);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="../lego.htm" class="back-link">← Back to Store</a>
+
+        <h1>Iron Man Armory</h1>
+        <span class="badge">Marvel Universe • High-Tech Workshop</span>
+
+        <h3>Set Overview</h3>
+        <p>
+            Equip Tony Stark with 3 different Iron Man suits in his high-tech
+            armory. This set features detailed workshop elements and
+            interactive accessories, perfect for collectors and fans of the
+            Marvel Universe.
+        </p>
+
+        <h3>Set Details</h3>
+        <ul class="details-list">
+            <li><strong>Theme:</strong> Marvel Universe</li>
+            <li><strong>Includes:</strong> 3 Iron Man suits & armory equipment</li>
+            <li><strong>Scale:</strong> Minifigure scale</li>
+            <li><strong>Purpose:</strong> Display & imaginative play</li>
+        </ul>
+
+        <h3>Why This Set?</h3>
+        <div class="extra-content">
+            <p>• <strong>Collector Favorite:</strong> Iconic Tony Stark suits.</p>
+            <p>• <strong>High-Tech Detail:</strong> Workshop with advanced elements.</p>
+            <p>• <strong>Interactive:</strong> Poseable figures & accessories.</p>
+            <p>• <strong>Display Ready:</strong> Perfect for shelves or desks.</p>
+            <p>• <strong>Marvel Approved:</strong> Authentic superhero experience.</p>
+        </div>
+
+        <div class="download-section">
+            <p><strong>📄 Product Documentation:</strong></p>
+            <button class="download-btn" onclick="downloadProductInfo('Iron Man Armory', 'Premium Collector')">
+                ⬇️ Download
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const content = `Product Information\n\nName: ${productName}\nPrice: ${price}\nDownload Date: ${new Date().toLocaleDateString()}\n\nThank you for your purchase!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', productName.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Widow | Tactical Stealth Figure</title>
+    <link rel="stylesheet" href="../product-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="info.css">
+</head>
+<body class="marvel-theme">
+
+    <header>
+        <a href="../index.html" class="back-btn">← ABORT MISSION</a>
+        <div class="tech-line" style="background: linear-gradient(to right, #000, var(--marvel-red), #000); height: 2px;"></div>
+    </header>
+
+    <main class="product-container">
+        <section class="image-gallery">
+            <div class="main-img-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRoDqrLLE5u_A_xLrPNXJlJc-8KbfAxttqTw&s" alt="Black Widow Figure">
+                <div class="scanner-line"></div>
+            </div>
+        </section>
+
+        <section class="product-details">
+            <span class="brand-tag" style="background: #000; border: 1px solid var(--marvel-red); color: #fff;">TOP SECRET / S.H.I.E.L.D.</span>
+            <h1 class="product-title">BLACK <span>WIDOW</span> FIGURE</h1>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="label">PRICE</span>
+                    <span class="value">PKR 50,400</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">SCALE</span>
+                    <span class="value">1/6 Sixth Scale</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">HEIGHT</span>
+                    <span class="value">~28 cm</span>
+                </div>
+            </div>
+
+            <div class="extra-details" style="margin-top: 25px;">
+                <h4 style="color: var(--marvel-red); font-family: 'Orbitron'; margin-bottom: 12px; font-size: 1rem; letter-spacing: 1px;">TACTICAL LOADOUT & SPECS:</h4>
+                <ul style="color: #ccc; font-size: 0.9rem; line-height: 1.7; padding-left: 20px; list-style-type: circle;">
+                    <li><strong>Authentic Likeness:</strong> Masterfully crafted based on Natasha Romanoff’s appearance in the solo 'Black Widow' movie.</li>
+                    <li><strong>Fabric Snow Suit:</strong> Highly detailed white tactical suit with fine textures, armor plates, and weathering effects.</li>
+                    <li><strong>Versatile Weaponry:</strong> Includes one pair of batons, one pair of articulated batons, and three pairs of interchangeable hands for various combat poses.</li>
+                    <li><strong>High Articulation:</strong> Over 28 points of articulation allowing for extreme "Widow-Stance" acrobatic poses.</li>
+                    <li><strong>Stealth Base:</strong> Comes with a specially designed figure stand with character nameplate and movie logo.</li>
+                </ul>
+            </div>
+
+            <div class="product-description-box" style="background: rgba(255,0,0,0.05); padding: 15px; border-radius: 8px; margin-top: 20px; border-right: 3px solid var(--marvel-red);">
+                <p style="color: #eee; font-style: italic; font-size: 0.85rem; line-height: 1.5; text-align: right;">
+                    "I'm done running from my past." Embrace the legacy of the world's greatest spy. This premium collectible captures Natasha's resilience and lethal skills, perfect for any collector who values precision and stealth.
+                </p>
+            </div>
+
+            <button class="buy-now" style="border-color: var(--marvel-red); color: #fff; background: var(--marvel-red); margin-top: 30px;">RECRUIT AGENT</button>
+
+            <p style="margin-top: 30px; color: var(--marvel-red); font-size: 0.9rem; font-family: 'Orbitron';">📄 Product Documentation:</p>
+            <button onclick="downloadProductInfo('BLACK WIDOW FIGURE', 'PKR 50,400')" style="background: #e20112; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;">⬇️ DOWNLOAD PDF</button>
+        </section>
+    </main>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const content = `Product: ${productName}\nPrice: ${price}\n\nThank you for your interest in this Marvel product!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1277 @@
+c<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WWE Toy Store | Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. SINGLE MERGED ROOT (NO CONFLICTS) --- */
+        :root {
+            /* Colors */
+            --primary-red: #e20112;      /* WWE/Marvel Red */
+            --neon-green: #00ff9d;       /* Secondary Accent */
+            --bg-body: #050505;          /* Deep Black */
+            --bg-header: rgba(5, 5, 5, 0.95);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            
+            /* Text */
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+
+            /* Effects */
+            --red-glow: 0 0 20px rgba(226, 1, 18, 0.4);
+            --super-glow: 0 0 10px rgba(226, 1, 18, 0.8), 0 0 40px rgba(226, 1, 18, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            
+            /* Animation */
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            /* Cinematic Vignette Background */
+            background-image: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background: var(--bg-header);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--primary-red);
+            box-shadow: 0 4px 20px rgba(226, 1, 18, 0.15);
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+            transition: var(--transition);
+        }
+
+        /* Location Info */
+        .nav-location {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 0.8rem;
+            border: 1px solid #333;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .nav-location i { color: var(--primary-red); margin-right: 8px; font-size: 1.1rem; }
+        .nav-location-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .nav-line-2 { font-weight: bold; }
+
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-red);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: var(--primary-red); text-shadow: var(--red-glow); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -2;
+            transform: translate(-50%, -50%); /* Fixed Centering */
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        /* --- H1 WITH KILLER HOVER --- */
+        .hero-content h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: white;
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: default;
+        }
+
+        .hero-content h1:hover {
+            letter-spacing: 5px;
+            color: var(--primary-red);
+            text-shadow: 0 0 10px var(--primary-red), 0 0 40px var(--primary-red), 0 0 80px red;
+            transform: scale(1.05);
+        }
+
+        .hero-content h1 span { color: var(--primary-red); }
+        .hero-content h1:hover span { color: white; }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- HERO BUTTONS --- */
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .hero-main-btn {
+            padding: 15px 40px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: transparent;
+            color: white;
+            border: 2px solid var(--primary-red);
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            transition: 0.3s;
+        }
+
+        .hero-main-btn:hover {
+            background: var(--primary-red);
+            color: white;
+            transform: scale(1.1) skew(-5deg);
+            box-shadow: var(--super-glow);
+        }
+
+        .hero-alt-btn {
+            padding: 15px 40px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 2px solid white;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            transition: 0.3s;
+        }
+
+        .hero-alt-btn:hover {
+            background: white;
+            color: black;
+            transform: scale(1.1) skew(-5deg);
+            box-shadow: 0 0 20px white;
+        }
+
+        /* --- CARDS --- */
+        h1 { text-align: center; margin-top: 50px; text-transform: uppercase; letter-spacing: 2px; }
+
+        
+        .compare-label {
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .compare-check { accent-color: var(--primary-red); }
+/* --- WWE PRODUCT CARD (Same as Marvel) --- */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 50px 5%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background: var(--card-bg);
+    border: 1px solid #222;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: var(--transition);
+}
+
+.product-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    border-color: var(--primary-red);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8), var(--red-glow);
+    z-index: 10;
+}
+
+.product-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background: var(--primary-red);
+    transition: width 0.4s ease;
+}
+
+.product-card:hover::after {
+    width: 100%;
+}
+
+.p-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: 0.6s ease;
+}
+
+.product-card:hover .p-img {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.product-info {
+    padding: 20px;
+    background: linear-gradient(to bottom, #151515, #050505);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-badge {
+    background: var(--primary-red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 4px 12px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 12px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+}
+
+.product-info h3 {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    transition: var(--transition);
+    margin-bottom: 8px;
+}
+
+.product-info h3:hover {
+    color: var(--primary-red);
+    text-shadow: var(--red-glow);
+    letter-spacing: 1px;
+}
+
+.product-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    height: 45px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 1024px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 30px 2%;
+    }
+    .p-img {
+        height: 220px;
+    }
+}
+
+@media (max-width: 600px) {
+    .card-container {
+        grid-template-columns: 1fr;
+        padding: 15px 0;
+    }
+    .p-img {
+        height: 160px;
+    }
+}
+        .doc-link {
+            display: block;
+            text-decoration: none;
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            margin-top: auto;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: var(--transition);
+            border: 1px solid #333;
+        }
+
+        .doc-link:hover {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            transform: translateY(-3px);
+            box-shadow: var(--red-glow);
+        }
+
+        /* --- OTT SECTION (CLICK BASED + BRIGHTNESS) --- */
+        .ott-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-left: 25px;
+        }
+
+        .ott-trigger {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 50%;
+            font-weight: 700;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ott-dropdown.active .ott-trigger {
+            color: var(--primary-red);
+            border-color: var(--primary-red);
+            box-shadow: var(--red-glow);
+            background: rgba(226, 1, 18, 0.1);
+        }
+
+        .ottBOX {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 550px;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--primary-red);
+            border-radius: 15px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+            pointer-events: none;
+        }
+
+        .ott-dropdown.active .ottBOX {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .setOTT {
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 120px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .setOTT:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+        }
+
+        .setOTT-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        /* Brightness + Glow on Hover */
+        .setOTT:hover .setOTT-img { 
+            transform: scale(1.1); 
+            opacity: 1;
+            filter: brightness(1.4) contrast(1.1);
+        }
+
+        /* --- AI CHAT SYSTEM --- */
+        .toyo-ai-bot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2000;
+        }
+
+        .ai-trigger-btn {
+            background: rgba(0, 0, 0, 0.5);
+            color: #e20112;
+            border: 1px solid #e20112;
+            padding: 8px 17px;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(226, 1, 18, 0.4);
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2000;
+        }
+        .ai-trigger-btn:hover {
+            background: #e20112; color: #fff;
+            box-shadow: 0 0 20px rgba(226, 1, 18, 0.8); transform: translateY(-2px);
+        }
+
+        .ai-chat-window {
+            position: fixed; bottom: 100px; right: 30px;
+            width: 400px; height: 600px; max-height: 80vh;
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 1, 18, 0.3); border-radius: 16px;
+            display: none; flex-direction: column; overflow: hidden;
+            z-index: 2000; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            animation: popUp 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        .ai-header {
+            background: rgba(255, 255, 255, 0.05); padding: 15px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid rgba(226, 1, 18, 0.2);
+        }
+        .ai-header span { color: #fff; font-weight: bold; margin-left: 10px; font-family: 'Poppins', sans-serif; }
+        .ai-header img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--primary-red); }
+        .ai-header button { background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+
+        .ai-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; font-family: 'Poppins', sans-serif; }
+        .ai-body::-webkit-scrollbar { width: 6px; }
+        .ai-body::-webkit-scrollbar-track { background: #111; }
+        .ai-body::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+
+        .ai-msg {
+            background: #1e1e1e; color: #e0e0e0; padding: 12px 16px;
+            border-radius: 12px; border-bottom-left-radius: 2px;
+            font-size: 0.95rem; max-width: 85%;
+            border-left: 2px solid var(--primary-red); animation: fadeIn 0.3s ease;
+        }
+        .user-msg {
+            background: linear-gradient(135deg, var(--primary-red), #a00009);
+            color: #fff; align-self: flex-end;
+            border-bottom-left-radius: 12px; border-bottom-right-radius: 2px;
+            border-left: none; font-weight: 600;
+        }
+
+        .ai-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
+        .ai-options button {
+            background: transparent; border: 1px solid #333; color: var(--primary-red);
+            padding: 8px 16px; border-radius: 20px; cursor: pointer;
+            font-size: 0.85rem; transition: 0.3s; font-family: 'Poppins', sans-serif;
+        }
+        .ai-options button:hover {
+            background: rgba(226, 1, 18, 0.1); border-color: var(--primary-red);
+            box-shadow: 0 0 10px rgba(226, 1, 18, 0.2);
+        }
+
+        @keyframes popUp { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 3rem; }
+            .hero-btns { flex-direction: column; }
+            .card-container { grid-template-columns: 1fr; }
+            header { padding: 10px 20px; }
+            .ottBOX { width: 300px; right: -20px; grid-template-columns: 1fr; }
+            .nav-location { display: none; }
+            nav ul { gap: 15px; font-size: 0.7rem; }
+        }
+
+        /* --- FOOTER CSS --- */
+        .main-footer {
+            background: #0b1120;
+            color: #cbd5e1;
+            padding: 100px 10% 30px;
+            margin-top: 100px;
+            border-top: 2px solid rgba(226, 1, 18, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-col h3 {
+            color: #ffffff;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -10px;
+            width: 50px; height: 3px;
+            background: var(--primary-red);
+            box-shadow: 0 0 10px var(--primary-red);
+        }
+
+        .footer-logo { font-size: 1.8rem; font-weight: 800; color: #ffffff; margin-bottom: 20px; }
+        .footer-logo span { color: var(--primary-red); }
+
+        .footer-col ul { padding: 0; }
+        .footer-col ul li { list-style: none; margin-bottom: 15px; }
+        .footer-col ul li a { color: #94a3b8; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .footer-col ul li a:hover { color: #ffffff; transform: translateX(10px); }
+
+        .social-links { display: flex; gap: 15px; margin-top: 25px; }
+        .social-links a {
+            width: 45px; height: 45px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; color: white; transition: 0.4s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-red);
+            color: #0b1120;
+            transform: translateY(-8px) rotate(10deg);
+        }
+
+        .contact-info p { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .contact-info i { color: var(--primary-red); }
+
+        .footer-bottom { text-align: center; margin-top: 80px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+
+<header data-aos="fade-down" data-aos-duration="800">
+    <div class="logo-container" data-aos="zoom-in" data-aos-delay="200">
+        <a href="/home/index.html" class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/WWE_Logo.svg/1200px-WWE_Logo.svg.png" alt="WWE Logo" class="logo-img">
+        </a>
+
+        <div class="nav-location" data-aos="fade-right" data-aos-delay="400">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="nav-location-text">
+                <span class="nav-line-1">Deliver to ALL Over</span>
+                <span class="nav-line-2" id="glow-ingress-line2">Pakistan</span>
+            </div>
+        </div>
+    </div>
+
+    <nav data-aos="fade-in" data-aos-delay="300">
+        <ul>
+            <li><a href="/home/index.html">Home</a></li>
+            <li><a href="/wwe/wwe.html">WWE</a></li>
+            <li><a href="/lego/lego.html">LEGO</a></li>
+            <li><a href="/marvels/index.html">MARVELS</a></li>
+            <li><a href="/HOT WHEELS/index.html">HOT WHEELS</a></li>
+            <li><a href="contact2.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <div class="ott-dropdown" id="ottDropdown" data-aos="fade-left" data-aos-delay="500">
+        <div class="ott-trigger" onclick="toggleOTT()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg>
+        </div>
+
+        <div class="ottBOX">
+            <a href="netflix_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRlargt0M45QcYkeUNoL9PxeE3R6OCTycNQ&s" class="setOTT-img"></a>
+            <a href="prime_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuES2ggtgtmwrLis-dq71BGz8vkwEBdSQHuA&s" class="setOTT-img"></a>
+            <a href="google_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCUhfkqiO9E9M2I7LIM7-6ZdLtpZVzXRD93A&s" class="setOTT-img"></a>
+            <a href="disney_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx6T7k02Vxh5Znyxfk-RJgcZiorbFEs5YRlQ&s" class="setOTT-img"></a>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="wwe bg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <h1 data-aos="zoom-in">UNLEASH THE <span>HERO</span></h1>
+        <p data-aos="fade-up" data-aos-delay="200">Experience the power of the WWE Universe with our premium collectibles.</p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
+            <a href="#products" class="hero-main-btn">EXPLORE NOW</a>
+            <a href="#contact" class="hero-alt-btn">JOIN THE TEAM</a>
+        </div>
+    </div>
+</section>
+
+<h1 data-aos="zoom-in" data-aos-delay="300">WWE Superstar Collection</h1>
+
+<div class="card-container" id="products">
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+        <div class="p-img-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1hZT2sAEqqaetj8QhBXDNBH1CadeTgaZmXyhtCsMU6Q&s" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">MATTEL</span>
+            <h3>Roman Reigns Elite</h3>
+            <p>Authentic Tribal Chief figure with Universal Championship.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="Roman Reigns" data-price="PKR 7,000"> Add to Compare</label>
+            <a href="/wwe/product-info/card1.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('Roman Reigns Elite', 'PKR 7,000')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+        <div class="p-img-container">
+            <img src="https://cdn.1001hobbies.com/2451278-large_default/mattel-matthvf92-wwe-ultimate-edition-john-cena-figure-15-cm.jpg" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">MATTEL</span>
+            <h3>John Cena Basic</h3>
+            <p>Durable "Never Give Up" action figure for hardcore play.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="John Cena" data-price="PKR 5,040"> Add to Compare</label>
+            <a href="/wwe/product-info/card2.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('John Cena Basic', 'PKR 5,040')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="p-img-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9eSJ_3tCN4Y6xL4kM8D5UtxnQ6NwSRQVx0A&s" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">WWE SHOP</span>
+            <h3>WWE Title Belt</h3>
+            <p>Wearable kid-size replica of the WWE World Championship.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="WWE Belt" data-price="PKR 11,200"> Add to Compare</label>
+            <a href="/wwe/product-info/card3.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('WWE Title Belt', 'PKR 11,200')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="p-img-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf-q92XNHL84JbneR7-ZS8Cgs8vr64ga1n0g&s" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">MATTEL</span>
+            <h3>Rey Mysterio Ultimate</h3>
+            <p>High-flexibility figure for performing 619 and splashes.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="Rey Mysterio" data-price="PKR 8,960"> Add to Compare</label>
+            <a href="/wwe/product-info/card4.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('Rey Mysterio Ultimate', 'PKR 8,960')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="500">
+        <div class="p-img-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWTkJ4jJdT24JDe7SxVK6KkQ7AUwsQgWW3xw&s" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">MATTEL</span>
+            <h3>The Rock Elite</h3>
+            <p>The Most Electrifying Man in sports entertainment with vest.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="The Rock" data-price="PKR 7,840"> Add to Compare</label>
+            <a href="/wwe/product-info/card5.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('The Rock Elite', 'PKR 7,840')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="600">
+        <div class="p-img-container">
+            <img src="https://static.thcdn.com/images/large/original//productimg/1600/1600/16758987-1745242290193152.jpg" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">MATTEL</span>
+            <h3>Seth Rollins Elite</h3>
+            <p>"The Visionary" with flamboyant gear and World Title.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="Seth Rollins" data-price="PKR 6,720"> Add to Compare</label>
+            <a href="/wwe/product-info/card6.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('Seth Rollins Elite', 'PKR 6,720')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="700">
+        <div class="p-img-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkYL9JxGHaA4dShbD6rOOQOBS6Nt378CdNSg&s" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">MATTEL</span>
+            <h3>Brock Lesnar Ultimate</h3>
+            <p>The Beast Incarnate with ponytail scan and fight gloves.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="Brock Lesnar" data-price="PKR 9,800"> Add to Compare</label>
+            <a href="/wwe/product-info/card7.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('Brock Lesnar Ultimate', 'PKR 9,800')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="800">
+        <div class="p-img-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX5DvA3UmDJm7an10D82Kg--pV5Sx5Zy6VNw&s" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">MATTEL</span>
+            <h3>Cody Rhodes Elite</h3>
+            <p>The American Nightmare with signature neck tattoo and robe.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="Cody Rhodes" data-price="PKR 7,280"> Add to Compare</label>
+            <a href="/wwe/product-info/card8.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('Cody Rhodes Elite', 'PKR 7,280')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up">
+        <div class="p-img-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV02uam9ny7a4shC_I39Pq5duwvGm7EL5hfQ&s" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">MATTEL</span>
+            <h3>Undertaker Elite</h3>
+            <p>The Deadman in his classic black duster and hat accessories.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="Undertaker" data-price="PKR 8,400"> Add to Compare</label>
+            <a href="/wwe/product-info/card9.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('Undertaker Elite', 'PKR 8,400')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up">
+        <div class="p-img-container">
+            <img src="https://tools.toywiz.com/_images/_webp/_products/lg/wweelite34randyorton.webp" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">MATTEL</span>
+            <h3>Randy Orton Elite</h3>
+            <p>The Apex Predator with detailed tattoos and RKO articulation.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="Randy Orton" data-price="PKR 6,160"> Add to Compare</label>
+            <a href="/wwe/product-info/card10.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('Randy Orton Elite', 'PKR 6,160')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up">
+        <div class="p-img-container">
+            <img src="https://m.media-amazon.com/images/I/71MsjIbSUFL._AC_UF894,1000_QL80_.jpg" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">MATTEL</span>
+            <h3>Becky Lynch Elite</h3>
+            <p>"The Man" with her signature steampunk gear and title belt.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="Becky Lynch" data-price="PKR 6,440"> Add to Compare</label>
+            <a href="/wwe/product-info/card11.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('Becky Lynch Elite', 'PKR 6,440')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up">
+        <div class="p-img-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOdxYz1oc52lVHlT0D7949xPU4-aFxXYjFnQ&s" class="p-img">
+        </div>
+        <div class="product-info">
+            <span class="brand-badge">MATTEL</span>
+            <h3>Triple H Ultimate</h3>
+            <p>The King of Kings with sledgehammer and water bottle.</p>
+            <label class="compare-label"><input type="checkbox" class="compare-check" data-name="Triple H" data-price="PKR 9,240"> Add to Compare</label>
+            <a href="/wwe/product-info/card12.html" class="doc-link">VIEW DETAILS</a>
+            <button class="buy-btn" onclick="addToCart('Triple H Ultimate', 'PKR 9,240')" style="width: 100%; margin-top: 10px; padding: 10px; background: #e20112; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Buy Now</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 100
+    });
+</script>
+
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+<script>
+    // Lenis Initialize karna
+    const lenis = new Lenis({
+      duration: 1.2,   // Scrolling ki speed (jitna zyada, utna smooth)
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smoothness ka formula
+      smoothWheel: true
+    })
+
+    // Frame-by-frame update ke liye function
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+</script>
+
+<div class="toyo-ai-bot" id="toyoAI" data-aos="fade-in" data-aos-delay="600">
+    <div class="ai-chat-window" id="aiWindow">
+        <div class="ai-header">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1hZT2sAEqqaetj8QhBXDNBH1CadeTgaZmXyhtCsMU6Q&s" alt="TOYO AI">
+            <span>TOYO AI Assistant</span>
+            <button onclick="toggleAI()">×</button>
+        </div>
+        <div class="ai-body" id="aiBody">
+            <p class="ai-msg">Hi! Main TOYO AI hoon. Aapke liye perfect toy dhoondne mein help karun?</p>
+            <div class="ai-options">
+                <button onclick="askAge()">Zaroor, Help karo!</button>
+            </div>
+        </div>
+    </div>
+    <button class="ai-trigger-btn" onclick="toggleAI()">
+        <i class="fas fa-robot"></i> <span>Ask TOYO AI</span>
+    </button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // 1. OTT Dropdown Logic (Click to Open, Click Outside to Close)
+        const ottDropdown = document.getElementById('ottDropdown');
+        const ottTrigger = document.querySelector('.ott-trigger');
+
+        // Toggle function exposed globally for onclick in HTML
+        window.toggleOTT = function() {
+            ottDropdown.classList.toggle('active');
+        }
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!ottDropdown.contains(e.target)) {
+                ottDropdown.classList.remove('active');
+            }
+        });
+    });
+
+    // 2. AI Chat Window Logic
+    function toggleAI() {
+        const window = document.getElementById('aiWindow');
+        const currentDisplay = window.style.display;
+
+        if (currentDisplay === 'none' || currentDisplay === '') {
+            window.style.display = 'flex';
+        } else {
+            window.style.display = 'none';
+        }
+    }
+
+    function addMessage(text, type = 'ai') {
+        const chatBody = document.getElementById('aiBody');
+        const msgDiv = document.createElement('p');
+        msgDiv.className = type === 'user' ? 'ai-msg user-msg' : 'ai-msg';
+        msgDiv.innerText = text;
+        chatBody.appendChild(msgDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function addOptions(options) {
+        const chatBody = document.getElementById('aiBody');
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'ai-options';
+
+        options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.innerText = opt.text;
+            btn.onclick = () => handleSelection(opt.text, opt.action, optionsDiv);
+            optionsDiv.appendChild(btn);
+        });
+
+        chatBody.appendChild(optionsDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function askAge() {
+        const oldOptions = document.querySelector('.ai-options');
+        if(oldOptions) oldOptions.remove();
+
+        addMessage("Zaroor! Help karo.", 'user');
+
+        setTimeout(() => {
+            addMessage("Sabse pehle, yeh toy kiske liye hai?");
+            addOptions([
+                { text: "Boy (Action Lover)", action: 'boy' },
+                { text: "Creative Kid (Builder)", action: 'creative' },
+                { text: "Superhero Fan", action: 'hero' },
+                { text: "Speed Racer (Car Lover)", action: 'racer' }
+            ]);
+        }, 500);
+    }
+
+    function handleSelection(text, action, parentDiv) {
+        parentDiv.remove();
+        addMessage(text, 'user');
+
+        setTimeout(() => {
+            if (action === 'boy') {
+                addMessage("Boys ke liye hamare paas WWE Figures best hain! 💪");
+                addMessage("Kya aap WWE collection dekhna chahenge?");
+                addOptions([
+                    { text: "Haan, WWE dikhao", action: 'goto_wwe' },
+                    { text: "Nahi, kuch aur", action: 'start_over' }
+                ]);
+            }
+            else if (action === 'creative') {
+                addMessage("Creative bachon ke liye LEGO se behtar kuch nahi! 🧱");
+                addOptions([
+                    { text: "Lego Sets dikhao", action: 'goto_lego' },
+                    { text: "Wapis shuru karo", action: 'start_over' }
+                ]);
+            }
+            else if (action === 'hero') {
+                addMessage("Superheroes? Hamare paas Marvels ka poora universe hai! 🦸‍♂️");
+                addOptions([
+                    { text: "Marvels Collection", action: 'goto_marvel' },
+                    { text: "Start Over", action: 'start_over' }
+                ]);
+            }
+            else if (action === 'racer') {
+                addMessage("Speed Racer! Hamare paas HOT WHEELS ka ekdum fierce collection hai! 🏎️");
+                addMessage("Kya aap HOT WHEELS dekhna chahenge?");
+                addOptions([
+                    { text: "Haan, HOT WHEELS dikhao", action: 'goto_hotwheels' },
+                    { text: "Nahi, kuch aur", action: 'start_over' }
+                ]);
+            }
+            else if (action === 'goto_wwe') {
+                addMessage("Redirecting to WWE World...");
+                window.location.href = '/wwe/wwe.html';
+            }
+            else if (action === 'goto_lego') {
+                addMessage("Chalo Lego world chalte hain...");
+                window.location.href = '/lego/lego.htm';
+            }
+            else if (action === 'goto_marvel') {
+                addMessage("Avengers Assemble! Redirecting...");
+                window.location.href = '/marvels/index.html';
+            }
+            else if (action === 'goto_hotwheels') {
+                addMessage("Buckle up! Heading to HOT WHEELS track...");
+                window.location.href = '/HOT WHEELS/index.html';
+            }
+            else if (action === 'start_over') {
+                askAge();
+            }
+        }, 600);
+    }
+
+    // ===== SHOPPING CART SYSTEM FOR WWE =====
+    let cart = [];
+
+    function addToCart(productName, price) {
+        cart.push({ name: productName, price: price, id: Date.now() });
+        showThankYouOverlay(productName, price);
+        console.log('Cart:', cart);
+    }
+
+    function removeFromCart(itemId) {
+        cart = cart.filter(item => item.id !== itemId);
+    }
+
+    function getCart() {
+        return cart;
+    }
+
+    function clearCart() {
+        cart = [];
+    }
+
+    function showThankYouOverlay(productName, price) {
+        const overlay = document.createElement('div');
+        overlay.className = 'thank-you-overlay';
+        overlay.innerHTML = `
+            <div class="thank-you-container">
+                <button class="close-thank-you" onclick="this.parentElement.parentElement.remove()">✕</button>
+                <div class="thank-you-icon">🎉</div>
+                <h2>Thank You For Your Purchase!</h2>
+                <p class="product-details">
+                    <strong>${productName}</strong><br>
+                    Price: <strong>${price}</strong>
+                </p>
+                <p class="thank-you-message">We appreciate your order. Your product will be delivered soon!</p>
+                <button class="continue-btn" onclick="this.parentElement.parentElement.remove()">Continue Shopping</button>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    }
+
+    // Add CSS for Thank You Overlay & Cart Buttons
+    const style = document.createElement('style');
+    style.textContent = `
+        .thank-you-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            animation: popUp 0.4s ease;
+        }
+        
+        .thank-you-container {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border: 2px solid #e20112;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(226, 1, 18, 0.3);
+            animation: slideUp 0.5s ease;
+        }
+        
+        .thank-you-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease;
+        }
+        
+        .thank-you-container h2 {
+            color: #e20112;
+            font-size: 1.8rem;
+            margin: 15px 0;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .product-details {
+            background: rgba(226, 1, 18, 0.1);
+            border-left: 3px solid #e20112;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: #e0e0e0;
+            font-size: 0.95rem;
+        }
+        
+        .thank-you-message {
+            color: #a0a0a0;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .continue-btn {
+            background: linear-gradient(135deg, #e20112, #a80009);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(226, 1, 18, 0.4);
+        }
+        
+        .close-thank-you {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: #e20112;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .close-thank-you:hover {
+            color: #fff;
+            transform: scale(1.2);
+        }
+
+        /* Add to Cart Button Hover Effects */
+        .buy-btn {
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 10px 25px rgba(226, 1, 18, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.2) !important;
+            letter-spacing: 1px;
+        }
+
+        .buy-btn:active {
+            transform: translateY(-1px) scale(0.98) !important;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col" data-aos="fade-up">
+                <h2 class="footer-logo">TOYO <span>TOYS</span></h2>
+                <p>Your one-stop shop for premium wrestling and action figures. Latest releases with official warranty.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/home/index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Products</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> WWE Figures</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Action Figures</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Collectibles</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</p>
+                    <p><i class="fas fa-phone"></i> +92 300 1234567</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Toyo Toys</p>
+        </div>
+    </footer>
+
+</body>
+</html>

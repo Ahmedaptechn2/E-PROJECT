@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dancing Baby Groot | Guardians of the Galaxy</title>
+    <link rel="stylesheet" href="info.css">
+</head>
+<body class="marvel-theme">
+
+    <header>
+        <a href="../index.html" class="back-btn">RETURN TO MILANO</a>
+        <div class="tech-line"></div>
+    </header>
+
+    <main class="product-container">
+        <section class="image-gallery">
+            <div class="main-img-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPlswZF5LWiHBZWBMLNLluYe-yYAzoelm_A&s" alt="Dancing Baby Groot">
+                <div class="scanner-line"></div>
+            </div>
+        </section>
+
+        <section class="product-details">
+            <span class="brand-tag">GUARDIANS COLLECTION</span>
+            <h1 class="product-title">DANCING <span>BABY</span> GROOT</h1>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="label">PRICE</span>
+                    <span class="value">$35.00</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">SENSORS</span>
+                    <span class="value">Sound Activated</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">HEIGHT</span>
+                    <span class="value">11.5 Inches</span>
+                </div>
+            </div>
+
+            <div class="extra-details">
+                <h4>FLORA COLOSSUS FEATURES:</h4>
+                <ul>
+                    <li><strong>Smart Sound Activation:</strong> Groot detects external music or speech and dances along to the rhythm automatically.</li>
+                    <li><strong>Built-in Music:</strong> Includes the hit track "I Want You Back" by The Jackson 5 pre-loaded for immediate dancing.</li>
+                    <li><strong>Detailed Sculpting:</strong> Features movie-accurate wood grain textures, tiny green leaf accents, and expressive eyes.</li>
+                    <li><strong>Poseable Arms:</strong> Adjustable branches allow you to set Groot in various iconic dancing or waving poses.</li>
+                    <li><strong>Stable Base:</strong> Sits securely in a "Stark Industries" inspired white flower pot with hidden battery compartment.</li>
+                </ul>
+            </div>
+
+            <div class="product-description-box">
+                <p>
+                    "I am Groot!" Bring home the most adorable member of the Guardians of the Galaxy. This Electronic Dancing Baby Groot is the perfect companion for your desk or shelf. Just turn him on, play some music, and watch him groove. He’s the heart of the team and now he can be the heart of your collection.
+                </p>
+            </div>
+
+            <button class="buy-now">START DANCING</button>
+
+            <p style="margin-top: 30px; color: var(--stark-gold); font-size: 0.9rem; font-family: 'Orbitron';">📄 Product Documentation:</p>
+            <button onclick="downloadProductInfo('DANCING BABY GROOT', '$35.00')" style="background: #e20112; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;">⬇️ DOWNLOAD PDF</button>
+        </section>
+    </main>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const content = `Product: ${productName}\nPrice: ${price}\n\nThank you for your interest in this Marvel product!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ant-Man Tech Helmet | Pym Technologies</title>
+    <link rel="stylesheet" href="info.css">
+</head>
+<body class="marvel-theme">
+
+    <header>
+        <a href="../index.html" class="back-btn">EXIT QUANTUM REALM</a>
+        <div class="tech-line"></div>
+    </header>
+
+    <main class="product-container">
+        <section class="image-gallery">
+            <div class="main-img-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGzf_RXKFJV9rELG4FvunPLaB8D_0DRwEtMg&s" alt="Ant-Man Tech Helmet">
+                <div class="scanner-line"></div>
+            </div>
+        </section>
+
+        <section class="product-details">
+            <span class="brand-tag">PYM TECH CERTIFIED</span>
+            <h1 class="product-title">ANT-MAN <span>TECH</span> HELMET</h1>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="label">PRICE</span>
+                    <span class="value">$70.00</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">ELECTRONICS</span>
+                    <span class="value">Dual-Mode LED</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">SCALE</span>
+                    <span class="value">1:1 Full Scale</span>
+                </div>
+            </div>
+
+            <div class="extra-details">
+                <h4>QUANTUM SUIT SPECIFICATIONS:</h4>
+                <ul>
+                    <li><strong>Dual-Color LED Effects:</strong> Features 6 red and blue LED lights on the antennae and jawline to simulate Pym Particle effects.</li>
+                    <li><strong>Premium Interior:</strong> Fully lined interior with adjustable straps to fit most adult head sizes comfortably.</li>
+                    <li><strong>Authentic Sculpting:</strong> Detailed metallic finish and weathered paint-job inspired by the helmet seen in 'Ant-Man and The Wasp'.</li>
+                    <li><strong>Voice Distortion:</strong> Built-in voice changer mechanism (simulated) for a more immersive roleplay experience.</li>
+                    <li><strong>Display Base:</strong> Comes with a sleek display stand featuring the Pym Technologies logo.</li>
+                </ul>
+            </div>
+
+            <div class="product-description-box">
+                <p>
+                    "One question... is it too late to change the name?" Step into the shoes of Scott Lang with this premium electronic Ant-Man helmet from the Marvel Legends Series. Whether you're shrinking down to subatomic size or growing into a giant, this helmet is your essential piece of gear for any heist in the Quantum Realm.
+                </p>
+            </div>
+
+            <button class="buy-now">ACTIVATE PYM PARTICLES</button>
+
+            <p style="margin-top: 30px; color: var(--stark-gold); font-size: 0.9rem; font-family: 'Orbitron';">📄 Product Documentation:</p>
+            <button onclick="downloadProductInfo('ANT-MAN TECH HELMET', '$70.00')" style="background: #e20112; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;">⬇️ DOWNLOAD PDF</button>
+        </section>
+    </main>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const content = `Product: ${productName}\nPrice: ${price}\n\nThank you for your interest in this Marvel product!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>

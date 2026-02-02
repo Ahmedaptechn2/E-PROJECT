@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanctum Sanctorum | LEGO Marvel Collection</title>
+    <link rel="stylesheet" href="info.css">
+</head>
+<body class="marvel-theme">
+
+    <header>
+        <a href="../index.html" class="back-btn">EXIT MIRROR DIMENSION</a>
+        <div class="tech-line"></div>
+    </header>
+
+    <main class="product-container">
+        <section class="image-gallery">
+            <div class="main-img-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf2FulV_tgHs75XsiTOj7plm6bxW-bq9KlIA&s" alt="LEGO Sanctum Sanctorum">
+                <div class="scanner-line"></div>
+            </div>
+        </section>
+
+        <section class="product-details">
+            <span class="brand-tag">SORCERER SUPREME CLASS</span>
+            <h1 class="product-title">SANCTUM <span>SANCTORUM</span></h1>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="label">PRICE</span>
+                    <span class="value">PKR 70,000</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">BRICK COUNT</span>
+                    <span class="value">2,708 Pieces</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">MINIFIGURES</span>
+                    <span class="value">9 Exclusive Icons</span>
+                </div>
+            </div>
+
+            <div class="extra-details">
+                <h4>MYSTICAL BUILD SPECIFICATIONS:</h4>
+                <ul>
+                    <li><strong>Modular Design:</strong> The building is split into three detailed floors: the Museum of Mystical Collections, the Library, and the Sanctuary.</li>
+                    <li><strong>Multiversal Portals:</strong> Includes a customizable wall element that allows you to change the view through the portal to different dimensions.</li>
+                    <li><strong>Character Lineup:</strong> Features Doctor Strange, Wong, Iron Man, Spider-Man, Ebony Maw, Master Mordo, Sinister Strange, Dead Strange, and The Scarlet Witch.</li>
+                    <li><strong>Authentic Artifacts:</strong> Hidden details include the Book of Canti, the Cloak of Levitation, and the iconic circular window piece.</li>
+                    <li><strong>Display Scale:</strong> Designed for adult collectors, providing a complex build that stands over 12 inches tall.</li>
+                </ul>
+            </div>
+
+            <div class="product-description-box">
+                <p>
+                    "Forget everything that you think you know." Capture the magic of Doctor Strange with the stunning LEGO Marvel Sanctum Sanctorum. This 3-story modular building perfectly recreates the residence of the Master of the Mystic Arts, filled with authentic details from Marvel Studios’ Avengers: Infinity War and Doctor Strange in the Multiverse of Madness.
+                </p>
+            </div>
+
+            <button class="buy-now">OPEN PORTAL</button>
+
+            <p style="margin-top: 30px; color: var(--stark-gold); font-size: 0.9rem; font-family: 'Orbitron';">📄 Product Documentation:</p>
+            <button onclick="downloadProductInfo('SANCTUM SANCTORUM', 'PKR 70,000')" style="background: #e20112; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;">⬇️ DOWNLOAD PDF</button>
+        </section>
+    </main>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const content = `Product: ${productName}\nPrice: ${price}\n\nThank you for your interest in this Marvel product!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>

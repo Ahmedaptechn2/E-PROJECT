@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thor Mjolnir Hammer | Asgardian Weaponry</title>
+    <link rel="stylesheet" href="../product-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="info.css">
+</head>
+<body class="marvel-theme">
+
+    <header>
+        <a href="../index.html" class="back-btn">← LEAVE ASGARD</a>
+        <div class="tech-line" style="background: linear-gradient(to right, #444, var(--stark-gold), #444); height: 2px;"></div>
+    </header>
+
+    <main class="product-container">
+        <section class="image-gallery">
+            <div class="main-img-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrKpVGUl3OIl3K6I1X9Pbzlwe9BoT3T8Ef1g&s" alt="Thor Mjolnir Hammer">
+                <div class="scanner-line"></div> </div>
+        </section>
+
+        <section class="product-details">
+            <span class="brand-tag" style="background: #444; border: 1px solid var(--stark-gold);">WORTHY ONLY</span>
+            <h1 class="product-title">MJOLNIR <span>HAMMER</span></h1>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="label">PRICE</span>
+                    <span class="value">PKR 12,600</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">MATERIAL</span>
+                    <span class="value">High-Density PVC</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">POWER</span>
+                    <span class="value">2x AAA Batteries</span>
+                </div>
+            </div>
+
+            <div class="extra-details" style="margin-top: 20px;">
+                <h4 style="color: var(--stark-gold); font-family: 'Orbitron'; margin-bottom: 10px; font-size: 0.9rem;">ENCHANTMENT FEATURES:</h4>
+                <ul style="color: #ccc; font-size: 0.85rem; line-height: 1.6; padding-left: 20px;">
+                    <li>Motion-activated "Thunder" sound effects recorded from the movies.</li>
+                    <li>Internal LED "Lightning" pulses that glow through the cracks.</li>
+                    <li>Authentic leather-wrapped handle with wrist strap.</li>
+                    <li>Included display stand with Asgardian runes etched into the base.</li>
+                    <li>Weighted head for a realistic "God of Thunder" feel.</li>
+                </ul>
+            </div>
+
+            <p class="description" style="margin-top: 20px;">
+                Whosoever holds this hammer, if he be worthy, shall possess the power of Thor. This electronic Mjolnir is a faithful 1:1 scale replica of the legendary weapon. Whether you're battling Frost Giants or displaying it in your hall, its crackling lights and booming sounds will make you feel like the true Avenger.
+            </p>
+
+            <button class="buy-now" style="border-color: var(--stark-gold); color: var(--stark-gold);">SUMMON WEAPON</button>
+
+            <p style="margin-top: 30px; color: var(--stark-gold); font-size: 0.9rem; font-family: 'Orbitron';">📄 Product Documentation:</p>
+            <button onclick="downloadProductInfo('MJOLNIR HAMMER', 'PKR 12,600')" style="background: #e20112; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;">⬇️ DOWNLOAD PDF</button>
+        </section>
+    </main>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const content = `Product: ${productName}\nPrice: ${price}\n\nThank you for your interest in this Marvel product!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>

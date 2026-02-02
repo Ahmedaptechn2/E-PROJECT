@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toyo Toys - The World of Fun</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+   <style>
+    :root {
+        --neon-green: #00ff88;
+        --neon-blue: #00c3ff;
+        --neon-red: #ff0055;
+    }
+
+    /* Overlay Background */
+    .compare-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        z-index: 9999;
+        overflow-y: auto;
+        padding: 40px 10px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .compare-container {
+        max-width: 900px; margin: auto;
+        background: rgba(20, 20, 20, 0.85);
+        padding: 30px; border-radius: 30px;
+        border: 1px solid var(--neon-green);
+        text-align: center; color: white;
+    }
+
+    /* Category Header jo line ke beech mein aayega */
+    .category-header {
+        grid-column: 1 / -1; /* Poori width cover karega grid mein */
+        padding: 20px 0 10px 0;
+        border-bottom: 2px solid var(--neon-blue);
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    .category-header h3 {
+        color: var(--neon-green);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+  
+
+
+    .close-overlay { position: fixed; right: 30px; top: 20px; font-size: 40px; color: var(--neon-red); cursor: pointer; }
+
+    /* Slots */
+    .slots-wrapper { display: flex; justify-content: space-around; align-items: center; margin: 30px 0; }
+    .slot { 
+        width: 42%; height: 250px; border: 2px dashed #444; border-radius: 20px;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        background: rgba(255,255,255,0.05); transition: 0.3s;
+    }
+    .slot img { max-height: 140px; border-radius: 10px; margin-bottom: 10px; }
+
+    .vs-badge {
+        background: linear-gradient(45deg, var(--neon-red), var(--neon-blue));
+        width: 60px; height: 60px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 900; border: 2px solid white; box-shadow: 0 0 20px var(--neon-red);
+    }
+
+    /* Modal Picker */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; backdrop-filter: blur(10px); }
+    .modal-content {
+        background: #1a1a1a;
+        margin: 2% auto; /* Thoda upar se gap kam kiya */
+        padding: 20px;
+        width: 85%; 
+        max-height: 90vh; /* Screen ka 90% tak bada ho sakta hai */
+        overflow-y: auto; /* Agar toys zyada hon toh scrollbar aa jaye */
+        border-radius: 20px;
+        border: 1px solid var(--neon-blue);
+        position: relative;
+    }
+
+    
+    /* Category Header jo line ke beech mein aayega */
+  
+    /* Modal Grid ko thoda adjust karein taake headers fit hon */
+    .product-grid-modal {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 20px;
+        align-items: start;
+    }
+      /* Card ke andar ki image fix */
+    .modal-item img {
+        width: 100%;
+        height: 150px; /* Sab images ek hi size ki dikhen */
+        object-fit: cover;     /* Image kharab na ho */
+        background: transparent;
+        border-radius: 10px;
+    }
+
+    .modal-item:hover { border-color: var(--neon-green); transform: translateY(-5px); }
+    .modal-item img { width: 100%; border-radius: 10px; }
+
+    /* Table */
+    #compareTable { width: 100%; margin-top: 30px; border-collapse: collapse; background: rgba(255,255,255,0.03); border-radius: 15px; overflow: hidden; }
+    #compareTable th { background: rgba(0, 195, 255, 0.2); color: var(--neon-blue); padding: 15px; }
+    #compareTable td { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    /* Modal List Grid - Fix 4 Columns */
+    #modalList {
+        display: grid;
+        /* Aik line mein fix 4 cards (Laptop/Desktop par) */
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 25px; /* Gap thoda barha diya taake clear lage */
+        padding: 15px;
+    }
+
+    /* Category Separator Header */
+    .cat-separator {
+        grid-column: 1 / -1; /* Ab ye 1 se lekar 5 tak (yaani poori 4 columns) cover karega */
+        background: #222;
+        color: var(--neon-blue);
+        padding: 18px;
+        margin-top: 20px;
+        border-radius: 10px;
+        border-left: 8px solid var(--neon-blue);
+        font-size: 1.4rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .cat-separator.wwe-header {
+        border-left-color: #ff0000;
+        color: #ff0000;
+        background: rgba(255, 0, 0, 0.1);
+    }
+
+    /* Card Styling - Size Barha diya */
+    .modal-item {
+        background: #1a1a1a;
+        border: 1px solid #333;
+        padding: 20px; /* Padding barha di */
+        border-radius: 15px;
+        text-align: center;
+        transition: 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .modal-item:hover { 
+        border-color: var(--neon-green); 
+        transform: scale(1.05); /* Thoda sa zoom effect */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Image clear dikhane ke liye size fix */
+    .modal-item img { 
+        width: 100%; 
+        height: 180px; /* Height barha di taake image baree dikhe */
+        object-fit: cover; 
+        background: transparent; 
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+/* Main Trigger Button Styling */
+.main-trigger-btn {
+    background: transparent;
+    color: var(--neon-green);
+    border: 2px solid var(--neon-green);
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+    font-family: 'Poppins', sans-serif;
+    margin: 20px 0;
+}
+
+.main-trigger-btn:hover {
+    background: var(--neon-green);
+    color: #121212;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
+    transform: translateY(-3px);
+}
+/* Slots Container (Dono slots ko ek line mein rakhne ke liye) */
+.slots-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 40px 0;
+    gap: 20px;
+}
+/* Modal Close Button (Cross) Styling */
+.close {
+    color: var(--neon-red); /* Theme ka Neon Red color */
+    position: absolute;     /* Corner pe fix karne ke liye */
+    top: 10px;              /* Upar se thoda gap */
+    right: 25px;            /* Right side se gap */
+    font-size: 50px;        /* SIZE YAHAN SE CONTROL HOGA (Pehle shayed 16px tha) */
+    font-weight: bold;      /* Thoda mota dikhe */
+    cursor: pointer;        /* Mouse le jane par hand icon aye */
+    transition: 0.3s;       /* Smooth effect */
+    z-index: 1001;          /* Sabse upar dikhe */
+    line-height: 40px;      /* Height balance karne ke liye */
+}
+
+.close:hover {
+    color: #ffffff;         /* Hover par white ho jaye */
+    text-shadow: 0 0 15px var(--neon-red); /* Glow effect */
+    transform: scale(1.2);  /* Hover par thoda aur bada ho jaye */
+}
+
+/* Individual Slot Styling */
+.slot {
+    flex: 1;
+    height: 300px; /* Thoda bara size taake toy image achi dikhe */
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px dashed rgba(0, 195, 255, 0.3); /* Neon Blue dashed border */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.slot:hover {
+    background: rgba(0, 195, 255, 0.07);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 20px rgba(0, 195, 255, 0.2);
+}
+
+/* VS Badge Styling (The Center Piece) */
+.vs-badge {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ff0055 0%, #00c3ff 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: white;
+    border: 4px solid #121212;
+    box-shadow: 0 0 25px rgba(255, 0, 85, 0.5);
+    z-index: 10;
+    font-style: italic;
+    transform: rotate(-10deg);
+}
+
+/* Add Toy Button (Inside Slot) */
+.add-btn {
+    background: var(--neon-blue);
+    color: #121212;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+    font-size: 0.9rem;
+    box-shadow: 0 5px 15px rgba(0, 195, 255, 0.3);
+}
+
+.add-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px var(--neon-blue);
+    background: white;
+}
+
+/* Jab Slot mein Toy aa jaye (Image styling) */
+.slot img {
+    max-height: 200px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+}
+
+.slot h4 {
+    color: white;
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+    /* Mobile ke liye responsiveness (Zaroori hai) */
+    @media (max-width: 1024px) {
+        #modalList { grid-template-columns: repeat(2, 1fr); } /* Tablets par 2 cards */
+        .cat-separator { grid-column: 1 / 3; }
+    }
+    @media (max-width: 600px) {
+        #modalList { grid-template-columns: repeat(1, 1fr); } /* Mobile par 1 card */
+        .cat-separator { grid-column: 1 / 2; }
+    }
+  /* --- LAYOUT WRAPPER (Cards ko line mein lata hai) --- */
+.cards-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Jagah kam hone par neeche shift karega */
+  gap: 40px;       /* Cards ke beech faasla */
+  padding: 50px;
+  width: 100%;
+}
+
+/* --- CARD CONTAINER (Renamed from .container) --- */
+.toy-box {
+  height: 350px;
+  width: 260px;
+  perspective: 800px;
+  font-family: sans-serif;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* --- CARD MAIN BODY (Renamed from .card) --- */
+.toy-card {
+  width: 100%;
+  height: 100%;
+  background: black;
+  border-radius: 1.5rem;
+  position: relative;
+  transition: transform 1500ms; /* Wahi slow motion effect */
+  transform-style: preserve-3d;
+}
+
+/* --- HOVER EFFECT (Wahi Diagonal Flip) --- */
+.toy-box:hover .toy-card {
+  transform: rotateX(180deg) rotateZ(-180deg);
+}
+
+/* --- FRONT & BACK COMMON STYLES --- */
+.front, .back {
+  height: 100%;
+  width: 100%;
+  border-radius: 1.5rem;
+  box-shadow: 0px 0px 10px 5px rgba(255, 0, 0, 0.7); /* Wahi Red Glow */
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* --- FRONT SIDE --- */
+.front {
+  justify-content: flex-start;
+  background: #111;
+  z-index: 2;
+}
+
+/* --- BACK SIDE --- */
+.back {
+  background-color: black;
+  /* Back ko pehle se ulta rakha hai taake flip hone par seedha dikhe */
+  transform: rotateX(180deg) rotateZ(-180deg);
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 1;
+}
+
+/* --- IMAGES & TEXT --- */
+.product-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-bottom: 2px solid red;
+}
+
+.card-content {
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.card-top {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 0, 0, 0.9);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.heading {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  margin: 5px 0;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 500;
+  color: #ff4d4d;
+  margin: 0;
+}
+
+.description {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.buy-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px red;
+  transition: 0.3s;
+}
+
+
+.buy-btn:hover {
+    background-color: white;
+    color: red;
+    box-shadow: 0px 0px 15px white;
+}
+
+/* ===== Trending Section Styles ===== */
+.trending-section { padding: 60px 20px; background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0)); }
+.trending-section .section-header-center { max-width: 1200px; margin: 0 auto 30px; text-align: center; }
+.trending-grid {
+    max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; align-items: stretch;
+}
+.trending-card {
+    position: relative; overflow: visible; border-radius: 14px; background: linear-gradient(180deg,#0f1114, #13161a);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6); padding: 0; transform: translateZ(0);
+    z-index: 0;
+}
+.trending-card img { width: 100%; height: 180px; object-fit: cover; border-top-left-radius: 14px; border-top-right-radius: 14px; display:block; position: relative; z-index: 1; }
+.trending-card .card-body { padding: 14px 16px; color: #e6e6e6; }
+.trending-card .brand { display:inline-block; font-size:12px; color: #000; background:#ffd700; padding:6px 10px; border-radius: 12px; font-weight:700; margin-bottom:8px; }
+.trending-card h4 { margin:6px 0 6px; font-size:16px; color:#fff; }
+.trending-card .muted { font-size:13px; color:#9aa0a6; margin-bottom:10px; }
+.trending-card .card-cta { display:flex; gap:10px; align-items:center; }
+.trending-card .doc-link { color: var(--neon-blue); text-decoration:none; font-weight:700; }
+.trending-card .buy-now { margin-left:auto; padding:8px 12px; background:#00c3ff; color:#001; border:none; border-radius:8px; font-weight:700; cursor:pointer; }
+
+.trending-card { position: relative; overflow: visible; border-radius: 14px; background: linear-gradient(180deg,#0f1114, #13161a); box-shadow: 0 8px 30px rgba(0,0,0,0.6); padding: 0; transform: translateZ(0); z-index: 1; }
+.trending-card img { width: 100%; height: 180px; object-fit: cover; border-top-left-radius: 14px; border-top-right-radius: 14px; display:block; position: relative; z-index: 0; }
+
+/* Animated border lines (raise stacking so they render above the image) */
+.trending-card::before, .trending-card::after { content: ''; position: absolute; left: 12px; right: 12px; height: 3px; background: linear-gradient(90deg, transparent, rgba(0,195,255,0.95), transparent); transform: scaleX(0); transform-origin: left center; transition: transform 0.45s cubic-bezier(.2,1,.3,1); pointer-events: none; z-index: 30; will-change: transform; }
+.trending-card::before { top: 10px; }
+.trending-card::after { bottom: 10px; }
+.trending-card .vline-left, .trending-card .vline-right { position:absolute; top:12px; bottom:12px; width:3px; background: linear-gradient(180deg, transparent, rgba(0,195,255,0.95), transparent); transform: scaleY(0); transition: transform 0.45s cubic-bezier(.2,1,.3,1); z-index: 30; pointer-events: none; transform-origin: top center; will-change: transform; }
+.trending-card .vline-left { left: 10px; }
+.trending-card .vline-right { right: 10px; }
+
+.trending-card:hover::before, .trending-card:hover::after { transform: scaleX(1); }
+.trending-card:hover .vline-left, .trending-card:hover .vline-right { transform: scaleY(1); }
+.trending-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,195,255,0.12); }
+.trending-card .card-body .buy-now:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,195,255,0.15); }
+
+@media (max-width: 1100px) { .trending-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 700px) { .trending-grid { grid-template-columns: 1fr; } .trending-card img{ height:220px } }
+
+
+/* Premium-card look for Trending: rotating glow + inner mask (uses child elements inserted into each article) */
+.trending-card {
+    background: #151515;
+    border-radius: 16px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Rotating glow implemented as a child element so pseudo-elements remain available for other animations */
+.trending-card .rotating-glow {
+    position: absolute;
+    top: -150%;
+    left: -150%;
+    width: 400%;
+    height: 400%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 70%,
+        #4A00E0 85%,
+        #B82869 95%,
+        transparent 100%
+    );
+    animation: rotateBorder 3s linear infinite;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    will-change: transform;
+    border-radius: 20px;
+    pointer-events: none;
+}
+.trending-card:hover .rotating-glow { opacity: 1; }
+
+/* Inner mask (child element) to emulate premium-card::after */
+.trending-card .inner-mask {
+    position: absolute;
+    inset: 4px;
+    background: linear-gradient(149deg, #192247 0%, #210e26 100%);
+    border-radius: 14px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Keep the existing animated lines and vertical lines as-is (they were previously defined).
+   They will animate above the image since their z-index is high. */
+
+@keyframes rotateBorder {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+</style>
+
+
+  
+</head>
+<body>
+
+    <header>
+     <div class="netflix-logo-container">
+    <div class="logo-text">
+        <span class="logo-main">TOYO TOYS</span>
+        <span class="logo-tag">Premium Play</span>
+    </div>
+</div>
+ <div class="nav-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="nav-location-text">
+                <span class="nav-line-1">Deliver to ALL Over</span>
+                <span class="nav-line-2" id="glow-ingress-line2">Pakistan</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/home/index.html">Home</a></li>
+                <li><a href="/wwe/wwe.html">WWE </a></li>
+                <li><a href="/lego/lego.html">lego</a></li>
+                <li><a href="/marvels/index.html">marvels</a></li>
+                 <li><a href="/HOT WHEELS/index.html">HOT WHEELS</a></li>
+                 <li><a href="contact2.html">CONTACT</a></li>
+                 
+            </ul>
+           
+    </div>
+        </nav>
+          <div class="ott-dropdown" id="ottDropdown">
+        <button class="ott-trigger" onclick="toggleOTT()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg>
+        </button>
+
+        <div class="ottBOX">
+            <a href="/marvels/index.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRlargt0M45QcYkeUNoL9PxeE3R6OCTycNQ&s" class="setOTT-img"></a>
+            <a href="/wwe/wwe.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuES2ggtgtmwrLis-dq71BGz8vkwEBdSQHuA&s" class="setOTT-img"></a>
+            <a href="/HOT WHEELS/index.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCUhfkqiO9E9M2I7LIM7-6ZdLtpZVzXRD93A&s" class="setOTT-img"></a>
+            <a href="/lego/lego.htm" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx6T7k02Vxh5Znyxfk-RJgcZiorbFEs5YRlQ&s" class="setOTT-img"></a>
+        </div>
+    </header>
+ <section class="hero-modern">
+    <div class="hero-container">
+        <div class="hero-text-box" data-aos="fade-right">
+            <span class="neon-badge">🚀 NEW ARRIVALS</span>
+            <h1>LEVEL UP YOUR <br> <span class="neon-glitch">PLAYTIME</span></h1>
+            <p>Experience the ultimate collection of Marvel, WWE, and Lego masterpieces. Built for fans, designed for fun.</p>
+            
+            <div class="hero-buttons">
+                <button class="main-btn" onclick="window.location.href='#products'">
+                    Shop Now <i class="fas fa-shopping-cart"></i>
+                </button>
+                <button class="secondary-btn">
+                    Watch Demo <i class="fas fa-play"></i>
+                </button>
+            </div>
+            
+            <div class="stats-row">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Premium Toys</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Original Brands</p>
+                </div>
+            </div>
+        </div>
+
+     <div class="hero-visual-box" data-aos="fade-left">
+    <div class="glow-circle-bg"></div>
+
+    <div class="hero-slider-container">
+       <img src="hero img 3.png" class="floating-hero-img active-slide" alt="Iron Man">
+        
+        <img src="hero img 1.png" class="floating-hero-img" alt="Bumblebee">
+        
+        <img src="hero img 2.png" class="floating-hero-img" alt="Lego">
+    </div>
+    <div class="float-card card-1">
+        <i class="fas fa-star"></i> 4.9 Rating
+    </div>
+    <div class="float-card card-2">
+        <i class="fas fa-bolt"></i> Fast Delivery
+    </div>
+</div>
+    </div>
+</section>
+
+<div class="marquee-section">
+    <div class="marquee-content">
+        <span>⚡ PREMIUM QUALITY</span> <i class="fas fa-circle"></i>
+        <span>⚡ FREE SHIPPING ON ORDERS $50+</span> <i class="fas fa-circle"></i>
+        <span>⚡ OFFICIAL MARVEL MERCH</span> <i class="fas fa-circle"></i>
+        <span>⚡ 100% ORIGINAL BRANDS</span> <i class="fas fa-circle"></i>
+        <span>⚡ EASY RETURNS</span> <i class="fas fa-circle"></i>
+        <span>⚡ PREMIUM QUALITY</span> <i class="fas fa-circle"></i>
+        <span>⚡ FREE SHIPPING ON ORDERS $50+</span> <i class="fas fa-circle"></i>
+        <span>⚡ OFFICIAL MARVEL MERCH</span> <i class="fas fa-circle"></i>
+    </div>
+</div>
+<section class="shop-by-age-section">
+    <div class="section-header-center">
+        <h2 class="neon-heading-static">FIND THE PERFECT GIFT</h2>
+        <p>Select the age group to explore curated toys</p>
+    </div>
+
+    <div class="age-grid-container">
+        <div class="age-card">
+            <div class="age-visual">
+                <img src="https://images.unsplash.com/photo-1555445054-01389ee76793?w=500&q=80" alt="Toddlers">
+                <div class="age-overlay"></div>
+                <span class="age-number">0-2</span>
+            </div>
+            <h3>Toddlers</h3>
+            <p>Soft & Safe</p>
+            <button class="view-age-btn" onclick="openAgeModal('toddler')">View More</button>
+        </div>
+
+        <div class="age-card">
+            <div class="age-visual">
+                <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=500&q=80" alt="Preschool">
+                <div class="age-overlay"></div>
+                <span class="age-number">3-5</span>
+            </div>
+            <h3>Preschool</h3>
+            <p>Creative Fun</p>
+            <button class="view-age-btn" onclick="openAgeModal('preschool')">View More</button>
+        </div>
+
+        <div class="age-card">
+            <div class="age-visual">
+                <img src="https://images.unsplash.com/photo-1560156713-549479b39e11?w=500&q=80" alt="Kids">
+                <div class="age-overlay"></div>
+                <span class="age-number">6-9</span>
+            </div>
+            <h3>School Kids</h3>
+            <p>Action & Adventure</p>
+            <button class="view-age-btn" onclick="openAgeModal('school')">View More</button>
+        </div>
+
+        <div class="age-card">
+            <div class="age-visual">
+                <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&q=80" alt="Teens">
+                <div class="age-overlay"></div>
+                <span class="age-number">10+</span>
+            </div>
+            <h3>Teens & Collectors</h3>
+            <p>Complex Sets</p>
+            <button class="view-age-btn" onclick="openAgeModal('teen')">View More</button>
+        </div>
+    </div>
+</section>
+
+<div id="ageModalOverlay" class="age-modal-overlay">
+    <div class="age-modal-content">
+        <span class="close-age-modal" onclick="closeAgeModal()">&times;</span>
+        <h2 id="modalTitle" class="neon-text">Selected Toys</h2>
+        <div class="modal-cards-grid" id="modalCardsContainer">
+            </div>
+    </div>
+</div>
+
+   
+
+<!-- Trending Items - added by assistant -->
+<section class="trending-section">
+    <div class="section-header-center">
+        <h2 class="neon-heading-static">TRENDING RIGHT NOW</h2>
+        <p>Top picks across the store — handpicked by Toyo's curators.</p>
+    </div>
+
+    <div class="trending-grid">
+        <!-- Marvel -->
+        <article class="trending-card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="100">
+            <span class="vline-left"></span>
+            <span class="vline-right"></span>
+            <span class="rotating-glow"></span>
+            <span class="inner-mask"></span>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfC5SKthFm8QtUZXzlbMhswIU3f-J8u12iag&s" alt="Iron Man MK-85" />
+            <div class="card-body">
+                <span class="brand">MARVEL</span>
+                <h4>Iron Man MK-85</h4>
+                <p class="muted">Electronic helmet & figure</p>
+                <div class="card-cta">
+                    <a href="/marvels/product-info/product-info1.html" class="doc-link">View</a>
+                    <button class="buy-now" onclick="addToCart('Iron Man MK-85','PKR 23,800')">Buy Now</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="trending-card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="200">
+            <span class="vline-left"></span>
+            <span class="vline-right"></span>
+            <span class="rotating-glow"></span>
+            <span class="inner-mask"></span>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAVf18z5xrrLQabVgdxvvdDwj444KK4MX95Q&s" alt="Captain America Shield" />
+            <div class="card-body">
+                <span class="brand">HASBRO</span>
+                <h4>Captain America Shield</h4>
+                <p class="muted">Replica shield with straps</p>
+                <div class="card-cta">
+                    <a href="/marvels/product-info/product-info2.html" class="doc-link">View</a>
+                    <button class="buy-now" onclick="addToCart('Captain America Shield','PKR 14,000')">Buy Now</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="trending-card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="300">
+            <span class="vline-left"></span>
+            <span class="vline-right"></span>
+            <span class="rotating-glow"></span>
+            <span class="inner-mask"></span>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFg_rCU6yTdp_2bidcQLaLcmwHrhoH1At6yw&s" alt="Spider-Man" />
+            <div class="card-body">
+                <span class="brand">HOT TOYS</span>
+                <h4>Spider-Man No Way Home</h4>
+                <p class="muted">Collectible 30+ articulation</p>
+                <div class="card-cta">
+                    <a href="/marvels/product-info/product-info3.html" class="doc-link">View</a>
+                    <button class="buy-now" onclick="addToCart('Spider-Man No Way Home','PKR 33,600')">Buy Now</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- WWE -->
+        <article class="trending-card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="400">
+            <span class="vline-left"></span>
+            <span class="vline-right"></span>
+            <span class="rotating-glow"></span>
+            <span class="inner-mask"></span>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1hZT2sAEqqaetj8QhBXDNBH1CadeTgaZmXyhtCsMU6Q&s" alt="Roman Reigns" />
+            <div class="card-body">
+                <span class="brand">MATTEL</span>
+                <h4>Roman Reigns Elite</h4>
+                <p class="muted">The Tribal Chief figure</p>
+                <div class="card-cta">
+                    <a href="/wwe/product-info/card1.html" class="doc-link">View</a>
+                    <button class="buy-now" onclick="addToCart('Roman Reigns Elite','PKR 7,000')">Buy Now</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="trending-card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="500">
+            <span class="vline-left"></span>
+            <span class="vline-right"></span>
+            <span class="rotating-glow"></span>
+            <span class="inner-mask"></span>
+            <img src="https://cdn.1001hobbies.com/2451278-large_default/mattel-matthvf92-wwe-ultimate-edition-john-cena-figure-15-cm.jpg" alt="John Cena" />
+            <div class="card-body">
+                <span class="brand">MATTEL</span>
+                <h4>John Cena Basic</h4>
+                <p class="muted">Durable action figure</p>
+                <div class="card-cta">
+                    <a href="/wwe/product-info/card2.html" class="doc-link">View</a>
+                    <button class="buy-now" onclick="addToCart('John Cena Basic','PKR 5,040')">Buy Now</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="trending-card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="600">
+            <span class="vline-left"></span>
+            <span class="vline-right"></span>
+            <span class="rotating-glow"></span>
+            <span class="inner-mask"></span>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWTkJ4jJdT24JDe7SxVK6KkQ7AUwsQgWW3xw&s" alt="The Rock" />
+            <div class="card-body">
+                <span class="brand">MATTEL</span>
+                <h4>The Rock Elite</h4>
+                <p class="muted">Electrifying collector's figure</p>
+                <div class="card-cta">
+                    <a href="/wwe/product-info/card5.html" class="doc-link">View</a>
+                    <button class="buy-now" onclick="addToCart('The Rock Elite','PKR 7,840')">Buy Now</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="trending-card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="700">
+            <span class="vline-left"></span>
+            <span class="vline-right"></span>
+            <span class="rotating-glow"></span>
+            <span class="inner-mask"></span>
+            <img src="https://m.media-amazon.com/images/I/71MsjIbSUFL._AC_UF894,1000_QL80_.jpg" alt="Becky Lynch" />
+            <div class="card-body">
+                <span class="brand">MATTEL</span>
+                <h4>Becky Lynch Elite</h4>
+                <p class="muted">Signature steampunk gear</p>
+                <div class="card-cta">
+                    <a href="/wwe/product-info/card11.html" class="doc-link">View</a>
+                    <button class="buy-now" onclick="addToCart('Becky Lynch Elite','PKR 6,440')">Buy Now</button>
+                </div>
+            </div>
+        </article>
+        
+        <!-- 8th Trending Card (Infinity Gauntlet) -->
+        <article class="trending-card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="800">
+            <span class="vline-left"></span>
+            <span class="vline-right"></span>
+            <span class="rotating-glow"></span>
+            <span class="inner-mask"></span>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQW7zSZfJaez62NF6HPxzeS93oxrJYlC_aPw&s" alt="Infinity Gauntlet" />
+            <div class="card-body">
+                <span class="brand">MARVEL</span>
+                <h4>Infinity Gauntlet</h4>
+                <p class="muted">1:1 electronic gauntlet</p>
+                <div class="card-cta">
+                    <a href="/marvels/product-info/product-info8.html" class="doc-link">View</a>
+                    <button class="buy-now" onclick="addToCart('Infinity Gauntlet','PKR 35,000')">Buy Now</button>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- end Trending Items -->
+
+<section id="products">
+    <div class="cards-wrapper">
+
+        <div class="toy-box">
+            <div class="toy-card">
+                <div class="front">
+                    <div class="card-top">NEW</div>
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80" class="product-img">
+                    <div class="card-content">
+                        <p class="heading">Nike Red Air</p>
+                        <p class="price">PKR 33,600</p>
+                    </div>
+                </div>
+                <div class="back">
+                    <p class="heading">Details</p>
+                    <div class="description">
+                        <p>• Premium Quality</p>
+                        <p>• Air Sole Unit</p>
+                    </div>
+                    <button class="buy-btn" onclick="addToCart('Nike Air Max', 'PKR 33,600')">Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="toy-box">
+            <div class="toy-card">
+                <div class="front">
+                    <div class="card-top">-20%</div>
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80" class="product-img">
+                    <div class="card-content">
+                        <p class="heading">Sony Bass X</p>
+                        <p class="price">PKR 23,800</p>
+                    </div>
+                </div>
+                <div class="back">
+                    <p class="heading">Details</p>
+                    <div class="description">
+                        <p>• Noise Cancelling</p>
+                        <p>• 40h Battery</p>
+                    </div>
+                    <button class="buy-btn" onclick="addToCart('Sony Bass X', 'PKR 23,800')">Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="toy-box">
+            <div class="toy-card">
+                <div class="front">
+                    <div class="card-top">HOT</div>
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80" class="product-img">
+                    <div class="card-content">
+                        <p class="heading">Smart Watch</p>
+                        <p class="price">PKR 55,720</p>
+                    </div>
+                </div>
+                <div class="back">
+                    <p class="heading">Details</p>
+                    <div class="description">
+                        <p>• Heart Rate Sensor</p>
+                        <p>• Waterproof</p>
+                    </div>
+                    <button class="buy-btn" onclick="addToCart('Smart Watch', 'PKR 55,720')">Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="toy-box">
+            <div class="toy-card">
+                <div class="front">
+                    <div class="card-top">SALE</div>
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500&q=80" class="product-img">
+                    <div class="card-content">
+                        <p class="heading">Polaroid Pro</p>
+                        <p class="price">PKR 42,000</p>
+                    </div>
+                </div>
+                <div class="back">
+                    <p class="heading">Details</p>
+                    <div class="description">
+                        <p>• Instant Print</p>
+                        <p>• Retro Look</p>
+                    </div>
+                    <button class="buy-btn" onclick="addToCart('Polaroid Pro', 'PKR 42,000')">Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="toy-box">
+            <div class="toy-card">
+                <div class="front">
+                    <div class="card-top">BEST</div>
+                    <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=500&q=80" class="product-img">
+                    <div class="card-content">
+                        <p class="heading">Mini Drone 4K</p>
+                        <p class="price">PKR 70,000</p>
+                    </div>
+                </div>
+                <div class="back">
+                    <p class="heading">Details</p>
+                    <div class="description">
+                        <p>• 30 Mins Fly Time</p>
+                        <p>• 4K Video Rec</p>
+                    </div>
+                    <button class="buy-btn" onclick="addToCart('Mini Drone 4K', 'PKR 70,000')">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+</section>
+
+    </div>
+ <div class="section-wrapper">
+    <h2 class="main-heading" data-aos="fade-down" data-aos-duration="1000">Why Toyo Toys is the Best?</h2>
+
+    <div class="cards-grid">
+        <div class="premium-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+            <div>
+                <h3 class="card-title">Supreme Quality</h3>
+                <p class="card-desc">Toys that survive every adventure. Built with high-grade materials for non-stop fun.</p>
+            </div>
+            <div class="icon-wrapper">
+                <svg width="80" height="80" viewBox="0 0 72 72" fill="none">
+                    <circle cx="36" cy="36" r="30" fill="url(#grad1)" opacity="0.2"/>
+                    <path d="M36 12L43.41 26.9L60 29.3L48 41L50.82 57.5L36 49.7L21.18 57.5L24 41L12 29.3L28.59 26.9L36 12Z" fill="url(#grad1)"/>
+                    <defs>
+                        <radialGradient id="grad1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(36 36) rotate(45) scale(40)">
+                            <stop stop-color="#FFDCCC"/><stop offset="0.3" stop-color="#E50914"/><stop offset="1" stop-color="#792A95"/>
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <div class="premium-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+            <div>
+                <h3 class="card-title">Safety Certified</h3>
+                <p class="card-desc">100% Non-toxic and BPA-free. Every toy is safety-tested for your little ones.</p>
+            </div>
+            <div class="icon-wrapper">
+                <svg width="80" height="80" viewBox="0 0 72 72" fill="none">
+                    <path d="M36 10L14 18V34C14 47.6 23.4 60.2 36 64C48.6 60.2 58 47.6 58 34V18L36 10Z" fill="url(#grad2)"/>
+                    <path d="M30 46L22 38L25 35L30 40L42 28L45 31L30 46Z" fill="#white" opacity="0.8"/>
+                    <defs>
+                        <linearGradient id="grad2" x1="14" y1="10" x2="58" y2="64">
+                            <stop stop-color="#00C9FF"/><stop offset="1" stop-color="#92FE9D"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <div class="premium-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div>
+                <h3 class="card-title">Express Shipping</h3>
+                <p class="card-desc">Why wait? We ship lightning-fast so the fun starts without any delay.</p>
+            </div>
+            <div class="icon-wrapper">
+                <svg width="80" height="80" viewBox="0 0 72 72" fill="none">
+                    <path d="M55 25L58 15L48 18C42 19 36 23 33 28C28 35 28 42 31 48L15 64L20 69L36 53C42 56 50 54 56 49C61 44 63 35 55 25Z" fill="url(#grad3)"/>
+                    <defs>
+                        <radialGradient id="grad3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(50 30) rotate(135) scale(50)">
+                            <stop stop-color="#FF416C"/><stop offset="1" stop-color="#FF4B2B"/>
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <div class="premium-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+            <div>
+                <h3 class="card-title">Best Prices</h3>
+                <p class="card-desc">Premium quality at unbeatable rates. Best value for your money, guaranteed.</p>
+            </div>
+            <div class="icon-wrapper">
+                <svg width="80" height="80" viewBox="0 0 72 72" fill="none">
+                    <path d="M60 36L36 12H12V36L36 60L60 36ZM24 24C24 21.8 25.8 20 28 20C30.2 20 32 21.8 32 24C32 26.2 30.2 28 28 28C25.8 28 24 26.2 24 24Z" fill="url(#grad4)"/>
+                    <defs>
+                        <linearGradient id="grad4" x1="12" y1="12" x2="60" y2="60">
+                            <stop stop-color="#8E2DE2"/><stop offset="1" stop-color="#4A00E0"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <div class="premium-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="350">
+            <div>
+                <h3 class="card-title">Easy Returns</h3>
+                <p class="card-desc">Not happy? No problem. Hassle-free returns because we care about your satisfaction.</p>
+            </div>
+            <div class="icon-wrapper">
+                <svg width="80" height="80" viewBox="0 0 72 72" fill="none">
+                    <path d="M36 12C22.7 12 12 22.7 12 36C12 49.3 22.7 60 36 60V52C27.2 52 20 44.8 20 36C20 27.2 27.2 20 36 20V28L48 16L36 4V12Z" fill="url(#grad5)"/>
+                    <defs>
+                        <radialGradient id="grad5" cx="36" cy="36" r="30" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#9d50bb"/><stop offset="1" stop-color="#6e48aa"/>
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <div class="premium-card" style="position: relative; overflow: hidden; display: block;" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+            <div style="padding-right: 20px;">
+                <h3 class="card-title">Authentic Brands</h3>
+                <p class="card-desc">No fakes, only originals. Hum sirf top global brands ke saath deal karte hain taaki aapko mile hamesha genuine quality.</p>
+            </div>
+            
+            <div class="icon-wrapper" style="position: absolute; bottom: 10px; right: 10px; margin: 0; line-height: 0;">
+                <svg width="75" height="75" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+                    <path d="M36 4L40.9 9.1L47.9 8.2L50.8 14.6L57.6 16.7L57.2 23.8L62.1 28.9L58.5 35L62.1 41.1L57.2 46.2L57.6 53.3L50.8 55.4L47.9 61.8L40.9 60.9L36 66L31.1 60.9L24.1 61.8L21.2 55.4L14.4 53.3L14.8 46.2L9.9 41.1L13.5 35L9.9 28.9L14.8 23.8L14.4 16.7L21.2 14.6L24.1 8.2L31.1 9.1L36 4Z" fill="url(#grad6)"/>
+                    <path d="M30 46L22 38L25 35L30 40L42 28L45 31L30 46Z" fill="white" opacity="0.9"/>
+                    <defs>
+                        <linearGradient id="grad6" x1="10" y1="10" x2="62" y2="62" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00F2FE"/><stop offset="1" stop-color="#4FACFE"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="compareLayer" class="compare-overlay">
+    <span class="close-overlay" onclick="closeCompareTool()">&times;</span>
+
+    <div class="compare-container">
+        <h2> Toyo Comparison Hub</h2>
+        <p>Select two toys to see their features side-by-side</p>
+
+        <div class="slots-wrapper">
+            <div class="slot" id="slot-1">
+                <button class="add-btn" onclick="openPicker(1)">+ Add Toy</button>
+            </div>
+            
+            <div class="vs-badge">VS</div>
+            
+            <div class="slot" id="slot-2">
+                <button class="add-btn" onclick="openPicker(2)">+ Add Toy</button>
+            </div>
+        </div>
+
+        <table id="compareTable" style="display: none;">
+            <thead>
+                <tr id="tableHead">
+                    <th>Features</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePicker()">&times;</span>
+        <h3>Select a Toy to Compare</h3>
+        <div id="modalList" class="product-grid-modal"></div>
+    </div>
+</div>
+
+ <div class="toyo-ai-bot" id="toyoAI">
+    <div class="ai-chat-window" id="aiWindow">
+        <div class="ai-header">
+            <img src="ai-avatar.png" alt="TOYO AI">
+            <span>TOYO AI Assistant</span>
+            <button onclick="toggleAI()">×</button>
+        </div>
+        <div class="ai-body" id="aiBody">
+            <p class="ai-msg">Hi! Main TOYO AI hoon. Aapke liye perfect toy dhoondne mein help karun?</p>
+            <div class="ai-options">
+                <button onclick="askAge()">Zaroor, Help karo!</button>
+            </div>
+        </div>
+    </div>
+    <button class="ai-trigger-btn" onclick="toggleAI()">
+        <i class="fas fa-robot"></i> <span>Ask TOYO AI</span>
+    </button>
+</div>
+    
+           
+    
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col" data-aos="fade-up">
+                <h2 class="footer-logo">YAQOOB <span>TECH</span></h2>
+                <p>Your one-stop shop for high-performance laptops. Latest technology with official warranty.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Products</a></li>
+                </ul>
+            </div>
+              <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Gaming Laptops</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Business Laptops</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Student Series</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+            </ul>
+        </div>
+
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</p>
+                    <p><i class="fas fa-phone"></i> +92 300 1234567</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yaqoob Tech</p>
+        </div>
+    </footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+<script>
+    // Lenis Initialize karna
+    const lenis = new Lenis({
+      duration: 1.2,   // Scrolling ki speed (jitna zyada, utna smooth)
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smoothness ka formula
+      smoothWheel: true
+    })
+
+    // Frame-by-frame update ke liye function
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+</script>
+
+   <script>
+AOS.init({
+    duration: 1500,         // Default speed 2 seconds
+    once: false,             // Ek hi baar chalega
+    disableMutationObserver: false, 
+    debounceDelay: 50, 
+    throttleDelay: 99,
+});
+   function toggleOTT() {
+        const dropdown = document.getElementById('ottDropdown');
+        dropdown.classList.toggle('active');
+    }
+    // 1. FILTERING LOGIC
+    const filterButtons = document.querySelectorAll('.filter-group .btn');
+    const products = document.querySelectorAll('.product-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            button.parentElement.querySelector('.active')?.classList.remove('active');
+            button.classList.add('active');
+
+            const filterValue = button.textContent.trim().toUpperCase();
+
+            products.forEach(product => {
+                const brand = product.getAttribute('data-brand').toUpperCase();
+                const age = product.getAttribute('data-age').toUpperCase();
+
+                if (filterValue === 'ALL' || brand === filterValue || age === filterValue) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // 2. DETAILED COMPARISON LOGIC
+    const checkboxes = document.querySelectorAll('.compare-check'); // <<< MUST HAVE
+    const tableHeader = document.getElementById('table0-header');
+    const tableBody = document.getElementById('table0-body');
+
+    checkboxes.forEach(box => {
+        box.addEventListener('change', () => {
+            const selected = Array.from(checkboxes).filter(cb => cb.checked);
+
+            // Reset table content
+            tableHeader.innerHTML = '<th>Comparison Topics</th>';
+            tableBody.innerHTML = '';
+
+            if (selected.length > 0) {
+                // Populate Header with Names
+                selected.forEach(item => {
+                    tableHeader.innerHTML += `<th>${item.getAttribute('data-name')}</th>`;
+                });
+
+                // Topics to Compare
+                const comparisonTopics = [
+                    { label: 'Brand', attr: 'data-brand-full' },
+                    { label: 'Price', attr: 'data-price' },
+                    { label: 'Material', attr: 'data-material' },
+                    { label: 'Weight', attr: 'data-weight' },
+                    { label: 'Battery Required', attr: 'data-battery' }
+                ];
+
+                // Generate rows
+                comparisonTopics.forEach(topic => {
+                    let rowHTML = `<tr><td><strong>${topic.label}</strong></td>`;
+                    selected.forEach(item => {
+                        rowHTML += `<td>${item.getAttribute(topic.attr)}</td>`;
+                    });
+                    rowHTML += '</tr>';
+                    tableBody.innerHTML += rowHTML;
+                });
+            } else {
+                tableBody.innerHTML = '<tr><td colspan="100%">No products selected for comparison.</td></tr>';
+            }
+        });
+    });
+
+    // 3. SLIDER LOGIC
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    let slideInterval = setInterval(nextSlide, 4000);
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        if (index >= slides.length) currentSlide = 0;
+        else if (index < 0) currentSlide = slides.length - 1;
+        else currentSlide = index;
+        slides[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() { showSlide(currentSlide + 1); resetTimer(); }
+    function prevSlide() { showSlide(currentSlide - 1); resetTimer(); }
+    function resetTimer() { clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 4000); }
+      $(document).ready(function() {
+            // Button hover animation
+            $('#dl-action').hover(
+                function() { $(this).css('background-color', '#ffca2c'); },
+                function() { $(this).css('background-color', '#ffc107'); }
+            );
+
+            // Simple click confirmation
+            $('#dl-action').on('click', function(e) {
+                // Yahan aap tracking code bhi laga sakte hain
+                console.log("Menu download started...");
+                
+                // Optional: Button text change after click
+                let btn = $(this);
+                btn.find('span').text('✅');
+                setTimeout(function(){
+                    btn.find('span').text('⬇️');
+                }, 3000);
+            });
+        });
+        let currentSlot = null;
+    let selectedToys = { slot1: null, slot2: null };
+
+    function openCompareTool() {
+        document.getElementById('compareLayer').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCompareTool() {
+        document.getElementById('compareLayer').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function closePicker() {
+        document.getElementById('productModal').style.display = 'none';
+    }
+
+    function openPicker(slotNum) {
+        currentSlot = slotNum;
+        const modalList = document.getElementById('modalList');
+        modalList.innerHTML = '';
+
+        // Category wise sort karna
+        const sortedToys = [...toyData].sort((a, b) => a.category.localeCompare(b.category));
+
+        let lastCategory = "";
+
+ sortedToys.forEach(toy => {
+    if (toy.category !== lastCategory) {
+        const separator = document.createElement('div');
+
+        // FIX 1: "HOT WHEELS" (Uppercase) check karein jo aapke data mein hai
+        if (toy.category === "WWE") {
+            separator.className = 'cat-separator wwe-header';
+            separator.innerHTML = `🔥 WWE SUPERSTARS SECTION`;
+        } else if (toy.category === "Marvel") {
+            separator.className = 'cat-separator marvel-header';
+            separator.innerHTML = `⭐ MARVEL UNIVERSE`; // Marvel header text missing tha
+        } else if (toy.category === "HOT WHEELS" || toy.category === "Hot Wheels") { 
+            // Dono spelling check kar liye taake galti na ho
+            separator.className = 'cat-separator hot-wheels-header';
+            separator.innerHTML = `🔥 HOT WHEELS COLLECTION`;
+        } else {
+            separator.className = 'cat-separator default-header';
+            separator.innerHTML = `🔥 ${toy.category} COLLECTION`;
+        }
+
+        modalList.appendChild(separator);
+        lastCategory = toy.category;
+    }
+
+    // FIX 2: Hot Wheels ke liye Image Style yahan define karein
+    // Agar Hot Wheels hai to 'contain', werna 'cover' (Marvel/WWE ke liye)
+    let imgStyle = '';
+    if (toy.category === "HOT WHEELS" || toy.category === "Hot Wheels") {
+        // Cars ke liye: Image poori dikhe aur stretch na ho
+        imgStyle = "width: 100%; height: 120px; object-fit: contain; background: rgba(0,0,0,0.2); border-radius: 8px;";
+    } else {
+        // Characters ke liye: Image fill kare
+        imgStyle = "width: 100%; height: 180px; object-fit: cover; border-radius: 8px 8px 0 0;";
+    }
+
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'modal-item';
+    itemDiv.style.cursor = "pointer";
+    
+    // Niche <img> tag mein humne 'style="${imgStyle}"' add kiya hai
+    itemDiv.innerHTML = `
+        <div style="text-align: center; padding: 5px;">
+            <img src="${toy.img}" alt="${toy.name}" style="${imgStyle}">
+        </div>
+        <h4 style="margin:10px 0 5px; font-size:14px; color:white;">${toy.name}</h4>
+        <small style="color:#aaa;">${toy.brand}</small>
+    `;
+
+    itemDiv.onclick = () => selectToy(toy);
+    modalList.appendChild(itemDiv);
+});
+        document.getElementById('productModal').style.display = 'block';
+    }
+
+    // FIX: Function ab direct toy object receive karega
+    function selectToy(toy) {
+        if (!toy) return;
+
+        // Data save karein
+        selectedToys[`slot${currentSlot}`] = toy;
+
+        // Slot UI Update karein
+        const slotDiv = document.getElementById(`slot-${currentSlot}`);
+        slotDiv.innerHTML = `
+            <div style="text-align:center;">
+                <img src="${toy.img}" style="max-height: 180px; width: auto; object-fit: contain;">
+                <h4 style="color:white; margin:10px 0;">${toy.name}</h4>
+                <button class="add-btn" onclick="openPicker(${currentSlot})" style="padding: 5px 15px; font-size: 12px;">Change</button>
+            </div>
+        `;
+
+        updateCompareTable();
+        closePicker();
+    }
+
+    function updateCompareTable() {
+        const t1 = selectedToys.slot1;
+        const t2 = selectedToys.slot2;
+
+        if (t1 || t2) {
+            document.getElementById('compareTable').style.display = 'table';
+
+            // Table body update
+            const features = ['brand', 'price', 'material', 'weight', 'battery'];
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            // Table Head Update (Optional but better)
+            const tableHead = document.getElementById('tableHead');
+            tableHead.innerHTML = `
+                <th>Features</th>
+                <th>${t1 ? t1.name : 'Slot 1'}</th>
+                <th>${t2 ? t2.name : 'Slot 2'}</th>
+            `;
+
+            features.forEach(f => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td style="text-transform: capitalize; font-weight: bold; color: var(--neon-blue);">${f}</td>
+                        <td>${t1 ? t1[f] : '-'}</td>
+                        <td>${t2 ? t2[f] : '-'}</td>
+                    </tr>
+                `;
+            });
+        }
+    }
+    const toyData = [
+    {
+        id: 1,
+        category: "Marvel",
+        name: "Iron Man MK-85",
+        price: "PKR 23,800", 
+        brand: "MARVEL STUDIOS", 
+        material: "Die-cast Metal", 
+        weight: "800g", 
+        battery: "Yes", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfC5SKthFm8QtUZXzlbMhswIU3f-J8u12iag&s" 
+    },
+    {
+        id: 2,
+        category: "Marvel",
+        name: "Captain America Shield",
+        price: "PKR 14,000", 
+        brand: "HASBRO TOYS", 
+        material: "ABS Plastic", 
+        weight: "1.2kg", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAVf18z5xrrLQabVgdxvvdDwj444KK4MX95Q&s" 
+    },
+    {
+        id: 3,
+        category: "Marvel",
+        name: "Spider-Man No Way Home",
+        price: "PKR 61,600", 
+        brand: "HOT TOYS", 
+        material: "Fabric/PVC", 
+        weight: "600g", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFg_rCU6yTdp_2bidcQLaLcmwHrhoH1At6yw&s" 
+    },
+    {
+        id: 4,
+        category: "Marvel",
+        name: "Thor Mjolnir Hammer",
+        price: "PKR 12,600", 
+        brand: "MATTEL", 
+        material: "Hard Plastic", 
+        weight: "900g", 
+        battery: "Yes", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrKpVGUl3OIl3K6I1X9Pbzlwe9BoT3T8Ef1g&s" 
+    },
+    {
+        id: 5,
+        category: "Marvel",
+        name: "Black Panther Claw",
+        price: "PKR 8,400", 
+        brand: "MARVEL STUDIOS", 
+        material: "Soft PVC", 
+        weight: "350g", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkgQfZNfLe2CqTy6Wu7c-ak27EljGXF2sitA&s" 
+    },
+    {
+        id: 6,
+        category: "Marvel",
+        name: "Hulk Smash Fists",
+        price: "PKR 7,000", 
+        brand: "HASBRO TOYS", 
+        material: "Foam", 
+        weight: "500g", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJvm9CnJzfzDkgDDllHHyhxZniTh2VcERJJQ&s" 
+    },
+    {
+        id: 7,
+        category: "Marvel",
+        name: "Black Widow Figure",
+        price: "PKR 50,400", 
+        brand: "HOT TOYS", 
+        material: "Fabric/Resin", 
+        weight: "400g", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRoDqrLLE5u_A_xLrPNXJlJc-8KbfAxttqTw&s" 
+    },
+    {
+        id: 8,
+        category: "Marvel",
+        name: "Sanctum Sanctorum",
+        price: "PKR 70,000", 
+        brand: "LEGO GROUP", 
+        material: "ABS", 
+        weight: "2.5kg", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQW7zSZfJaez62NF6HPxzeS93oxrJYlC_aPw&s" 
+    },
+    {
+        id: 9,
+        category: "Marvel",
+        name: "Infinity Gauntlet",
+        price: "PKR 28,000", 
+        brand: "MARVEL STUDIOS", 
+        material: "PVC/Electronics", 
+        weight: "1.5kg", 
+        battery: "Yes", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf2FulV_tgHs75XsiTOj7plm6bxW-bq9KlIA&s" 
+    },
+    {
+        id: 10,
+        category: "Marvel",
+        name: "Dancing Baby Groot",
+        price: "PKR 9,800", 
+        brand: "MATTEL", 
+        material: "Plastic", 
+        weight: "300g", 
+        battery: "Yes", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPlswZF5LWiHBZWBMLNLluYe-yYAzoelm_A&s" 
+    },
+    {
+        id: 11,
+        category: "Marvel",
+        name: "Ant-Man Tech Helmet",
+        price: "PKR 19,600", 
+        brand: "HASBRO TOYS", 
+        material: "Plastic", 
+        weight: "850g", 
+        battery: "Yes", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGzf_RXKFJV9rELG4FvunPLaB8D_0DRwEtMg&s"
+    },
+    {      
+        id: 12,
+        category: "Marvel",
+        name: "Scarlet Witch (Multiverse)",
+        price: "PKR 58,800", 
+        brand: "HOT TOYS", 
+        material: "Resin/Fabric", 
+        weight: "500g", 
+        battery: "No", 
+        img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyEXclQiqExRfltK1P-e8PjJ-yChFHodtyWA&s" 
+    },
+    { 
+        id: 13, 
+        name: "Roman Reigns Elite", 
+        category: "WWE",
+        price: "PKR 7,000", 
+        brand: "MATTEL", 
+        material: "Vinyl/Plastic", 
+        weight: "450g", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1hZT2sAEqqaetj8QhBXDNBH1CadeTgaZmXyhtCsMU6Q&s" 
+    },
+    { 
+        id: 14, 
+        name: "John Cena Basic", 
+        category: "WWE",
+        price: "PKR 5,040", 
+        brand: "MATTEL", 
+        material: "Plastic", 
+        weight: "400g", 
+        battery: "No", 
+        img: "https://cdn.1001hobbies.com/2451278-large_default/mattel-matthvf92-wwe-ultimate-edition-john-cena-figure-15-cm.jpg" 
+    },
+    { 
+        id: 15, 
+        name: "WWE Title Belt", 
+        category: "WWE",
+        price: "PKR 11,200", 
+        brand: "WWE SHOP", 
+        material: "Faux Leather/Plastic", 
+        weight: "1.1kg", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9eSJ_3tCN4Y6xL4kM8D5UtxnQ6NwSRQVx0A&s" 
+    },
+    { 
+        id: 16, 
+        name: "Rey Mysterio Ultimate", 
+        category: "WWE",
+        price: "$32", 
+        brand: "MATTEL", 
+        material: "Highly Flexible Plastic", 
+        weight: "380g", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf-q92XNHL84JbneR7-ZS8Cgs8vr64ga1n0g&s" 
+    },
+    { 
+        id: 17, 
+        name: "The Rock Elite", 
+        category: "WWE",
+        price: "$28", 
+        brand: "MATTEL", 
+        material: "Vinyl", 
+        weight: "440g", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWTkJ4jJdT24JDe7SxVK6KkQ7AUwsQgWW3xw&s" 
+    },
+    { 
+        id: 18, 
+        name: "Seth Rollins Elite", 
+        category: "WWE",
+        price: "$24", 
+        brand: "MATTEL", 
+        material: "Plastic/Fabric", 
+        weight: "420g", 
+        battery: "No", 
+        img: "https://static.thcdn.com/images/large/original//productimg/1600/1600/16758987-1745242290193152.jpg" 
+    },
+    { 
+        id: 19, 
+        name: "Brock Lesnar Ultimate", 
+        category: "WWE",
+        price: "$35", 
+        brand: "MATTEL", 
+        material: "Hard Rubber/Plastic", 
+        weight: "500g", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkYL9JxGHaA4dShbD6rOOQOBS6Nt378CdNSg&s" 
+    },
+    { 
+        id: 20, 
+        name: "Cody Rhodes Elite", 
+        category: "WWE",
+        price: "$26", 
+        brand: "MATTEL", 
+        material: "Plastic/Soft Goods", 
+        weight: "430g", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX5DvA3UmDJm7an10D82Kg--pV5Sx5Zy6VNw&s" 
+    },
+    { 
+        id: 21, 
+        name: "Undertaker Elite", 
+        category: "WWE",
+        price: "$30", 
+        brand: "MATTEL", 
+        material: "Vinyl/Fabric", 
+        weight: "480g", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV02uam9ny7a4shC_I39Pq5duwvGm7EL5hfQ&s" 
+    },
+    { 
+        id: 22, 
+        name: "Randy Orton Elite", 
+        category: "WWE",
+        price: "$22", 
+        brand: "MATTEL", 
+        material: "Plastic", 
+        weight: "410g", 
+        battery: "No", 
+        img: "https://tools.toywiz.com/_images/_webp/_products/lg/wweelite34randyorton.webp" 
+    },
+    { 
+        id: 23, 
+        name: "Becky Lynch Elite", 
+        category: "WWE",
+        price: "$23", 
+        brand: "MATTEL", 
+        material: "Vinyl/Plastic", 
+        weight: "390g", 
+        battery: "No", 
+        img: "https://m.media-amazon.com/images/I/71MsjIbSUFL._AC_UF894,1000_QL80_.jpg" 
+    },
+    { 
+        id: 24, 
+        name: "Triple H Ultimate", 
+        category: "WWE",
+        price: "$33", 
+        brand: "MATTEL", 
+        material: "Plastic/Die-cast accessories", 
+        weight: "460g", 
+        battery: "No", 
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOdxYz1oc52lVHlT0D7949xPU4-aFxXYjFnQ&s" 
+    },
+    { 
+        id: 25, 
+        name: "'70 Plymouth Superbird", 
+        category: "HOT WHEELS",
+        price: "$5", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "45g", 
+        battery: "No", 
+        img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR%201.png" 
+    },
+    { 
+        id: 26, 
+        name: "'24 Lucid Air Safari", 
+      category: "HOT WHEELS",
+        price: "$5", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "48g", 
+        battery: "No", 
+ img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR%202.png" 
+
+
+    },
+    { 
+        id: 27, 
+        name: "Porsche 911 GT3 RS", 
+       category: "HOT WHEELS",
+        price: "$6", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "42g", 
+        battery: "No", 
+        img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR%202.png" 
+    },
+    { 
+        id: 28, 
+        name: "'24 Lucid Air Safari (v2)", 
+       category: "HOT WHEELS",
+        price: "$5", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "48g", 
+        battery: "No", 
+        img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR%203.png" 
+    },
+    { 
+        id: 29, 
+        name: "'67 Camaro STH", 
+       category: "HOT WHEELS",
+        price: "$15", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "50g", 
+        battery: "No", 
+        img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR%204.png" 
+    },
+    { 
+        id: 30, 
+        name: "Bone Shaker", 
+      category: "HOT WHEELS",
+        price: "$5", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "40g", 
+        battery: "No", 
+        img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR%205.png" 
+    },
+    { 
+        id: 31, 
+        name: "'70 Plymouth Petty Blue", 
+      category: "HOT WHEELS",
+        price: "$7", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "46g", 
+        battery: "No", 
+        img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR%206.png" 
+    },
+    { 
+        id: 32, 
+        name: "Tesla Cybertruck", 
+       category: "HOT WHEELS",
+        price: "$8", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "55g", 
+        battery: "No", 
+        img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR7.png" 
+    },
+    { 
+        id: 33, 
+        name: "Nissan Skyline GT-R", 
+     category: "HOT WHEELS",
+        price: "$10", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "44g", 
+        battery: "No", 
+        img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR%208.png" 
+    },
+    { 
+        id: 34, 
+        name: "Twin Mill", 
+      category: "HOT WHEELS",
+        price: "$5", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "47g", 
+        battery: "No", 
+        img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR%209.png" 
+    },
+    { 
+        id: 35, 
+        name: "Lamborghini Revuelto", 
+      category: "HOT WHEELS",
+        price: "$6", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "43g", 
+        battery: "No", 
+        img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR%2010.png" 
+    },
+    { 
+        id: 36, 
+        name: "'20 Toyota Supra", 
+      category: "HOT WHEELS",
+        price: "$6", 
+        brand: "HOT WHEELS", 
+        material: "Die-cast Metal/Plastic", 
+        weight: "45g", 
+        battery: "No", 
+        img: "http://127.0.0.1:5500/HOT%20WHEELS/CAR%20IMGS/CAR%2011.png" 
+    }
+];
+  
+ // 1. Toggle Chat Window (Open/Close)
+    function toggleAI() {
+        const window = document.getElementById('aiWindow');
+        const currentDisplay = window.style.display;
+        
+        if (currentDisplay === 'none' || currentDisplay === '') {
+            window.style.display = 'flex';
+        } else {
+            window.style.display = 'none';
+        }
+    }
+
+    // 2. Helper Function: Message add karne ke liye
+    function addMessage(text, type = 'ai') {
+        const chatBody = document.getElementById('aiBody');
+        const msgDiv = document.createElement('p');
+        
+        msgDiv.className = type === 'user' ? 'ai-msg user-msg' : 'ai-msg';
+        msgDiv.innerText = text;
+        
+        chatBody.appendChild(msgDiv);
+        
+        // Auto scroll to bottom
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // 3. Helper Function: Options (Buttons) add karne ke liye
+    function addOptions(options) {
+        const chatBody = document.getElementById('aiBody');
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'ai-options';
+
+        options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.innerText = opt.text;
+            btn.onclick = () => handleSelection(opt.text, opt.action, optionsDiv);
+            optionsDiv.appendChild(btn);
+        });
+
+        chatBody.appendChild(optionsDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // 4. Handle Logic (Step 1: Start)
+    function askAge() {
+        // Purane buttons hatao
+        const oldOptions = document.querySelector('.ai-options');
+        if(oldOptions) oldOptions.remove();
+
+        addMessage("Zaroor! Help karo.", 'user');
+        
+        setTimeout(() => {
+            addMessage("Sabse pehle, yeh toy kiske liye hai?");
+            addOptions([
+                { text: "Boy (Action Lover)", action: 'boy' },
+                { text: "Creative Kid (Builder)", action: 'creative' },
+                { text: "Superhero Fan", action: 'hero' },
+                { text: "Speed Racer (Car Lover)", action: 'racer' }
+            ]);
+        }, 500);
+    }
+
+    // 5. Main Logic Controller
+    function handleSelection(text, action, parentDiv) {
+        // User ka selection dikhao aur buttons hata do
+        parentDiv.remove();
+        addMessage(text, 'user');
+
+        setTimeout(() => {
+            if (action === 'boy') {
+                addMessage("Boys ke liye hamare paas WWE Figures best hain! 💪");
+                addMessage("Kya aap WWE collection dekhna chahenge?");
+                addOptions([
+                    { text: "Haan, WWE dikhao", action: 'goto_wwe' },
+                    { text: "Nahi, kuch aur", action: 'start_over' }
+                ]);
+            } 
+            else if (action === 'creative') {
+                addMessage("Creative bachon ke liye LEGO se behtar kuch nahi! 🧱");
+                addOptions([
+                    { text: "Lego Sets dikhao", action: 'goto_lego' },
+                    { text: "Wapis shuru karo", action: 'start_over' }
+                ]);
+            }
+            else if (action === 'hero') {
+                addMessage("Superheroes? Hamare paas Marvels ka poora universe hai! 🦸‍♂️");
+                addOptions([
+                    { text: "Marvels Collection", action: 'goto_marvel' },
+                    { text: "Start Over", action: 'start_over' }
+                ]);
+            }
+            else if (action === 'racer') {
+                addMessage("Speed Racer! Hamare paas HOT WHEELS ka ekdum fierce collection hai! 🏎️");
+                addMessage("Kya aap HOT WHEELS dekhna chahenge?");
+                addOptions([
+                    { text: "Haan, HOT WHEELS dikhao", action: 'goto_hotwheels' },
+                    { text: "Nahi, kuch aur", action: 'start_over' }
+                ]);
+            }
+            // --- REDIRECTION LOGIC (Links yahan hain) ---
+            else if (action === 'goto_wwe') {
+                addMessage("Redirecting to WWE World...");
+                window.location.href = '/wwe/wwe.html';
+            }
+            else if (action === 'goto_lego') {
+                addMessage("Chalo Lego world chalte hain...");
+                window.location.href = '/lego/lego.htm';
+            }
+            else if (action === 'goto_marvel') {
+                addMessage("Avengers Assemble! Redirecting...");
+                window.location.href = '/marvels/index.html';
+            }
+            else if (action === 'goto_hotwheels') {
+                addMessage("Buckle up! Heading to HOT WHEELS track...");
+                window.location.href = '/HOT WHEELS/index.html';
+            }
+            else if (action === 'start_over') {
+                askAge(); // Wapis shuru se
+            }
+        }, 600);
+    }
+    
+ // Hero Slider Logic - SAFE VERSION
+document.addEventListener("DOMContentLoaded", function() {
+    const slides = document.querySelectorAll('.floating-hero-img');
+    let currentSlide = 0;
+
+    // Check karo ke images mili bhi hain ya nahi
+    if (slides.length > 0) {
+        function changeSlide() {
+            // Safety Check: Current slide maujood hai?
+            if (slides[currentSlide]) {
+                slides[currentSlide].classList.remove('active-slide');
+            }
+            
+            // Next index calculate karo
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Agli slide par class lagao
+            if (slides[currentSlide]) {
+                slides[currentSlide].classList.add('active-slide');
+            }
+        }
+
+        // Har 3 second baad slider chalay ga
+        setInterval(changeSlide, 3000);
+    } else {
+        console.error("Error: '.floating-hero-img' wali koi image nahi mili! HTML check karo.");
+    }
+});
+//animation part //
+gsap.registerPlugin(ScrollTrigger);
+
+const tl = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".jeton-wrapper",
+        start: "top top",
+        end: "+=300%", // Scroll length thori barhayi taake animation fast na lage
+        scrub: 1.5,
+        pin: true,
+        anticipatePin: 1
+    }
+});
+// Step 0: Text Fade In
+tl.from(".neon-heading", { 
+    y: -50, 
+    opacity: 0, 
+    duration: 2, 
+    ease: "power2.out" 
+}, "spread"); // Yeh cards ke saath hi start hoga
+// Step 1: Text Zoom & Fade
+
+
+// Step 2: Cards Fan Out (Exact Coordinates for Clarity)
+// "spread" label se saari animations aik saath start hongi
+tl.to(".card-0", { x: -400, y: 80, rotation: -20, opacity: 1, duration: 3, ease: "back.out(1.7)" }, "spread")
+  .to(".card-1", { x: -150, y: -20, rotation: -10, opacity: 1, duration: 3, ease: "back.out(1.7)" }, "spread")
+  .to(".card-2", { x: 150, y: -20, rotation: 10, opacity: 1, duration: 3, ease: "back.out(1.7)" }, "spread")
+  .to(".card-3", { x: 400, y: 80, rotation: 20, opacity: 1, duration: 3, ease: "back.out(1.7)" }, "spread");
+
+// Step 3: Optional final scale up for all cards
+tl.to(".card", { scale: 1.1, duration: 1 }, "+=0.5");
+// --- TOY DATA FOR EACH AGE GROUP (YOUR DATA) ---
+const ageToyData = {
+    'toddler': [ // 0-2 Years - Simple LEGO sets
+        { name: "LEGO Duplo Set 1", price: "PKR 7,000", img: "/lego/images/card1-removebg-preview.png" },
+        { name: "LEGO Duplo Set 2", price: "PKR 8,400", img: "/lego/images/card3-removebg-preview.png" },
+        { name: "LEGO Duplo Set 3", price: "PKR 9,800", img: "/lego/images/card4-removebg-preview (1).png" },
+        { name: "LEGO Duplo Set 4", price: "PKR 11,200", img: "/lego/images/card5-removebg-preview.png" },
+        { name: "LEGO Duplo Set 5", price: "PKR 5,600", img: "/lego/images/card6-removebg-preview.png" }
+    ],
+    'preschool': [ // 3-5 Years - LEGO Classic & WWE beginner sets
+        { name: "LEGO Classic Box", price: "PKR 14,000", img: "/lego/images/card7-removebg-preview (1).png" },
+        { name: "LEGO Friends Set", price: "PKR 16,800", img: "/lego/images/card8-removebg-preview.png" },
+        { name: "WWE Roman Reigns", price: "PKR 5,600", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1hZT2sAEqqaetj8QhBXDNBH1CadeTgaZmXyhtCsMU6Q&s" },
+        { name: "LEGO City Set", price: "PKR 12,600", img: "/lego/images/card10-removebg-preview.png" },
+        { name: "Marvel Iron Man", price: "PKR 7,000", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfC5SKthFm8QtUZXzlbMhswIU3f-J8u12iag&s" }
+    ],
+    'school': [ // 6-9 Years - Hot Wheels & WWE & Marvel
+        { name: "Hot Wheels Track Set", price: "PKR 9,800", img: "/HOT WHEELS/CAR IMGS/CAR 1.png" },
+        { name: "WWE John Cena", price: "PKR 8,400", img: "https://cdn.1001hobbies.com/2451278-large_default/mattel-matthvf92-wwe-ultimate-edition-john-cena-figure-15-cm.jpg" },
+        { name: "Marvel Captain America", price: "PKR 9,800", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAVf18z5xrrLQabVgdxvvdDwj444KK4MX95Q&s" },
+        { name: "Hot Wheels 10-Pack", price: "PKR 7,000", img: "/HOT WHEELS/CAR IMGS/CAR 2.png" },
+        { name: "LEGO Friends City", price: "PKR 15,400", img: "/lego/images/card11-removebg-preview.png" }
+    ],
+    'teen': [ // 10+ Years - Advanced sets & figures
+        { name: "LEGO Technic Car", price: "PKR 56,000", img: "/lego/images/card12-removebg-preview.png" },
+        { name: "Hot Wheels Premium", price: "PKR 25,200", img: "/HOT WHEELS/CAR IMGS/CAR 3.png" },
+        { name: "Marvel Thanos", price: "PKR 22,400", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrKpVGUl3OIl3K6I1X9Pbzlwe9BoT3T8Ef1g&s" },
+        { name: "WWE Randy Orton", price: "PKR 19,600", img: "https://tools.toywiz.com/_images/_webp/_products/lg/wweelite34randyorton.webp" },
+        { name: "LEGO Architecture Set", price: "PKR 42,000", img: "/lego/images/card13-removebg-preview.png" }
+    ]
+};
+
+// --- FUNCTION TO OPEN MODAL ---
+function openAgeModal(category) {
+    const modal = document.getElementById('ageModalOverlay');
+    const container = document.getElementById('modalCardsContainer');
+    const title = document.getElementById('modalTitle');
+    
+    // 1. Data Get Karo
+    const toys = ageToyData[category];
+    
+    // 2. Title Set Karo
+    title.innerText = category.toUpperCase() + " SPECIALS";
+    
+    // 3. Purana Content Saaf Karo
+    container.innerHTML = '';
+    
+    // 4. Naye 5 Cards Banao
+    toys.forEach(toy => {
+        const card = document.createElement('div');
+        card.className = 'mini-card';
+        card.innerHTML = `
+            <img src="${toy.img}">
+            <h4>${toy.name}</h4>
+            <p class="price">${toy.price}</p>
+            <button class="view-age-btn" style="margin-top:5px; font-size: 0.7rem;" onclick="addToCart('${toy.name}', '${toy.price}')">Buy Now</button>
+        `;
+        container.appendChild(card);
+    });
+    
+    // 5. Modal Dikhao
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Scroll lock
+}
+
+// --- CLOSE MODAL ---
+function closeAgeModal() {
+    document.getElementById('ageModalOverlay').style.display = 'none';
+    document.body.style.overflow = 'auto'; // Scroll unlock
+}
+
+// ===== SHOPPING CART SYSTEM =====
+let cart = [];
+
+// Add to Cart Function
+function addToCart(productName, price) {
+    cart.push({ name: productName, price: price, id: Date.now() });
+    showThankYouOverlay(productName, price);
+    console.log('Cart:', cart);
+}
+
+// Remove from Cart
+function removeFromCart(itemId) {
+    cart = cart.filter(item => item.id !== itemId);
+}
+
+// Get Cart
+function getCart() {
+    return cart;
+}
+
+// Clear Cart
+function clearCart() {
+    cart = [];
+}
+
+// Thank You Overlay
+function showThankYouOverlay(productName, price) {
+    const overlay = document.createElement('div');
+    overlay.className = 'thank-you-overlay';
+    overlay.innerHTML = `
+        <div class="thank-you-container">
+            <button class="close-thank-you" onclick="this.parentElement.parentElement.remove()">✕</button>
+            <div class="thank-you-icon">🎉</div>
+            <h2>Thank You For Your Purchase!</h2>
+            <p class="product-details">
+                <strong>${productName}</strong><br>
+                Price: <strong>${price}</strong>
+            </p>
+            <p class="thank-you-message">We appreciate your order. Your product will be delivered soon!</p>
+            <button class="continue-btn" onclick="this.parentElement.parentElement.remove()">Continue Shopping</button>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+}
+
+// Add CSS for Thank You Overlay & Cart Buttons
+const style = document.createElement('style');
+style.textContent = `
+    .thank-you-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10001;
+        animation: popUp 0.4s ease;
+    }
+    
+    .thank-you-container {
+        background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+        border: 2px solid #00ff9d;
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        max-width: 400px;
+        position: relative;
+        box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
+        animation: slideUp 0.5s ease;
+    }
+    
+    .thank-you-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+        animation: bounce 0.6s ease;
+    }
+    
+    .thank-you-container h2 {
+        color: #00ff9d;
+        font-size: 1.8rem;
+        margin: 15px 0;
+        font-family: 'Poppins', sans-serif;
+        letter-spacing: 1px;
+    }
+    
+    .product-details {
+        background: rgba(0, 255, 157, 0.1);
+        border-left: 3px solid #00ff9d;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        color: #e0e0e0;
+        font-size: 0.95rem;
+    }
+    
+    .thank-you-message {
+        color: #a0a0a0;
+        margin: 15px 0;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .continue-btn {
+        background: linear-gradient(135deg, #00ff9d, #00cc7a);
+        color: #000;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+    }
+    
+    .continue-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(0, 255, 157, 0.4);
+    }
+    
+    .close-thank-you {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: #00ff9d;
+        font-size: 24px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .close-thank-you:hover {
+        color: #fff;
+        transform: scale(1.2);
+    }
+
+    /* Add to Cart Button Hover Effects */
+    .buy-btn {
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .buy-btn:hover {
+        transform: translateY(-3px) scale(1.05) !important;
+        box-shadow: 0 10px 25px rgba(0, 255, 157, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.2) !important;
+        letter-spacing: 1px;
+    }
+
+    .buy-btn:active {
+        transform: translateY(-1px) scale(0.98) !important;
+    }
+    
+    @keyframes slideUp {
+        from { transform: translateY(30px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+`;
+document.head.appendChild(style);
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="lego.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <a href="/home/index.html" class="logo">
+            <img src="/home/Adobe Express - file.png" alt="Toyo Logo" class="logo-img">
+        </a>
+
+        <div class="nav-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="nav-location-text">
+                <span class="nav-line-1">Deliver to ALL Over</span>
+                <span class="nav-line-2" id="glow-ingress-line2">Pakistan</span>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="/home/index.html">Home</a></li>
+            <li><a href="/wwe/wwe.html">WWE</a></li>
+            <li><a href="/lego/lego.html">LEGO</a></li>
+            <li><a href="/marvels/index.html">MARVELS</a></li>
+            <li><a href="/HOT WHEELS/index.html">HOT WHEELS</a></li>
+            <li><a href="contact2.html">CONTACT</a></li>
+            <li>
+                <button class="ai-trigger-btn" onclick="toggleAI()">
+                    🤖 AI Help
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="ott-dropdown" id="ottDropdown">
+        <button class="ott-trigger" onclick="toggleOTT()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg>
+        </button>
+
+        <div class="ottBOX">
+            <a href="netflix_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRlargt0M45QcYkeUNoL9PxeE3R6OCTycNQ&s" class="setOTT-img"></a>
+            <a href="prime_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuES2ggtgtmwrLis-dq71BGz8vkwEBdSQHuA&s" class="setOTT-img"></a>
+            <a href="google_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCUhfkqiO9E9M2I7LIM7-6ZdLtpZVzXRD93A&s" class="setOTT-img"></a>
+            <a href="disney_page.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx6T7k02Vxh5Znyxfk-RJgcZiorbFEs5YRlQ&s" class="setOTT-img"></a>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="bg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <h1 data-aos="zoom-in">BUILD THE <span>FUTURE</span></h1>
+        <p data-aos="fade-up" data-aos-delay="200">Unleash your imagination with LEGO's infinite possibilities</p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
+            <a href="#products" class="hero-main-btn">EXPLORE SETS</a>
+            <a href="/home/contact2.html" class="hero-alt-btn">GET IN TOUCH</a>
+        </div>
+    </div>
+</section>
+
+    <h1>LEGO Products</h1>
+    <p>Welcome to the LEGO products page. Here you can find a variety of LEGO sets and accessories to fuel your creativity and imagination.</p>
+
+    <section class="container">
+        <div class="product-card" data-brand="LEGO" data-age="9+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+    <img src="/lego/images/card1-removebg-preview.png" alt="Millennium Falcon" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">STAR WARS</span>
+        <h3>Millennium Falcon™</h3>
+        <p>The iconic Corellian freighter with rotating turrets and 7 minifigures.</p>
+        <label><input type="checkbox" class="compare-check" 
+            data-name="Millennium Falcon" data-brand-full="LEGO Star Wars" data-price="PKR 47,320" 
+            data-material="High-Quality Plastic" data-weight="2.1kg" data-battery="No"> Add to Compare</label>
+        <a href="/lego/l-products-info/card1infor.html" class="doc-link">SEE MORE</a>
+        <button class="add-to-cart-btn" onclick="addToCart('Millennium Falcon', 'PKR 47,320')">Buy Now</button>
+    </div>
+</div>
+<div class="product-card" data-brand="LEGO" data-age="4+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+    <img src="/lego/images/card12-removebg-preview.png" alt="LEGO Classic" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">CLASSIC</span>
+        <h3>Medium Brick Box</h3>
+        <p>484 pieces in 35 colors to build anything you can imagine.</p>
+        <label><input type="checkbox" class="compare-check" 
+            data-name="Classic Box" data-brand-full="LEGO Classic" data-price="PKR 9,800" 
+            data-material="Plastic" data-weight="1.0kg" data-battery="No"> Add to Compare</label>
+        <a href="/lego/l-products-info/card12.html" class="doc-link">SEE MORE</a>
+        <button class="add-to-cart-btn" onclick="addToCart('Medium Brick Box', 'PKR 9,800')">Buy Now</button>
+    </div>
+</div>
+<div class="product-card" data-brand="LEGO" data-age="8+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+    <img src="/lego/images/card3-removebg-preview.png" alt="LEGO Dinosaur" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">JURASSIC WORLD</span>
+        <h3>T-Rex Dinosaur Breakout</h3>
+        <p>Action-packed dinosaur escape set with moving jaws and minifigures.</p>
+        <label>
+            <input type="checkbox" class="compare-check"
+            data-name="T-Rex Breakout"
+            data-brand-full="LEGO Jurassic World"
+            data-price="PKR 22,120"
+            data-material="Plastic"
+            data-weight="1.1kg"
+            data-battery="No">
+            Add to Compare
+        </label>
+        <a href="/lego/l-products-info/card3.html" class="doc-link">SEE MORE</a>
+        <button class="add-to-cart-btn" onclick="addToCart('T-Rex Dinosaur Breakout', 'PKR 22,120')">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card" data-brand="LEGO" data-age="8+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
+    <img src="/lego/images/card4-removebg-preview (1).png" alt="LEGO Dinosaur" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">JURASSIC WORLD</span>
+        <h3>T-Rex Dinosaur Breakout</h3>
+        <p>Action-packed dinosaur escape set with moving jaws and minifigures.</p>
+        <label>
+            <input type="checkbox" class="compare-check"
+            data-name="T-Rex Breakout"
+            data-brand-full="LEGO Jurassic World"
+            data-price="PKR 22,120"
+            data-material="Plastic"
+            data-weight="1.1kg"
+            data-battery="No">
+            Add to Compare
+        </label>
+        <a href="/lego/4-products-info/" class="doc-link">SEE MORE</a>        <button class="add-to-cart-btn" onclick="addToCart('T-Rex Dinosaur Breakout v2', 'PKR 22,120')">Buy Now</button>    </div>
+</div>
+
+<div class="product-card" data-brand="LEGO" data-age="18+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
+    <img src="/lego/images/card5-removebg-preview.png" alt="Red Lamborghini Sian FKP 37 supercar displayed in a showroom with sleek design and scissor doors, modern luxury automotive setting" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">TECHNIC</span>
+        <h3>Lamborghini Sián FKP 37</h3>
+        <p>A detailed 1:8 scale replica with a V12 engine and scissor doors.</p>
+        <label><input type="checkbox" class="compare-check" 
+            data-name="Lambo Sian" data-brand-full="LEGO Technic" data-price="PKR 125,720" 
+            data-material="Reinforced Plastic" data-weight="3.8kg" data-battery="No"> Add to Compare</label>
+        <a href="/lego/l-products-info/card5.html" class="doc-link">SEE MORE</a>
+        <button class="add-to-cart-btn" onclick="addToCart('Lamborghini Sián FKP 37', 'PKR 125,720')">Buy Now</button>
+    </div>
+</div>
+<div class="product-card" data-brand="LEGO" data-age="6+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="600">
+    <img src="/lego/images/card6-removebg-preview.png" alt="Police Station" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">LEGO CITY</span>
+        <h3>Police Station Chase</h3>
+        <p>A 3-level police station with a patrol car, helicopter, and garbage truck.</p>
+        <label><input type="checkbox" class="compare-check" 
+            data-name="Police Station" data-brand-full="LEGO City" data-price="PKR 16,800" 
+            data-material="Plastic" data-weight="950g" data-battery="No"> Add to Compare</label>
+        <a href="/lego/l-products-info/card6.html" class="doc-link">SEE MORE</a>
+        <button class="add-to-cart-btn" onclick="addToCart('Police Station Chase', 'PKR 16,800')">Buy Now</button>
+    </div>
+</div>
+<div class="product-card" data-brand="LEGO" data-age="18+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="700">
+    <img src="/lego/images/card7-removebg-preview (1).png" alt="LEGO Flowers" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">BOTANICAL</span>
+        <h3>LEGO Flower Bouquet</h3>
+        <p>A vibrant display of roses, daisies, and poppies made entirely of bricks.</p>
+        <label><input type="checkbox" class="compare-check" 
+            data-name="Flower Bouquet" data-brand-full="LEGO Icons" data-price="PKR 16,520" 
+            data-material="Eco-Plastic" data-weight="450g" data-battery="No"> Add to Compare</label>
+        <a href="/lego/l-products-info/card7.html" class="doc-link">SEE MORE</a>
+        <button class="add-to-cart-btn" onclick="addToCart('LEGO Flower Bouquet', 'PKR 16,520')">Buy Now</button>
+    </div>
+</div>
+<div class="product-card" data-brand="LEGO" data-age="16+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800">
+    <img src="/lego/images/card8-removebg-preview.png" alt="Statue of Liberty" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">ARCHITECTURE</span>
+        <h3>Statue of Liberty</h3>
+        <p>An authentic recreation of America's symbol of freedom for your desk.</p>
+        <label><input type="checkbox" class="compare-check" 
+            data-name="Statue Liberty" data-brand-full="LEGO Architecture" data-price="PKR 33,320" 
+            data-material="Plastic" data-weight="1.2kg" data-battery="No"> Add to Compare</label>
+        <a href="/lego/l-products-info/card8.html" class="doc-link">SEE MORE</a>
+        <button class="add-to-cart-btn" onclick="addToCart('Statue of Liberty', 'PKR 33,320')">Buy Now</button>
+    </div>
+</div>
+<div class="product-card" data-brand="LEGO" data-age="16+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="900">
+    <img src="/lego/images/card8.webp" alt="Hogwarts Castle" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">HARRY POTTER</span>
+        <h3>Hogwarts™ Castle</h3>
+        <p>The microscale model featuring chambers, classrooms, and towers.</p>
+        <label><input type="checkbox" class="compare-check" 
+            data-name="Hogwarts Castle" data-brand-full="LEGO Wizarding World" data-price="PKR 131,320" 
+            data-material="Plastic" data-weight="6.5kg" data-battery="No"> Add to Compare</label>
+        <a href="/lego/l-products-info/card8.html" class="doc-link">SEE MORE</a>
+        <button class="add-to-cart-btn" onclick="addToCart('Hogwarts Castle', 'PKR 131,320')">Buy Now</button>
+    </div>
+</div>
+<div class="product-card" data-brand="LEGO" data-age="7+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1000">
+    <img src="/lego/images/card8.webp" alt="Iron Man LEGO" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">MARVEL</span>
+        <h3>Iron Man Armory</h3>
+        <p>Equip Tony Stark with 3 different suits in his high-tech workshop.</p>
+        <label><input type="checkbox" class="compare-check" 
+            data-name="Iron Man Armory" data-brand-full="LEGO Marvel" data-price="PKR 24,920" 
+            data-material="Plastic" data-weight="800g" data-battery="No"> Add to Compare</label>
+        <a href="/lego/l-products-info/card9.html" class="doc-link">SEE MORE</a>
+        <button class="add-to-cart-btn" onclick="addToCart('Iron Man Armory', 'PKR 24,920')">Buy Now</button>
+    </div>
+</div>
+<div class="product-card" data-brand="LEGO" data-age="9+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1100">
+    <img src="/lego/images/card10-removebg-preview.png" alt="LEGO Castle" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">CREATOR 3IN1</span>
+        <h3>Medieval Castle</h3>
+        <p>Build a castle, a tower with a catapult, or a busy marketplace.</p>
+        <label><input type="checkbox" class="compare-check" 
+            data-name="Medieval Castle" data-brand-full="LEGO Creator" data-price="PKR 27,720" 
+            data-material="Plastic" data-weight="1.5kg" data-battery="No"> Add to Compare</label>
+        <a href="/lego/l-products-info/card10.html" class="doc-link">SEE MORE</a>
+        <button class="add-to-cart-btn" onclick="addToCart('Medieval Castle', 'PKR 27,720')">Buy Now</button>
+    </div>
+</div>
+<div class="product-card" data-brand="LEGO" data-age="8+ YEARS" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1200">
+    <img src="/lego/images/card11-removebg-preview.png" alt="Ninjago Dragon" class="p-img">
+    <div class="product-info">
+        <span class="brand-badge">NINJAGO</span>
+        <h3>Kai’s Fire Dragon EVO</h3>
+        <p>Upgrade the dragon twice to make it bigger, stronger, and faster.</p>
+        <label><input type="checkbox" class="compare-check" 
+            data-name="Fire Dragon" data-brand-full="LEGO Ninjago" data-price="PKR 8,120" 
+            data-material="Plastic" data-weight="400g" data-battery="No"> Add to Compare</label>
+        <a href="/lego/l-products-info/card11.html" class="doc-link">SEE MORE</a>
+        <button class="add-to-cart-btn" onclick="addToCart('Kai\'s Fire Dragon EVO', 'PKR 8,120')">Buy Now</button>
+    </div>
+</div>
+
+
+    </section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init();
+</script>
+
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+<script>
+    // Lenis Initialize karna
+    const lenis = new Lenis({
+      duration: 1.2,   // Scrolling ki speed (jitna zyada, utna smooth)
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smoothness ka formula
+      smoothWheel: true
+    })
+
+    // Frame-by-frame update ke liye function
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+</script>
+
+<div class="toyo-ai-bot" id="toyoAI">
+    <div class="ai-chat-window" id="aiWindow">
+        <div class="ai-header">
+            <img src="ai-avatar.png" alt="TOYO AI">
+            <span>TOYO AI Assistant</span>
+            <button onclick="toggleAI()">×</button>
+        </div>
+        <div class="ai-body" id="aiBody">
+            <p class="ai-msg">Hi! Main TOYO AI hoon. Aapke liye perfect toy dhoondne mein help karun?</p>
+            <div class="ai-options">
+                <button onclick="askAge()">Zaroor, Help karo!</button>
+            </div>
+        </div>
+    </div>
+    <button class="ai-trigger-btn" onclick="toggleAI()">
+        <i class="fas fa-robot"></i> <span>Ask TOYO AI</span>
+    </button>
+</div>
+
+<script>
+// 1. Toggle Chat Window (Open/Close)
+function toggleAI() {
+    const window = document.getElementById('aiWindow');
+    const currentDisplay = window.style.display;
+
+    if (currentDisplay === 'none' || currentDisplay === '') {
+        window.style.display = 'flex';
+    } else {
+        window.style.display = 'none';
+    }
+}
+
+// 2. Helper Function: Message add karne ke liye
+function addMessage(text, type = 'ai') {
+    const chatBody = document.getElementById('aiBody');
+    const msgDiv = document.createElement('p');
+
+    msgDiv.className = type === 'user' ? 'ai-msg user-msg' : 'ai-msg';
+    msgDiv.innerText = text;
+
+    chatBody.appendChild(msgDiv);
+
+    // Auto scroll to bottom
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// 3. Helper Function: Options (Buttons) add karne ke liye
+function addOptions(options) {
+    const chatBody = document.getElementById('aiBody');
+    const optionsDiv = document.createElement('div');
+    optionsDiv.className = 'ai-options';
+
+    options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.innerText = opt.text;
+        btn.onclick = () => handleSelection(opt.text, opt.action, optionsDiv);
+        optionsDiv.appendChild(btn);
+    });
+
+    chatBody.appendChild(optionsDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// 4. Handle Logic (Step 1: Start)
+function askAge() {
+    // Purane buttons hatao
+    const oldOptions = document.querySelector('.ai-options');
+    if(oldOptions) oldOptions.remove();
+
+    addMessage("Zaroor! Help karo.", 'user');
+
+    setTimeout(() => {
+        addMessage("Sabse pehle, yeh toy kiske liye hai?");
+        addOptions([
+            { text: "Boy (Action Lover)", action: 'boy' },
+            { text: "Creative Kid (Builder)", action: 'creative' },
+            { text: "Superhero Fan", action: 'hero' },
+            { text: "Speed Racer (Car Lover)", action: 'racer' }
+        ]);
+    }, 500);
+}
+
+// 5. Main Logic Controller
+function handleSelection(text, action, parentDiv) {
+    // User ka selection dikhao aur buttons hata do
+    parentDiv.remove();
+    addMessage(text, 'user');
+
+    setTimeout(() => {
+        if (action === 'boy') {
+            addMessage("Boys ke liye hamare paas WWE Figures best hain! 💪");
+            addMessage("Kya aap WWE collection dekhna chahenge?");
+            addOptions([
+                { text: "Haan, WWE dikhao", action: 'goto_wwe' },
+                { text: "Nahi, kuch aur", action: 'start_over' }
+            ]);
+        }
+        else if (action === 'creative') {
+            addMessage("Creative bachon ke liye LEGO se behtar kuch nahi! 🧱");
+            addOptions([
+                { text: "Lego Sets dikhao", action: 'goto_lego' },
+                { text: "Wapis shuru karo", action: 'start_over' }
+            ]);
+        }
+        else if (action === 'hero') {
+            addMessage("Superheroes? Hamare paas Marvels ka poora universe hai! 🦸‍♂️");
+            addOptions([
+                { text: "Marvels Collection", action: 'goto_marvel' },
+                { text: "Start Over", action: 'start_over' }
+            ]);
+        }
+        else if (action === 'racer') {
+            addMessage("Speed Racer! Hamare paas HOT WHEELS ka ekdum fierce collection hai! 🏎️");
+            addMessage("Kya aap HOT WHEELS dekhna chahenge?");
+            addOptions([
+                { text: "Haan, HOT WHEELS dikhao", action: 'goto_hotwheels' },
+                { text: "Nahi, kuch aur", action: 'start_over' }
+            ]);
+        }
+        // --- REDIRECTION LOGIC (Links yahan hain) ---
+        else if (action === 'goto_wwe') {
+            addMessage("Redirecting to WWE World...");
+            window.location.href = '/wwe/wwe.html';
+        }
+        else if (action === 'goto_lego') {
+            addMessage("Chalo Lego world chalte hain...");
+            window.location.href = '/lego/lego.htm';
+        }
+        else if (action === 'goto_marvel') {
+            addMessage("Avengers Assemble! Redirecting...");
+            window.location.href = '/marvels/index.html';
+        }
+        else if (action === 'goto_hotwheels') {
+            addMessage("Buckle up! Heading to HOT WHEELS track...");
+            window.location.href = '/HOT WHEELS/index.html';
+        }
+        else if (action === 'start_over') {
+            askAge(); // Wapis shuru se
+        }
+    }, 600);
+}
+
+// ===== SHOPPING CART SYSTEM FOR LEGO =====
+let cart = [];
+
+function addToCart(productName, price) {
+    cart.push({ name: productName, price: price, id: Date.now() });
+    showThankYouOverlay(productName, price);
+    console.log('Cart:', cart);
+}
+
+function removeFromCart(itemId) {
+    cart = cart.filter(item => item.id !== itemId);
+}
+
+function getCart() {
+    return cart;
+}
+
+function clearCart() {
+    cart = [];
+}
+
+function showThankYouOverlay(productName, price) {
+    const overlay = document.createElement('div');
+    overlay.className = 'thank-you-overlay';
+    overlay.innerHTML = `
+        <div class="thank-you-container">
+            <button class="close-thank-you" onclick="this.parentElement.parentElement.remove()">✕</button>
+            <div class="thank-you-icon">🎉</div>
+            <h2>Thank You For Your Purchase!</h2>
+            <p class="product-details">
+                <strong>${productName}</strong><br>
+                Price: <strong>${price}</strong>
+            </p>
+            <p class="thank-you-message">We appreciate your order. Your product will be delivered soon!</p>
+            <button class="continue-btn" onclick="this.parentElement.parentElement.remove()">Continue Shopping</button>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+}
+
+// Add CSS for Thank You Overlay & Cart Buttons
+const style = document.createElement('style');
+style.textContent = `
+    .thank-you-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10001;
+        animation: popUp 0.4s ease;
+    }
+    
+    .thank-you-container {
+        background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+        border: 2px solid #00ff9d;
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        max-width: 400px;
+        position: relative;
+        box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
+        animation: slideUp 0.5s ease;
+    }
+    
+    .thank-you-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+        animation: bounce 0.6s ease;
+    }
+    
+    .thank-you-container h2 {
+        color: #00ff9d;
+        font-size: 1.8rem;
+        margin: 15px 0;
+        font-family: 'Poppins', sans-serif;
+        letter-spacing: 1px;
+    }
+    
+    .product-details {
+        background: rgba(0, 255, 157, 0.1);
+        border-left: 3px solid #00ff9d;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        color: #e0e0e0;
+        font-size: 0.95rem;
+    }
+    
+    .thank-you-message {
+        color: #a0a0a0;
+        margin: 15px 0;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .continue-btn {
+        background: linear-gradient(135deg, #00ff9d, #00cc7a);
+        color: #000;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+    }
+    
+    .continue-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(0, 255, 157, 0.4);
+    }
+    
+    .close-thank-you {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: #00ff9d;
+        font-size: 24px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .close-thank-you:hover {
+        color: #fff;
+        transform: scale(1.2);
+    }
+
+    /* Add to Cart Button Hover Effects */
+    .add-to-cart-btn {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        background: linear-gradient(135deg, #00ff9d, #00cc7a);
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .add-to-cart-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 10px 25px rgba(0, 255, 157, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.2);
+        letter-spacing: 1px;
+    }
+
+    .add-to-cart-btn:active {
+        transform: translateY(-1px) scale(0.98);
+    }
+    
+    @keyframes slideUp {
+        from { transform: translateY(30px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>

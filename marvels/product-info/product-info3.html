@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider-Man Integrated Suit | Hot Toys Edition</title>
+    <link rel="stylesheet" href="../product-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="info.css">
+</head>
+<body class="marvel-theme">
+
+    <header>
+        <a href="../index.html" class="back-btn">← EXIT MULTIVERSE</a>
+        <div class="tech-line" style="background: linear-gradient(to right, var(--marvel-red), var(--stark-gold)); height: 2px;"></div>
+    </header>
+
+    <main class="product-container">
+        <section class="image-gallery">
+            <div class="main-img-container" style="border-color: var(--stark-gold);">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFg_rCU6yTdp_2bidcQLaLcmwHrhoH1At6yw&s" alt="Spider-Man No Way Home">
+                <div class="scanner-line"></div>
+            </div>
+        </section>
+
+        <section class="product-details">
+            <span class="brand-tag">PREMIUM COLLECTIBLE</span>
+            <h1 class="product-title">SPIDER-MAN <span>INTEGRATED</span> SUIT</h1>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="label">UNIT PRICE</span>
+                    <span class="value">PKR 61,600</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">MATERIAL</span>
+                    <span class="value">Fabric / PVC</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">ARTICULATION</span>
+                    <span class="value">30+ Points</span>
+                </div>
+            </div>
+
+            <div class="extra-details" style="margin-top: 20px;">
+                <h4 style="color: var(--stark-gold); font-family: 'Orbitron'; margin-bottom: 10px; font-size: 0.9rem;">TECHNICAL SPECIFICATIONS:</h4>
+                <ul style="color: #ccc; font-size: 0.85rem; line-height: 1.6; padding-left: 20px;">
+                    <li>Movie-accurate facial features with detailed skin texture.</li>
+                    <li>Integrated suit design with gold metallic spider emblem on chest.</li>
+                    <li>Specialized web-slinging accessories (Long, Short, and Open patterns).</li>
+                    <li>Magnetic "Pincers" (Spider-Legs) attachable to the back.</li>
+                    <li>Advanced LED-lit base with Multiverse portal effect.</li>
+                </ul>
+            </div>
+
+            <p class="description" style="margin-top: 20px;">
+                Directly from 'Spider-Man: No Way Home', this Hot Toys masterpiece captures Peter Parker's final battle look. Combining Stark Nano-technology with mystical enhancements, this figure stands as the ultimate tribute to the web-slinger's journey through the Multiverse.
+            </p>
+
+            <button class="buy-now">DEPLOY SUIT</button>
+            
+            <div class="download-section" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <p style="margin: 0;">📄 Product Documentation:</p>
+                <button class="download-link" onclick="downloadProductInfo('Spider-Man No Way Home', 'PKR 61,600')" style="background: #e20112; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;">⬇️ DOWNLOAD PDF</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function downloadProductInfo(productName, price) {
+            const text = `PRODUCT INFORMATION\n\nProduct: ${productName}\nPrice: ${price}\nBrand: HOT TOYS\nMaterial: Fabric/PVC\nArticulation: 30+ Points\n\nThank you for your interest!`;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', productName.replace(/\s+/g, '_') + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+
+</body>
+</html>
