@@ -1,3 +1,0 @@
-- [x] Remove compare checkboxes from wwe/wwe.html (12 instances)
-- [x] Remove compare checkboxes from marvels/index.html (12 instances)
-- [x] Verify removal by searching for "Add to Compare"
