@@ -1,0 +1,139 @@
+/* --- Shared Header & Navigation Styles --- */
+/* 1. Header Container (Glassmorphism) */
+header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    background: rgba(10, 14, 39, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* 2. Logo */
+header .logo {
+    color: #00ff9d;
+    font-size: 26px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.4);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 3. Navigation Links */
+header nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+header nav a {
+    color: #9ca3af; /* --muted color */
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00ff9d;
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+header nav a:hover {
+    color: #ffffff;
+}
+
+header nav a:hover::after {
+    width: 100%;
+}
+
+/* 4. Active Link State */
+header nav a.active-link {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+header nav a.active-link::after {
+    width: 100%;
+    background-color: #00c3ff; /* Different color for active state */
+}
+
+
+/* 5. Hamburger Menu (for mobile) */
+.hamburger {
+    display: none; /* Hidden by default on desktop */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: #00ff9d;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+    transform-origin: center;
+}
+
+
+/* --- 6. Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    header {
+        padding: 0 20px;
+    }
+
+    header nav {
+        display: none; /* Hide nav menu by default */
+        position: absolute;
+        top: 80px; /* Position below header */
+        left: 0;
+        width: 100%;
+        background: rgba(10, 14, 39, 0.95); /* More opaque for readability */
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-top: 1px solid rgba(0, 255, 157, 0.2);
+        padding: 20px 0;
+    }
+
+    header nav.active {
+        display: block; /* Show when hamburger is clicked */
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger on mobile */
+    }
+
+    /* Hamburger animation */
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-20px); }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+}

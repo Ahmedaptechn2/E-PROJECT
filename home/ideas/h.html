@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toyo Toys - Cyber Edition</title>
+    <style>
+        /* --- IMPORTS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Poppins:wght@600&display=swap');
+
+        :root {
+            --neon-purple: #bd00ff;
+            --neon-green: #39ff14;
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ff;
+            --dark-bg: #0a0a0a;
+            --card-bg: #141414;
+        }
+
+        /* --- GLOBAL LAYOUT --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(189, 0, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* --- CONTAINER STYLES --- */
+        .logo-container {
+            position: relative;
+            padding: 80px 100px;
+            background: var(--card-bg);
+            border: 2px solid var(--neon-blue);
+            border-radius: 20px;
+            box-shadow: 
+                0 0 20px rgba(0, 243, 255, 0.3),
+                0 0 40px rgba(0, 243, 255, 0.2),
+                inset 0 0 20px rgba(0, 243, 255, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: border-pulse 3s ease-in-out infinite;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.02) rotate(1deg);
+            box-shadow: 
+                0 0 30px rgba(0, 243, 255, 0.6),
+                0 0 60px rgba(0, 243, 255, 0.4),
+                0 0 90px rgba(0, 243, 255, 0.2),
+                inset 0 0 30px rgba(0, 243, 255, 0.1);
+            border-color: var(--neon-pink);
+        }
+
+        /* Corner Accents */
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--neon-blue);
+            transition: all 0.3s ease;
+        }
+
+        .corner-tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+        .corner-tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+        .corner-br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+        .logo-container:hover .corner {
+            border-color: var(--neon-pink);
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        /* Scanlines Effect */
+        .scanlines {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 2px,
+                rgba(0, 243, 255, 0.03) 3px
+            );
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+            animation: scanline-move 8s linear infinite;
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-up 4s ease-in infinite;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 30%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 50%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 70%; animation-delay: 0.5s; }
+        .particle:nth-child(5) { left: 90%; animation-delay: 1.5s; }
+
+        /* --- THE LOGO CSS --- */
+        .cyber-wrapper {
+            position: relative;
+            filter: contrast(1.2);
+            z-index: 2;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .logo-cyber {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 90px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+            transform-style: preserve-3d;
+            
+            /* Enhanced Neon Glow */
+            text-shadow: 
+                0 0 5px var(--neon-purple),
+                0 0 10px var(--neon-purple),
+                0 0 20px var(--neon-purple),
+                0 0 40px var(--neon-purple),
+                0 0 80px var(--neon-purple);
+            
+            animation: flicker 4s infinite, breathe 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .cyber-green {
+            color: #fff;
+            text-shadow: 
+                0 0 5px var(--neon-green),
+                0 0 10px var(--neon-green),
+                0 0 20px var(--neon-green),
+                0 0 40px var(--neon-green);
+            animation: color-shift 5s ease-in-out infinite;
+        }
+
+        /* Playful Hover Effects */
+        .logo-container:hover .logo-cyber {
+            animation: wobble 0.5s ease-in-out, glitch-intense 0.2s infinite;
+            text-shadow: 
+                0 0 10px var(--neon-pink),
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink),
+                0 0 80px var(--neon-pink),
+                0 0 120px var(--neon-pink);
+            transform: translateZ(50px) rotateX(10deg);
+        }
+
+        .logo-container:hover .cyber-green {
+            text-shadow: 
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue),
+                0 0 40px var(--neon-blue),
+                0 0 80px var(--neon-blue);
+        }
+
+        /* Glitch Layers */
+        .logo-cyber::before,
+        .logo-cyber::after {
+            content: "TOYO TOYS";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .logo-cyber::before {
+            color: #ff00c1;
+            z-index: -1;
+            animation: glitch-1 2s infinite linear alternate-reverse;
+        }
+
+        .logo-cyber::after {
+            color: #00fff9;
+            z-index: -2;
+            animation: glitch-2 3s infinite linear alternate-reverse;
+        }
+
+        .logo-container:hover .logo-cyber::before,
+        .logo-container:hover .logo-cyber::after {
+            opacity: 0.8;
+        }
+
+        /* Playful Bounce on Click */
+        .logo-cyber:active {
+            animation: bounce 0.5s ease;
+            transform: scale(0.95);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.8; }
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes border-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 243, 255, 0.3), 0 0 40px rgba(0, 243, 255, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(0, 243, 255, 0.5), 0 0 60px rgba(0, 243, 255, 0.3); }
+        }
+
+        @keyframes scanline-move {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
+        }
+
+        @keyframes float-up {
+            0% { 
+                transform: translateY(100%) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            15% { transform: translateX(-10px) rotate(-5deg); }
+            30% { transform: translateX(8px) rotate(3deg); }
+            45% { transform: translateX(-6px) rotate(-3deg); }
+            60% { transform: translateX(4px) rotate(2deg); }
+            75% { transform: translateX(-2px) rotate(-1deg); }
+        }
+
+        @keyframes glitch-intense {
+            0% { transform: translate(0); filter: hue-rotate(0deg); }
+            20% { transform: translate(-3px, 3px) skewX(10deg); filter: hue-rotate(90deg); }
+            40% { transform: translate(-3px, -3px) skewX(-10deg); filter: hue-rotate(180deg); }
+            60% { transform: translate(3px, 3px) skewX(5deg); filter: hue-rotate(270deg); }
+            80% { transform: translate(3px, -3px) skewX(-5deg); filter: hue-rotate(360deg); }
+            100% { transform: translate(0); filter: hue-rotate(0deg); }
+        }
+
+        @keyframes glitch-1 {
+            0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 0); }
+            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, 0); }
+            40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 0); }
+            60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, 0); }
+            80% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 0); }
+            100% { clip-path: inset(30% 0 20% 0); transform: translate(2px, 0); }
+        }
+
+        @keyframes glitch-2 {
+            0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, 0); }
+            20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 0); }
+            40% { clip-path: inset(30% 0 20% 0); transform: translate(2px, 0); }
+            60% { clip-path: inset(15% 0 80% 0); transform: translate(-2px, 0); }
+            80% { clip-path: inset(55% 0 10% 0); transform: translate(2px, 0); }
+            100% { clip-path: inset(40% 0 30% 0); transform: translate(-2px, 0); }
+        }
+
+        @keyframes color-shift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(30deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(0.9) translateY(10px); }
+            50% { transform: scale(1.1) translateY(-10px); }
+            75% { transform: scale(0.95) translateY(5px); }
+        }
+
+        /* Interactive Shine Effect */
+        .shine {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            transform: rotate(30deg);
+            transition: all 0.5s;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .logo-container:hover .shine {
+            animation: shine-sweep 0.8s ease-in-out;
+        }
+
+        @keyframes shine-sweep {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .main-footer {
+            background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+            border-top: 2px solid var(--neon-green);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+            position: relative;
+            box-shadow: 0 -10px 40px rgba(0, 255, 157, 0.1);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Footer Top */
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 2fr 1fr;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        /* Brand Section */
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+            color: var(--primary-red);
+            text-shadow: 0 0 15px rgba(226, 1, 18, 0.5);
+        }
+
+        .footer-logo span span {
+            color: var(--neon-green);
+        }
+
+        .footer-tagline {
+            color: #888;
+            font-size: 0.95rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .social-link:hover {
+            background: var(--neon-green);
+            border-color: var(--neon-green);
+            color: black;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.4);
+        }
+
+        /* Links Section */
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .link-column h4 {
+            color: var(--neon-green);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .link-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-red);
+            box-shadow: 0 0 10px var(--primary-red);
+        }
+
+        .link-column ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-column a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .link-column a::before {
+            content: '›';
+            color: var(--neon-green);
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .link-column a:hover {
+            color: var(--neon-green);
+            padding-left: 5px;
+        }
+
+        .link-column a:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Newsletter */
+        .footer-newsletter {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #222;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .footer-newsletter h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-newsletter p {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+        }
+
+        .newsletter-form button {
+            background: linear-gradient(135deg, var(--neon-green), #00cc7a);
+            border: none;
+            border-radius: 8px;
+            width: 45px;
+            color: black;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.4);
+        }
+
+        /* Divider */
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #333, transparent);
+            margin: 30px 0;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-payment {
+            display: flex;
+            gap: 15px;
+            font-size: 2rem;
+            color: #444;
+        }
+
+        .footer-payment i {
+            transition: all 0.3s ease;
+        }
+
+        .footer-payment i:hover {
+            color: var(--neon-green);
+            transform: scale(1.1);
+        }
+
+        .footer-copyright {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            color: #444;
+            font-size: 0.85rem;
+        }
+
+        .footer-legal a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--neon-green);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-green), #00cc7a);
+            border: 3px solid #0a0a0a;
+            color: black;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0, 255, 157, 0.4);
+        }
+
+        .back-to-top:hover {
+            transform: translateX(-50%) translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-newsletter {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .footer-links {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .link-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+        
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="scanlines"></div>
+        <div class="shine"></div>
+        
+        <div class="cyber-wrapper">
+            <div class="logo-cyber">
+                TOYO <span class="cyber-green">TOYS</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+
+                <div class="footer-brand" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <span>TOYO<span>TOYS</span></span>
+                    </div>
+                    <p class="footer-tagline">Your ultimate destination for premium toys</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" data-aos="zoom-in" data-aos-delay="100"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" data-aos="zoom-in" data-aos-delay="200"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" data-aos="zoom-in" data-aos-delay="300"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link" data-aos="zoom-in" data-aos-delay="400"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="link-column" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                        <h4>Shop</h4>
+                        <ul>
+                            <li><a href="#products">New Arrivals</a></li>
+                            <li><a href="#trending">Best Sellers</a></li>
+                            <li><a href="marvels/index.html">Marvel Collection</a></li>
+                            <li><a href="wwe/wwe.html">WWE Figures</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="link-column" data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="contact2.html">Contact Us</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                            <li><a href="#">Returns</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="link-column" data-aos="fade-up" data-aos-delay="600" data-aos-duration="800">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Affiliates</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-newsletter" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <h4>Join the Fun</h4>
+                    <p>Subscribe for exclusive drops & offers</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-divider" data-aos="fade-in" data-aos-duration="1500"></div>
+
+            <div class="footer-bottom" data-aos="flip-up" data-aos-duration="1000" data-aos-offset="0">
+                <div class="footer-payment">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-university"></i>
+                </div>
+
+                <div class="footer-copyright">
+                    <p>&copy; 2024 Toyo Toys. All rights reserved.</p>
+                </div>
+
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+
+        <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" data-aos="fade-left" data-aos-offset="100">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </footer>
+
+</body>

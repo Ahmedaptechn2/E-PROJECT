@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WWE Infinite Smooth Slider</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
@@ -96,6 +97,324 @@
             font-style: italic;
         }
 
+        .main-footer {
+            background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+            border-top: 2px solid var(--neon-green);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+            position: relative;
+            box-shadow: 0 -10px 40px rgba(0, 255, 157, 0.1);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Footer Top */
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 2fr 1fr;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        /* Brand Section */
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+            color: var(--accent-red);
+            text-shadow: 0 0 15px rgba(230, 0, 18, 0.5);
+        }
+
+        .footer-logo span span {
+            color: var(--neon-green);
+        }
+
+        .footer-tagline {
+            color: #888;
+            font-size: 0.95rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .social-link:hover {
+            background: var(--neon-green);
+            border-color: var(--neon-green);
+            color: black;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.4);
+        }
+
+        /* Links Section */
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .link-column h4 {
+            color: var(--neon-green);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .link-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-red);
+            box-shadow: 0 0 10px var(--accent-red);
+        }
+
+        .link-column ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-column a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .link-column a::before {
+            content: '›';
+            color: var(--neon-green);
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .link-column a:hover {
+            color: var(--neon-green);
+            padding-left: 5px;
+        }
+
+        .link-column a:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Newsletter */
+        .footer-newsletter {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #222;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .footer-newsletter h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-newsletter p {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+        }
+
+        .newsletter-form button {
+            background: linear-gradient(135deg, var(--neon-green), #00cc7a);
+            border: none;
+            border-radius: 8px;
+            width: 45px;
+            color: black;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.4);
+        }
+
+        /* Divider */
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #333, transparent);
+            margin: 30px 0;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-payment {
+            display: flex;
+            gap: 15px;
+            font-size: 2rem;
+            color: #444;
+        }
+
+        .footer-payment i {
+            transition: all 0.3s ease;
+        }
+
+        .footer-payment i:hover {
+            color: var(--neon-green);
+            transform: scale(1.1);
+        }
+
+        .footer-copyright {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            color: #444;
+            font-size: 0.85rem;
+        }
+
+        .footer-legal a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--neon-green);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-green), #00cc7a);
+            border: 3px solid #0a0a0a;
+            color: black;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0, 255, 157, 0.4);
+        }
+
+        .back-to-top:hover {
+            transform: translateX(-50%) translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-newsletter {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .footer-links {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .link-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -130,7 +449,7 @@
                 <span class="label">Roman Reigns</span>
             </a>
             <a href="#" class="nav-card">
-                <div class="image-square"><img src="https://gsp-image-cdn.wmsports.io/cms/prod/bleacher-report/getty_images/2221137434_large_cropped_0.jpg"></div>
+                <div class="image-square"><img src="httpshttps://gsp-image-cdn.wmsports.io/cms/prod/bleacher-report/getty_images/2221137434_large_cropped_0.jpg"></div>
                 <span class="label">Cody Rhodes</span>
             </a>
             <a href="#" class="nav-card">
@@ -149,6 +468,96 @@
         </div>
     </div>
 </div>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <!-- Top Section -->
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="fas fa-gamepad"></i>
+                    <span>TOY<span>STORE</span></span>
+                </div>
+                <p class="footer-tagline">Your One-Stop Toy Shop.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <div class="link-column">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Action Figures</a></li>
+                        <li><a href="#">Building Blocks</a></li>
+                    </ul>
+                </div>
+
+                <div class="link-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="link-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Affiliates</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Join The Club</h4>
+                <p>Subscribe for exclusive drops & offers</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="footer-divider"></div>
+
+        <!-- Bottom Section -->
+        <div class="footer-bottom">
+            <div class="footer-payment">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+                <i class="fas fa-university"></i>
+            </div>
+            
+            <div class="footer-copyright">
+                <p>&copy; 2024 Toy Store. All rights reserved.</p>
+            </div>
+
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <span>|</span>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+</footer>
 
 </body>
 </html>

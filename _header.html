@@ -1,0 +1,41 @@
+<!-- Shared Navigation Component -->
+<div class="logo-container">
+    <a href="/index.html" class="logo" aria-label="Toyo Toys Home">🎮 TOYO TOYS</a>
+    
+    <div class="nav-location">
+        <i class="fas fa-map-marker-alt"></i>
+        <div class="nav-location-text">
+            <span class="nav-line-1">Deliver to ALL Over</span>
+            <span class="nav-line-2" id="glow-ingress-line2">Pakistan</span>
+        </div>
+    </div>
+</div>
+
+<nav aria-label="Main navigation">
+    <ul id="main-nav-list">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/wwe/wwe.html">WWE</a></li>
+        <li><a href="/marvels/index.html">Marvel</a></li>
+        <li><a href="/lego/lego.htm">LEGO</a></li>
+        <!-- Recommendation: Rename 'HOT WHEELS' directory to 'hot-wheels' for better web practices. -->
+        <li><a href="/HOT WHEELS/index.html">Hot Wheels</a></li>
+        <li><a href="/contact2.html">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="ott-dropdown" id="ottDropdown">
+    <div class="ott-trigger" onclick="toggleOTT()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg>
+    </div>
+
+    <div class="ottBOX">
+        <a href="/marvels/index.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRlargt0M45QcYkeUNoL9PxeE3R6OCTycNQ&s" class="setOTT-img"></a>
+        <a href="/wwe/wwe.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuES2ggtgtmwrLis-dq71BGz8vkwEBdSQHuA&s" class="setOTT-img"></a>
+        <a href="/HOT WHEELS/index.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCUhfkqiO9E9M2I7LIM7-6ZdLtpZVzXRD93A&s" class="setOTT-img"></a>
+        <a href="/lego/lego.htm" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx6T7k02Vxh5Znyxfk-RJgcZiorbFEs5YRlQ&s" class="setOTT-img"></a>
+    </div>
+</div>
+
+<button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-nav-list">
+    <span></span><span></span><span></span>
+</button>

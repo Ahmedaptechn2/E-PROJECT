@@ -3,36 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hot Wheels Collection</title>
+<title>Hot Wheels Collection - Premium Die-Cast Cars</title>
 
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<!-- Font Awesome Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- AOS Animation -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <style>
     :root {
-        /* --- THEME COLORS --- */
         --neon-green: #00ff9d;
         --neon-dim: rgba(0, 255, 157, 0.2);
         --bg-body: #050505;
         --bg-glass: rgba(20, 20, 20, 0.95);
         --text-main: #ffffff;
         --text-muted: #a0a0a0;
-        --font-family: 'Poppins', sans-serif;
+        --accent-red: #E60012;
+        --accent-blue: #2563eb;
     }
 
-    /* 1. RESET */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* 2. BODY */
     body {
-        font-family: 'Segoe UI', Arial, sans-serif;
+        font-family: 'Poppins', sans-serif;
         background: linear-gradient(135deg, #0f172a, #020617);
         color: #e5e7eb;
-        padding: 0;
         overflow-x: hidden;
     }
 
-    /* 3. HEADER */
+    /* ===== ENHANCED HEADER & NAVIGATION ===== */
     header {
         position: sticky;
         top: 0;
@@ -42,710 +42,1871 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 40px;
-        background: #0d0d0d;
+        background: rgba(13, 13, 13, 0.95);
+        backdrop-filter: blur(10px);
         border-bottom: 2px solid var(--neon-green);
-        box-shadow: 0 0 15px rgba(0, 255, 157, 0.2);
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
         z-index: 1000;
     }
 
-    /* Left Side */
     .logo-container { display: flex; align-items: center; }
-    .logo { display: flex; align-items: center; text-decoration: none; }
-    .logo-img { height: 60px; width: auto; object-fit: contain; }
-
-    .nav-location {
-        display: flex; align-items: center; gap: 8px;
-        padding: 8px 10px; cursor: pointer;
-        border: 1px solid transparent; transition: 0.3s; margin-left: 15px;
+    .logo { 
+        display: flex; 
+        align-items: center; 
+        text-decoration: none; 
+        gap: 10px;
     }
-    .nav-location:hover { border: 1px solid var(--neon-green); border-radius: 4px; }
-    .nav-location i { color: var(--neon-green); font-size: 1.2rem; }
-    .nav-location-text { display: flex; flex-direction: column; line-height: 1.2; }
-    .nav-line-1 { font-size: 0.75rem; color: #9ca3af; }
-    .nav-line-2 { font-size: 0.9rem; color: #ffffff; font-weight: 700; }
-    #glow-ingress-line2 { text-shadow: 0 0 5px rgba(0, 255, 157, 0.3); }
+    .logo i {
+        font-size: 2.5rem;
+        color: var(--accent-red);
+        text-shadow: 0 0 10px rgba(230, 0, 18, 0.5);
+    }
+    .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: white;
+        letter-spacing: 1px;
+    }
+    .logo-text span { color: var(--neon-green); }
 
     /* Navigation Center */
     nav { flex: 1; display: flex; justify-content: center; }
-    nav ul { display: flex; list-style: none; gap: 30px; padding: 0; margin: 0; align-items: center; }
-    nav a {
-        color: #e0e0e0; text-decoration: none; font-size: 1rem;
-        font-weight: 600; letter-spacing: 1px; transition: all 0.3s ease;
-        position: relative; text-transform: uppercase;
+    nav ul { 
+        display: flex; 
+        list-style: none; 
+        gap: 35px; 
+        align-items: center; 
     }
-    nav a:hover { color: var(--neon-green); letter-spacing: 3px; }
+    nav a {
+        color: #e0e0e0; 
+        text-decoration: none; 
+        font-size: 0.95rem;
+        font-weight: 600; 
+        letter-spacing: 1px; 
+        transition: all 0.3s ease;
+        position: relative; 
+        text-transform: uppercase;
+    }
+    nav a:hover { color: var(--neon-green); letter-spacing: 2px; }
     nav a::after {
-        content: ''; position: absolute; width: 0%; height: 2px;
-        bottom: -5px; left: 0; background: var(--neon-green);
-        box-shadow: 0 0 10px var(--neon-green); transition: width 0.3s ease;
+        content: ''; 
+        position: absolute; 
+        width: 0%; 
+        height: 2px;
+        bottom: -5px; 
+        left: 0; 
+        background: var(--neon-green);
+        box-shadow: 0 0 10px var(--neon-green); 
+        transition: width 0.3s ease;
     }
     nav a:hover::after { width: 100%; }
 
-    /* AI Button in Navbar */
-    .ai-trigger-btn {
-        background: rgba(0, 0, 0, 0.5);
-        color: var(--neon-green);
-        border: 1px solid var(--neon-green);
-        padding: 8px 17px;
-        border-radius: 50px;
-        font-family: var(--font-family);
-        font-weight: 600;
-        cursor: pointer;
-        display: flex; align-items: center; gap: 8px;
-        transition: all 0.3s ease;
-        box-shadow: 0 0 5px var(--neon-dim);
+    /* Search Bar */
+    .search-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
     }
-    .ai-trigger-btn:hover {
-        background: var(--neon-green); color: #000;
-        box-shadow: 0 0 20px var(--neon-green); transform: translateY(-2px);
+    .search-input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 255, 157, 0.3);
+        border-radius: 25px;
+        padding: 8px 15px 8px 35px;
+        color: white;
+        width: 200px;
+        transition: all 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+    }
+    .search-input:focus {
+        outline: none;
+        width: 250px;
+        border-color: var(--neon-green);
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+    }
+    .search-input::placeholder { color: #888; }
+    .search-icon {
+        position: absolute;
+        left: 12px;
+        color: var(--neon-green);
     }
 
-    /* OTT Dropdown */
-    .ott-dropdown { position: relative; display: flex; align-items: center; }
+    /* OTT Dropdown - Wapas la diya! */
+    .ott-dropdown { 
+        position: relative; 
+        display: flex; 
+        align-items: center;
+        margin-right: 15px;
+    }
     .ott-trigger {
-        background: #1a1a1a; border: 1px solid #333; color: #fff;
-        cursor: pointer; padding: 10px; border-radius: 10px; transition: 0.3s;
-        display: flex; align-items: center; justify-content: center;
+        background: #1a1a1a; 
+        border: 1px solid #333; 
+        color: #fff;
+        cursor: pointer; 
+        padding: 10px 15px; 
+        border-radius: 10px; 
+        transition: 0.3s;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        gap: 8px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
     }
     .ott-trigger:hover, .ott-dropdown.active .ott-trigger {
-        color: var(--neon-green); border-color: var(--neon-green);
+        color: var(--neon-green); 
+        border-color: var(--neon-green);
         box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
     }
     .ottBOX {
-        position: absolute; top: 65px; right: 0; width: 550px;
-        background: #111; border: 1px solid #333; border-radius: 20px;
-        padding: 20px; display: grid; grid-template-columns: repeat(2, 1fr);
-        gap: 15px; z-index: 1000; opacity: 0; visibility: hidden;
-        transform: translateY(-20px) scale(0.9); transition: all 0.4s ease;
+        position: absolute; 
+        top: 65px; 
+        right: 0; 
+        width: 550px;
+        background: #111; 
+        border: 1px solid #333; 
+        border-radius: 20px;
+        padding: 20px; 
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px; 
+        z-index: 1000; 
+        opacity: 0; 
+        visibility: hidden;
+        transform: translateY(-20px) scale(0.9); 
+        transition: all 0.4s ease;
         box-shadow: 0 10px 40px rgba(0,0,0,0.8);
     }
-    .ott-dropdown.active .ottBOX { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+    .ott-dropdown.active .ottBOX { 
+        opacity: 1; 
+        visibility: visible; 
+        transform: translateY(0) scale(1); 
+    }
     
     .setOTT {
-        background: #1a1a1a; border: 1px solid #222; border-radius: 12px;
-        height: 110px; overflow: hidden; display: flex; cursor: pointer; transition: 0.3s;
+        background: #1a1a1a; 
+        border: 1px solid #222; 
+        border-radius: 12px;
+        height: 110px; 
+        overflow: hidden; 
+        display: flex; 
+        cursor: pointer; 
+        transition: 0.3s;
+        position: relative;
     }
-    .setOTT:hover { border-color: var(--neon-green); transform: translateY(-5px); }
-    .setOTT-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; backface-visibility: hidden; }
-    .setOTT:hover .setOTT-img { transform: scale(1.1); }
-
-    /* 4. MAIN CONTENT CONTAINER */
-    .container {
-        display: grid; grid-template-columns: repeat(4, 1fr);
-        gap: 35px; max-width: 1300px; margin: 40px auto; padding: 0 20px;
+    .setOTT:hover { 
+        border-color: var(--neon-green); 
+        transform: translateY(-5px); 
+    }
+    .setOTT-img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        transition: transform 0.5s; 
+    }
+    .setOTT:hover .setOTT-img { 
+        transform: scale(1.1); 
+    }
+    .setOTT-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        padding: 15px 10px 10px;
+        color: white;
+        font-weight: 600;
+        font-size: 0.9rem;
     }
 
-    /* 5. PRODUCT CARDS */
-    .product-card {
-        background: linear-gradient(180deg, #111827, #020617);
-        border-radius: 14px; padding: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, .6);
-        transition: .3s; display: flex; flex-direction: column;
+    /* Cart Button */
+    .cart-btn {
+        position: relative;
+        background: rgba(0, 255, 157, 0.1);
+        border: 1px solid var(--neon-green);
+        color: var(--neon-green);
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .cart-btn:hover {
+        background: var(--neon-green);
+        color: black;
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
+    }
+    .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: var(--accent-red);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: bold;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s infinite;
+    }
+
+    /* Cart Sidebar */
+    .cart-sidebar {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 400px;
+        height: 100vh;
+        background: rgba(13, 13, 13, 0.98);
+        backdrop-filter: blur(10px);
+        border-left: 2px solid var(--neon-green);
+        z-index: 2000;
+        transition: right 0.4s ease;
+        display: flex;
+        flex-direction: column;
+    }
+    .cart-sidebar.active { right: 0; }
+    .cart-header {
+        padding: 20px;
+        border-bottom: 1px solid #333;
+        display: flex;
         justify-content: space-between;
+        align-items: center;
     }
-    .product-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 20px 40px rgba(37, 99, 235, .4);
-        border: 1px solid rgba(37, 99, 235, .3);
+    .cart-header h2 { color: var(--neon-green); font-size: 1.3rem; }
+    .close-cart {
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: 0.3s;
     }
-    .p-img {
-        width: 100%; height: 190px; object-fit: contain;
-        background: transparent; border-radius: 10px;
-        padding: 10px; margin-bottom: 10px;
-    }
-    .brand-badge {
-        background: linear-gradient(90deg, #e11d48, #fb7185);
-        color: #fff; padding: 3px 10px; font-size: 11px;
-        font-weight: bold; border-radius: 20px; width: fit-content;
-        box-shadow: 0 0 10px rgba(225, 29, 72, .8); margin-bottom: 8px;
-    }
-    h3 { color: #f8fafc; font-size: 1.05rem; margin: 10px 0; }
-    p { color: #9ca3af; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.4; }
-    .doc-link {
-        display: block; text-align: center;
-        background: linear-gradient(90deg, #2563eb, #38bdf8);
-        color: #fff; text-decoration: none; padding: 10px;
-        border-radius: 8px; font-weight: bold; font-size: 0.9rem;
-        transition: .3s; margin-top: auto;
-    }
-    .doc-link:hover { box-shadow: 0 0 15px rgba(56, 189, 248, .8); transform: scale(1.02); }
+    .close-cart:hover { color: var(--neon-green); transform: rotate(90deg); }
     
-    .add-to-cart-btn {
-        display: block; width: 100%; text-align: center;
-        background: linear-gradient(135deg, #00ff9d, #00cc7a);
-        color: #000; text-decoration: none; padding: 12px 20px;
-        border-radius: 8px; font-weight: 600; font-size: 0.95rem;
-        border: none; cursor: pointer; margin-top: 12px;
-        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        box-shadow: 0 4px 15px rgba(0, 255, 157, 0.3);
-        font-family: 'Poppins', sans-serif;
+    .cart-items {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+    }
+    .empty-cart {
+        text-align: center;
+        color: #666;
+        margin-top: 50px;
+    }
+    .empty-cart i { font-size: 3rem; margin-bottom: 15px; color: #333; }
+    
+    .cart-item {
+        display: flex;
+        gap: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #333;
+        transition: 0.3s;
+    }
+    .cart-item:hover { border-color: var(--neon-green); }
+    .cart-item img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        background: white;
+        border-radius: 5px;
+    }
+    .cart-item-details { flex: 1; }
+    .cart-item-name { font-weight: 600; color: white; font-size: 0.9rem; }
+    .cart-item-price { color: var(--neon-green); font-weight: bold; margin-top: 5px; }
+    .remove-item {
+        background: transparent;
+        border: none;
+        color: #ff4444;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: 0.3s;
+    }
+    .remove-item:hover { transform: scale(1.2); }
+    
+    .cart-footer {
+        padding: 20px;
+        border-top: 1px solid #333;
+        background: rgba(0, 0, 0, 0.3);
+    }
+    .cart-total {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .checkout-btn {
+        width: 100%;
+        background: linear-gradient(135deg, var(--neon-green), #00cc7a);
+        color: black;
+        border: none;
+        padding: 15px;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+        text-transform: uppercase;
         letter-spacing: 1px;
     }
-    .add-to-cart-btn:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 10px 25px rgba(0, 255, 157, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.2);
-        letter-spacing: 1.5px;
-    }
-    .add-to-cart-btn:active {
-        transform: translateY(-1px) scale(0.98);
-        box-shadow: 0 4px 10px rgba(0, 255, 157, 0.3);
+    .checkout-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 255, 157, 0.4);
     }
 
-    /* =========================================
-       AI CHAT WINDOW STYLES
-       ========================================= */
+    /* Overlay */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    .overlay.active { opacity: 1; visibility: visible; }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+        position: relative;
+        width: 100%;
+        height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .hero-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+    }
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(230, 0, 18, 0.4), rgba(0, 0, 0, 0.7));
+        z-index: 2;
+    }
+    .hero-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        color: white;
+        animation: slideDown 0.8s ease;
+    }
+    .hero-content h1 {
+        font-size: 60px;
+        font-weight: 800;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        line-height: 1.2;
+    }
+    .hero-content h1 span {
+        background: linear-gradient(135deg, var(--accent-red), var(--neon-green));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .hero-content p {
+        font-size: 20px;
+        color: #e0e0e0;
+        margin-bottom: 30px;
+        font-weight: 300;
+    }
+    .hero-btns {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+    .hero-main-btn, .hero-alt-btn {
+        padding: 15px 40px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 14px;
+    }
+    .hero-main-btn {
+        background: linear-gradient(135deg, var(--accent-red), #ff4444);
+        color: white;
+        box-shadow: 0 10px 30px rgba(230, 0, 18, 0.3);
+    }
+    .hero-main-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 15px 40px rgba(230, 0, 18, 0.5);
+    }
+    .hero-alt-btn {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+    }
+    .hero-alt-btn:hover {
+        background: white;
+        color: var(--accent-red);
+        transform: translateY(-3px);
+    }
+
+    /* ===== BRAND FILTER BAR (Hero ke neeche) ===== */
+    .brand-filter-bar {
+        position: relative;
+        z-index: 4;
+        background: transparent;
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+
+    }
+    .brand-filter-title {
+        font-size: 0.9rem;
+        color: #aaa;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .brand-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .brand-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid transparent;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: 'Poppins', sans-serif;
+    }
+    .brand-btn:hover, .brand-btn.active {
+        background: rgba(0, 255, 157, 0.2);
+        border-color: var(--neon-green);
+        color: var(--neon-green);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(0, 255, 157, 0.3);
+    }
+    .brand-btn i { font-size: 1.1rem; }
+
+    /* ===== PRODUCTS GRID ===== */
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 35px;
+        max-width: 1400px;
+        margin: 60px auto;
+        padding: 0 20px;
+    }
+
+    .product-card {
+        background: linear-gradient(180deg, #111827, #020617);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, .6);
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+    .product-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.7s;
+    }
+    .product-card:hover::before { left: 100%; }
+    .product-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(230, 0, 18, 0.3);
+        border-color: rgba(230, 0, 18, 0.5);
+    }
+    .product-card.hidden { 
+        opacity: 0; 
+        transform: scale(0.8); 
+        pointer-events: none;
+    }
+    
+    .p-img {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        background: transparent;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 15px;
+        transition: transform 0.3s ease;
+    }
+    .product-card:hover .p-img { transform: scale(1.1); }
+    
+    .brand-badge {
+        background: linear-gradient(90deg, var(--accent-red), #ff4444);
+        color: #fff;
+        padding: 4px 12px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        border-radius: 20px;
+        width: fit-content;
+        box-shadow: 0 0 10px rgba(230, 0, 18, 0.5);
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .product-card h3 { 
+        color: #f8fafc; 
+        font-size: 1.1rem; 
+        margin: 10px 0;
+        font-weight: 600;
+    }
+    .product-card p { 
+        color: #9ca3af; 
+        font-size: 0.9rem; 
+        margin-bottom: 15px; 
+        line-height: 1.4;
+        flex: 1;
+    }
+    .price-tag {
+        color: var(--neon-green);
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        display: block;
+    }
+    
+    .card-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: auto;
+    }
+    .doc-link {
+        flex: 1;
+        text-align: center;
+        background: transparent;
+        color: var(--neon-green);
+        text-decoration: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+        border: 1px solid var(--neon-green);
+    }
+    .doc-link:hover {
+        background: var(--neon-green);
+        color: black;
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+    }
+    
+    .add-to-cart-btn {
+        flex: 1;
+        background: linear-gradient(135deg, var(--accent-red), #ff4444);
+        color: white;
+        text-decoration: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+    }
+    .add-to-cart-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(230, 0, 18, 0.5);
+    }
+    .add-to-cart-btn.added {
+        background: linear-gradient(135deg, var(--neon-green), #00cc7a);
+        color: black;
+    }
+
+    /* ===== AI CHAT WINDOW ===== */
     .ai-chat-window {
-        position: fixed; bottom: 30px; right: 30px;
-        width: 400px; height: 600px; max-height: 80vh;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 380px;
+        height: 550px;
+        max-height: 80vh;
         background: var(--bg-glass);
         backdrop-filter: blur(10px);
-        border: 1px solid #333; border-radius: 16px;
-        display: none; flex-direction: column; overflow: hidden;
-        z-index: 2000; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-        animation: popUp 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        border: 1px solid #333;
+        border-radius: 20px;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 2000;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
     }
-    
     .ai-header {
-        background: rgba(255, 255, 255, 0.05); padding: 15px;
-        display: flex; align-items: center; justify-content: space-between;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         border-bottom: 1px solid #333;
     }
-    .ai-header span { color: var(--text-main); font-weight: bold; margin-left: 10px; font-family: var(--font-family); }
-    .ai-header img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--neon-green); }
-    .ai-header button { background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+    .ai-header-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .ai-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--neon-green), #00cc7a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: black;
+    }
+    .ai-header span { 
+        color: var(--text-main); 
+        font-weight: 600; 
+        font-size: 1rem;
+    }
+    .ai-header small { color: var(--neon-green); font-size: 0.75rem; }
+    .ai-close-btn {
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .ai-close-btn:hover { color: var(--neon-green); transform: rotate(90deg); }
     
-    .ai-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; font-family: var(--font-family); }
+    .ai-body {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
     .ai-body::-webkit-scrollbar { width: 6px; }
     .ai-body::-webkit-scrollbar-track { background: #111; }
     .ai-body::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
     
     .ai-msg {
-        background: #1e1e1e; color: #e0e0e0; padding: 12px 16px;
-        border-radius: 12px; border-bottom-left-radius: 2px;
-        font-size: 0.95rem; max-width: 85%;
-        border-left: 2px solid var(--neon-green); animation: fadeIn 0.3s ease;
+        background: #1e1e1e;
+        color: #e0e0e0;
+        padding: 12px 16px;
+        border-radius: 15px;
+        border-bottom-left-radius: 5px;
+        font-size: 0.9rem;
+        max-width: 85%;
+        border-left: 3px solid var(--neon-green);
+        animation: fadeIn 0.3s ease;
+        line-height: 1.4;
     }
     .user-msg {
         background: linear-gradient(135deg, var(--neon-green), #00cc7a);
-        color: #000; align-self: flex-end;
-        border-bottom-left-radius: 12px; border-bottom-right-radius: 2px;
-        border-left: none; font-weight: 600;
+        color: #000;
+        align-self: flex-end;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 5px;
+        border-left: none;
+        font-weight: 500;
     }
-    
-    .ai-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
+    .ai-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 5px;
+    }
     .ai-options button {
-        background: transparent; border: 1px solid #333; color: var(--neon-green);
-        padding: 8px 16px; border-radius: 20px; cursor: pointer;
-        font-size: 0.85rem; transition: 0.3s; font-family: var(--font-family);
+        background: transparent;
+        border: 1px solid var(--neon-green);
+        color: var(--neon-green);
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
+        font-family: 'Poppins', sans-serif;
     }
     .ai-options button:hover {
-        background: var(--neon-dim); border-color: var(--neon-green);
-        box-shadow: 0 0 10px var(--neon-dim);
+        background: var(--neon-green);
+        color: black;
+        transform: translateY(-2px);
     }
 
-    @keyframes popUp { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    /* AI Trigger Button */
+    .ai-fab {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--neon-green), #00cc7a);
+        border: none;
+        color: black;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 5px 20px rgba(0, 255, 157, 0.4);
+        transition: all 0.3s ease;
+        z-index: 1999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .ai-fab:hover {
+        transform: scale(1.1) rotate(10deg);
+        box-shadow: 0 8px 30px rgba(0, 255, 157, 0.6);
+    }
+    .ai-fab.hidden { display: none; }
+
+    /* ===== NOTIFICATION ===== */
+    .notification {
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: linear-gradient(135deg, var(--neon-green), #00cc7a);
+        color: black;
+        padding: 15px 25px;
+        border-radius: 10px;
+        font-weight: 600;
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+     .main-footer {
+        background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+        border-top: 2px solid var(--neon-green);
+        padding: 60px 0 30px;
+        margin-top: 80px;
+        position: relative;
+        box-shadow: 0 -10px 40px rgba(0, 255, 157, 0.1);
+    }
+
+    .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Footer Top */
+    .footer-top {
+        display: grid;
+        grid-template-columns: 1.5fr 2fr 1fr;
+        gap: 50px;
+        margin-bottom: 40px;
+    }
+
+    /* Brand Section */
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: white;
+    }
+
+    .footer-logo i {
+        font-size: 2rem;
+        color: var(--accent-red);
+        text-shadow: 0 0 15px rgba(230, 0, 18, 0.5);
+    }
+
+    .footer-logo span span {
+        color: var(--neon-green);
+    }
+
+    .footer-tagline {
+        color: #888;
+        font-size: 0.95rem;
+        font-style: italic;
+        letter-spacing: 1px;
+    }
+
+    .footer-social {
+        display: flex;
+        gap: 12px;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #888;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .social-link:hover {
+        background: var(--neon-green);
+        border-color: var(--neon-green);
+        color: black;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 255, 157, 0.4);
+    }
+
+    /* Links Section */
+    .footer-links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .link-column h4 {
+        color: var(--neon-green);
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .link-column h4::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--accent-red);
+        box-shadow: 0 0 10px var(--accent-red);
+    }
+
+    .link-column ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .link-column a {
+        color: #888;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .link-column a::before {
+        content: '›';
+        color: var(--neon-green);
+        font-size: 1.2rem;
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.3s ease;
+    }
+
+    .link-column a:hover {
+        color: var(--neon-green);
+        padding-left: 5px;
+    }
+
+    .link-column a:hover::before {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Newsletter */
+    .footer-newsletter {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid #222;
+        border-radius: 15px;
+        padding: 25px;
+    }
+
+    .footer-newsletter h4 {
+        color: white;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .footer-newsletter p {
+        color: #666;
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 10px;
+    }
+
+    .newsletter-form input {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 12px 15px;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .newsletter-form input:focus {
+        outline: none;
+        border-color: var(--neon-green);
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+    }
+
+    .newsletter-form button {
+        background: linear-gradient(135deg, var(--neon-green), #00cc7a);
+        border: none;
+        border-radius: 8px;
+        width: 45px;
+        color: black;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .newsletter-form button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 255, 157, 0.4);
+    }
+
+    /* Divider */
+    .footer-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #333, transparent);
+        margin: 30px 0;
+    }
+
+    /* Footer Bottom */
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .footer-payment {
+        display: flex;
+        gap: 15px;
+        font-size: 2rem;
+        color: #444;
+    }
+
+    .footer-payment i {
+        transition: all 0.3s ease;
+    }
+
+    .footer-payment i:hover {
+        color: var(--neon-green);
+        transform: scale(1.1);
+    }
+
+    .footer-copyright {
+        color: #666;
+        font-size: 0.85rem;
+    }
+
+    .footer-legal {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        color: #444;
+        font-size: 0.85rem;
+    }
+
+    .footer-legal a {
+        color: #888;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-legal a:hover {
+        color: var(--neon-green);
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--neon-green), #00cc7a);
+        border: 3px solid #0a0a0a;
+        color: black;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 20px rgba(0, 255, 157, 0.4);
+    }
+
+    .back-to-top:hover {
+        transform: translateX(-50%) translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 255, 157, 0.6);
+    }
 
     /* Responsive */
-    @media(max-width: 1024px) { .container { grid-template-columns: repeat(2, 1fr); } }
-    @media(max-width: 600px) {
+    @media (max-width: 1024px) {
+        .footer-top {
+            grid-template-columns: 1fr 1fr;
+        }
+        .footer-newsletter {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .footer-top {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .footer-links {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .link-column h4::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+    .notification.error {
+        background: #ff4444;
+        color: white;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(5px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width: 1024px) {
+        .container { grid-template-columns: repeat(2, 1fr); }
+        nav { display: none; }
+        .search-input { width: 150px; }
+        .ottBOX { width: 350px; grid-template-columns: 1fr; }
+    }
+    @media(max-width: 768px) {
+        header { padding: 0 20px; }
+        .hero-content h1 { font-size: 40px; }
+        .brand-buttons { gap: 10px; }
+        .brand-btn { padding: 10px 20px; font-size: 0.8rem; }
         .container { grid-template-columns: 1fr; }
-        header { padding: 0 20px; } nav { display: none; }
-        .ai-chat-window { width: 90%; height: 70vh; right: 5%; bottom: 20px; }
+        .cart-sidebar { width: 100%; right: -100%; }
+        .ai-chat-window { 
+            width: 90%; 
+            height: 70vh; 
+            right: 5%; 
+            bottom: 80px;
+        }
     }
 </style>
 </head>
 <body>
 
+<!-- Overlay for cart -->
+<div class="overlay" onclick="closeAllDrawers()"></div>
+
+<!-- ===== ENHANCED HEADER WITH OTT BOX ===== -->
 <header>
     <div class="logo-container">
-        <a href="/home/index.html" class="logo">
-            <img src="/home/Adobe Express - file.png" alt="Toyo Logo" class="logo-img">
+        <a href="#" class="logo">
+            <i class="fas fa-fire"></i>
+            <span class="logo-text">HOT<span>WHEELS</span></span>
         </a>
-        
-        <div class="nav-location">
-            <i class="fas fa-map-marker-alt"></i>
-            <div class="nav-location-text">
-                <span class="nav-line-1">Deliver to ALL Over</span>
-                <span class="nav-line-2" id="glow-ingress-line2">Pakistan</span>
-            </div>
-        </div>
     </div>
 
     <nav>
-        <ul>
-            <li><a href="/home/index.html">Home</a></li>
-            <li><a href="/wwe/wwe.html">WWE</a></li>
-            <li><a href="/lego/lego.html">LEGO</a></li>
-            <li><a href="/marvels/index.html">MARVELS</a></li>
-            <li><a href="contact2.html">CONTACT</a></li>
-            <li>
-                <button class="ai-trigger-btn" onclick="toggleAI()">
-                    🤖 AI Help
-                </button>
-            </li>
-        </ul>
+       <ul id="main-nav-list">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/wwe/wwe.html">WWE</a></li>
+                <li><a href="/marvels/index.html">Marvel</a></li>
+                <li><a href="/lego/lego.htm">LEGO</a></li>
+                <li><a href="HOT WHEELS/index.html">Hot Wheels</a></li>
+                <li><a href="/contact2.html">Contact</a></li>
+            </ul>
     </nav>
 
+    <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search cars..." id="searchInput" onkeyup="searchProducts()">
+    </div>
+
+    <!-- OTT Dropdown Yahan Wapas! -->
     <div class="ott-dropdown" id="ottDropdown">
         <button class="ott-trigger" onclick="toggleOTT()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg>
+            <i class="fas fa-th-large"></i> Collections
         </button>
-
-        <div class="ottBOX">
-            <a href="/marvels/index.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRlargt0M45QcYkeUNoL9PxeE3R6OCTycNQ&s" class="setOTT-img"></a>
-            <a href="/wwe/wwe.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuES2ggtgtmwrLis-dq71BGz8vkwEBdSQHuA&s" class="setOTT-img"></a>
-            <a href="/HOT WHEELS/index.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCUhfkqiO9E9M2I7LIM7-6ZdLtpZVzXRD93A&s" class="setOTT-img"></a>
-            <a href="/lego/lego.html" class="setOTT"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx6T7k02Vxh5Znyxfk-RJgcZiorbFEs5YRlQ&s" class="setOTT-img"></a>
-        </div>
+         <div class="ottBOX">
+                    <div class="setOTT" onclick="window.location.href='/marvels/index.html'">
+                        <img src="https://images.alphacoders.com/695/695898.jpg" class="setOTT-img" alt="Marvel Collection">
+                    </div>
+                    <div class="setOTT" onclick="window.location.href='/wwe/wwe.html'">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmh6QvQgh-MFjv2QG8iuAXdCYfDvMqPPq2xg&s" class="setOTT-img" alt="WWE Collection">
+                    </div>
+                    <div class="setOTT" onclick="window.location.href='/lego/lego.htm'">
+                        <img src="https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/c8b688e8-8c3c-494a-ad17-ef1d2d5a9fb0/36f3a755-58cd-4872-af75-175cf04b3871.jpeg" class="setOTT-img" alt="LEGO Collection">
+                    </div>
+                    <div class="setOTT" onclick="window.location.href='/hot-wheels/index.html'">
+                        <img src="https://www.highreshdwallpapers.com/wp-content/uploads/2012/06/Lego-Logo-Wallpaper.jpg" class="setOTT-img" alt="Hot Wheels Collection">
+                    </div>
+                </div>
     </div>
+
+    <button class="cart-btn" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount" style="display: none;">0</span>
+    </button>
 </header>
 
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+        <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <div class="empty-cart">
+            <i class="fas fa-shopping-basket"></i>
+            <p>Your cart is empty</p>
+            <small>Add some awesome cars!</small>
+        </div>
+    </div>
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">PKR 0</span>
+        </div>
+        <button class="checkout-btn" onclick="checkout()">
+            <i class="fas fa-credit-card"></i> Checkout
+        </button>
+    </div>
+</div>
+
+<!-- ===== HERO SECTION WITH BRAND FILTERS ===== -->
+<section class="hero" id="home">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="VIDEO=BG.webm" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <h1 data-aos="zoom-in">RACE THE <span>FUTURE</span></h1>
+        <p data-aos="fade-up" data-aos-delay="200">Premium die-cast collectibles for speed enthusiasts</p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
+            <a href="#products" class="hero-main-btn">Explore Collection</a>
+            <a href="#track" class="hero-alt-btn">Build Track</a>
+        </div>
+
+      
+    </div>
+</section>
+  <!-- BRAND FILTER BAR - Hero ke neeche -->
+        <div class="brand-filter-bar" data-aos="fade-up" data-aos-delay="600">
+            
+            <div class="brand-buttons">
+                <button class="brand-btn active" onclick="filterByBrand('all', this)">
+                    <i class="fas fa-th-large"></i> All
+                </button>
+                <button class="brand-btn" onclick="filterByBrand('hot-wheels', this)">
+                    <i class="fas fa-fire"></i> Hot Wheels
+                </button>
+                <button class="brand-btn" onclick="filterByBrand('porsche', this)">
+                    <i class="fas fa-car"></i> Porsche
+                </button>
+                <button class="brand-btn" onclick="filterByBrand('lamborghini', this)">
+                    <i class="fas fa-horse-head"></i> Lamborghini
+                </button>
+                <button class="brand-btn" onclick="filterByBrand('tesla', this)">
+                    <i class="fas fa-bolt"></i> Tesla
+                </button>
+                <button class="brand-btn" onclick="filterByBrand('nissan', this)">
+                    <i class="fas fa-flag-checkered"></i> Nissan
+                </button>
+            </div>
+        </div>
+<!-- ===== PRODUCTS GRID ===== -->
+<div class="container" id="products">
+
+    <div class="product-card" data-aos="fade-up" data-brand="hot-wheels" data-name="Plymouth Superbird">
+        <img src="CAR IMGS/CAR 1.png" class="p-img" alt="Plymouth Superbird">
+        <span class="brand-badge">Hot Wheels</span>
+        <h3>'70 Plymouth Superbird</h3>
+        <p>Muscle Mania NASCAR Legend with iconic high-mounted wing.</p>
+        <span class="price-tag">PKR 2,500</span>
+        <div class="card-actions">
+            <a href="card1.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('70 Plymouth Superbird', 2500, 'CAR IMGS/CAR 1.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-brand="lucid" data-name="Lucid Air Safari">
+        <img src="CAR IMGS/CAR 2.png" class="p-img" alt="Lucid Air Safari">
+        <span class="brand-badge">Hot Wheels</span>
+        <h3>'24 Lucid Air Safari</h3>
+        <p>Off-road Luxury EV with rugged styling and premium details.</p>
+        <span class="price-tag">PKR 2,800</span>
+        <div class="card-actions">
+            <a href="card2.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('24 Lucid Air Safari', 2800, 'CAR IMGS/CAR 2.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="200" data-brand="porsche" data-name="Porsche 911 GT3">
+        <img src="CAR IMGS/CAR 3.png" class="p-img" alt="Porsche 911 GT3 RS">
+        <span class="brand-badge">Porsche</span>
+        <h3>Porsche 911 GT3 RS</h3>
+        <p>Shark Blue Track Monster with authentic racing livery.</p>
+        <span class="price-tag">PKR 3,200</span>
+        <div class="card-actions">
+            <a href="card3.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('Porsche 911 GT3 RS', 3200, 'CAR IMGS/CAR 3.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="300" data-brand="lucid" data-name="Lucid Air Safari Green">
+        <img src="CAR IMGS/CAR 4.png" class="p-img" alt="Lucid Air Safari Green">
+        <span class="brand-badge">Hot Wheels</span>
+        <h3>'24 Lucid Air Safari (v2)</h3>
+        <p>Green Speed Electric with aerodynamic design.</p>
+        <span class="price-tag">PKR 2,800</span>
+        <div class="card-actions">
+            <a href="card4.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('24 Lucid Air Safari v2', 2800, 'CAR IMGS/CAR 4.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-brand="hot-wheels" data-name="Camaro STH">
+        <img src="CAR IMGS/CAR 5.png" class="p-img" alt="67 Camaro STH">
+        <span class="brand-badge">Super Treasure</span>
+        <h3>'67 Camaro STH</h3>
+        <p>Super Treasure Hunt limited edition with rubber tires.</p>
+        <span class="price-tag">PKR 4,500</span>
+        <div class="card-actions">
+            <a href="card5.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('67 Camaro STH', 4500, 'CAR IMGS/CAR 5.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-brand="hot-wheels" data-name="Bone Shaker">
+        <img src="CAR IMGS/CAR 6.png" class="p-img" alt="Bone Shaker">
+        <span class="brand-badge">Rod Squad</span>
+        <h3>Bone Shaker</h3>
+        <p>Iconic skull-themed hot rod with massive rear wheels.</p>
+        <span class="price-tag">PKR 2,200</span>
+        <div class="card-actions">
+            <a href="card6.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('Bone Shaker', 2200, 'CAR IMGS/CAR 6.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="200" data-brand="hot-wheels" data-name="Plymouth Petty">
+        <img src="CAR IMGS/CAR7.png" class="p-img" alt="Plymouth Petty Blue">
+        <span class="brand-badge">Hot Wheels</span>
+        <h3>'70 Plymouth Petty Blue</h3>
+        <p>Richard Petty tribute with aerodynamic classic design.</p>
+        <span class="price-tag">PKR 2,600</span>
+        <div class="card-actions">
+            <a href="card7.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('70 Plymouth Petty Blue', 2600, 'CAR IMGS/CAR7.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="300" data-brand="tesla" data-name="Tesla Cybertruck">
+        <img src="CAR IMGS/CAR 8.png" class="p-img" alt="Tesla Cybertruck">
+        <span class="brand-badge">Tesla</span>
+        <h3>Tesla Cybertruck</h3>
+        <p>Futuristic EV Truck with bulletproof angular design.</p>
+        <span class="price-tag">PKR 3,500</span>
+        <div class="card-actions">
+            <a href="card8.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('Tesla Cybertruck', 3500, 'CAR IMGS/CAR 8.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-brand="nissan" data-name="Nissan Skyline">
+        <img src="CAR IMGS/CAR 9.png" class="p-img" alt="Nissan Skyline GT-R">
+        <span class="brand-badge">Nissan</span>
+        <h3>Nissan Skyline GT-R</h3>
+        <p>JDM Bayside Blue R34 with detailed rear wing.</p>
+        <span class="price-tag">PKR 3,800</span>
+        <div class="card-actions">
+            <a href="card9.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('Nissan Skyline GT-R', 3800, 'CAR IMGS/CAR 9.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-brand="hot-wheels" data-name="Twin Mill">
+        <img src="CAR IMGS/CAR 10.png" class="p-img" alt="Twin Mill">
+        <span class="brand-badge">Original</span>
+        <h3>Twin Mill</h3>
+        <p>Dual Engine Original design with exposed engines.</p>
+        <span class="price-tag">PKR 2,400</span>
+        <div class="card-actions">
+            <a href="card10.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('Twin Mill', 2400, 'CAR IMGS/CAR 10.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="200" data-brand="lamborghini" data-name="Lamborghini Revuelto">
+        <img src="CAR IMGS/CAR 11.png" class="p-img" alt="Lamborghini Revuelto">
+        <span class="brand-badge">Lamborghini</span>
+        <h3>Lamborghini Revuelto</h3>
+        <p>V12 Hybrid Flagship with scissor doors.</p>
+        <span class="price-tag">PKR 4,200</span>
+        <div class="card-actions">
+            <a href="card11.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('Lamborghini Revuelto', 4200, 'CAR IMGS/CAR 11.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-delay="300" data-brand="toyota" data-name="Toyota Supra">
+        <img src="CAR IMGS/CAR 12.png" class="p-img" alt="Toyota Supra">
+        <span class="brand-badge">Toyota</span>
+        <h3>'20 Toyota Supra</h3>
+        <p>Speed Graphics Series with bold racing decals.</p>
+        <span class="price-tag">PKR 3,100</span>
+        <div class="card-actions">
+            <a href="card12.html" class="doc-link">Details</a>
+            <button class="add-to-cart-btn" onclick="addToCart('20 Toyota Supra', 3100, 'CAR IMGS/CAR 12.png', this)">
+                <i class="fas fa-cart-plus"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<!-- AI Chat Button -->
+<button class="ai-fab" id="aiFab" onclick="toggleAI()">
+    <i class="fas fa-robot"></i>
+</button>
+
+<!-- AI Chat Window -->
 <div id="aiWindow" class="ai-chat-window">
     <div class="ai-header">
-        <div style="display:flex; align-items:center;">
-            <img src="https://ui-avatars.com/api/?name=AI&background=00ff9d&color=000" alt="AI">
-            <span>Toy Expert</span>
+        <div class="ai-header-info">
+            <div class="ai-avatar">AI</div>
+            <div>
+                <span>Toy Expert</span><br>
+                <small>Online</small>
+            </div>
         </div>
-        <button onclick="toggleAI()">&times;</button>
+        <button class="ai-close-btn" onclick="toggleAI()"><i class="fas fa-times"></i></button>
     </div>
 
     <div id="aiBody" class="ai-body">
-        <div class="ai-msg">Hi! Main Toy Assistant hoon. Khelna shuru karein?</div>
+        <div class="ai-msg">
+            <i class="fas fa-hand-sparkles"></i> Hi! I'm your Hot Wheels assistant. Looking for something specific?
+        </div>
         <div class="ai-options">
-            <button onclick="askAge()">Start Chat</button>
+            <button onclick="startRecommendation()">Find Perfect Car</button>
+            <button onclick="showCategories()">Browse Categories</button>
         </div>
     </div>
 </div>
+<!-- ===== FOOTER ===== -->
+<footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                
+                <div class="footer-brand" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="footer-logo">
+                        <i class="fas fa-fire"></i>
+                        <span>HOT<span>WHEELS</span></span>
+                    </div>
+                    <p class="footer-tagline">Speed. Passion. Performance.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" data-aos="zoom-in" data-aos-delay="100"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" data-aos="zoom-in" data-aos-delay="200"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" data-aos="zoom-in" data-aos-delay="300"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link" data-aos="zoom-in" data-aos-delay="400"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
 
-<div class="container">
+                <div class="footer-links">
+                    <div class="link-column" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                        <h4>Shop</h4>
+                        <ul>
+                            <li><a href="#">New Arrivals</a></li>
+                            <li><a href="#">Best Sellers</a></li>
+                            <li><a href="#">Track Sets</a></li>
+                            <li><a href="#">Limited Edition</a></li>
+                        </ul>
+                    </div>
 
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR 1.png" class="p-img">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>'70 Plymouth Superbird</h3>
-    <p>Muscle Mania NASCAR Legend.</p>
-    <a href="card1.html" class="doc-link">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('70 Plymouth Superbird', 'PKR 2,500')">Buy Now</button>
-    </div>
+                    <div class="link-column" data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                            <li><a href="#">Returns</a></li>
+                        </ul>
+                    </div>
 
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR 2.png" class="p-img">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>'24 Lucid Air Safari</h3>
-    <p>Off-road Luxury EV.</p>
-    <a href="card2.html" class="doc-link">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('24 Lucid Air Safari', 'PKR 2,800')">Buy Now</button>
-    </div>
+                    <div class="link-column" data-aos="fade-up" data-aos-delay="600" data-aos-duration="800">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Affiliates</a></li>
+                        </ul>
+                    </div>
+                </div>
 
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR 3.png" class="p-img">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>Porsche 911 GT3 RS</h3>
-    <p>Shark Blue Track Monster.</p>
-    <a href="card3.html" class="doc-link">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('Porsche 911 GT3 RS', 'PKR 3,200')">Buy Now</button>
-    </div>
+                <div class="footer-newsletter" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <h4>Join The Race</h4>
+                    <p>Subscribe for exclusive drops & offers</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
 
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR 4.png" class="p-img">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>'24 Lucid Air Safari (v2)</h3>
-    <p>Green Speed Electric.</p>
-    <a href="card4.html" class="doc-link">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('24 Lucid Air Safari v2', 'PKR 2,800')">Buy Now</button>
-    </div>
+            <div class="footer-divider" data-aos="fade-in" data-aos-duration="1500"></div>
 
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR 5.png" class="p-img">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>'67 Camaro STH</h3>
-    <p>Super Treasure Hunt.</p>
-    <a href="card5.html" class="doc-link">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('67 Camaro STH', 'PKR 4,500')">Buy Now</button>
-    </div>
+            <div class="footer-bottom" data-aos="flip-up" data-aos-duration="1000" data-aos-offset="0">
+                <div class="footer-payment">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-university"></i>
+                </div>
+                
+                <div class="footer-copyright">
+                    <p>&copy; 2024 Hot Wheels Collection. All rights reserved.</p>
+                </div>
 
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR 6.png" class="p-img">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>Bone Shaker</h3>
-    <p>Rod Squad Icon.</p>
-    <a href="card6.html" class="doc-link">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('Bone Shaker', 'PKR 2,200')">Buy Now</button>
-    </div>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
 
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR7.png" class="p-img">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>'70 Plymouth Petty Blue</h3>
-    <p>Aerodynamic Classic.</p>
-    <a href="card7.html" class="doc-link">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('70 Plymouth Petty Blue', 'PKR 2,600')">Buy Now</button>
-    </div>
+        <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" data-aos="fade-left" data-aos-offset="100">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </footer>
 
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR 8.png" class="p-img" style="object-fit: cover;">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>Tesla Cybertruck</h3>
-    <p>Futuristic EV Truck.</p>
-    <a href="card8.html" class="doc-link">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('Tesla Cybertruck', 'PKR 3,500')">Buy Now</button>
-    </div>
-
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR 9.png" class="p-img" style="object-fit: scale-down;">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>Nissan Skyline GT-R</h3>
-    <p>JDM Bayside Blue.</p>
-    <a href="card9.html" class="doc-link">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('Nissan Skyline GT-R', 'PKR 3,800')">Buy Now</button>
-    </div>
-
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR 10.png" class="p-img">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>Twin Mill</h3>
-    <p>Dual Engine Original.</p>
-    <a href="card10.html" class="doc-link">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('Twin Mill', 'PKR 2,400')">Buy Now</button>
-    </div>
-
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR 11.png" class="p-img" style="object-fit: cover;">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>Lamborghini Revuelto</h3>
-    <p>V12 Hybrid Flagship.</p>
-    <a href="card11.html" class="doc-link">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('Lamborghini Revuelto', 'PKR 4,200')">Buy Now</button>
-    </div>
-
-    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
-    <img src="CAR IMGS/CAR 12.png" class="p-img" style="object-fit: cover;">
-    <span class="brand-badge">HOT WHEELS</span>
-    <h3>'20 Toyota Supra</h3>
-    <p>Speed Graphics Series.</p>
-    <a href="card12.html" class="doc-link" onclick="seeMore('Toyota Supra')">SEE MORE</a>
-    <button class="add-to-cart-btn" onclick="addToCart('20 Toyota Supra', 'PKR 3,100')">Buy Now</button>
-    </div>
-
-</div>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // Initialize Animations
-    AOS.init();
-</script>
 
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
-<script>
-    // Lenis Initialize karna
-    const lenis = new Lenis({
-      duration: 1.2,   // Scrolling ki speed (jitna zyada, utna smooth)
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smoothness ka formula
-      smoothWheel: true
-    })
+    // ===== CART SYSTEM =====
+    let cart = JSON.parse(localStorage.getItem('hotwheels_cart')) || [];
 
-    // Frame-by-frame update ke liye function
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
+    function saveCart() {
+        localStorage.setItem('hotwheels_cart', JSON.stringify(cart));
+        updateCartUI();
     }
 
-    requestAnimationFrame(raf)
-</script>
+    function addToCart(name, price, image, btnElement) {
+        const existingItem = cart.find(item => item.name === name);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                id: Date.now(),
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+        }
+        
+        saveCart();
+        
+        // Button feedback animation
+        if (btnElement) {
+            const originalHTML = btnElement.innerHTML;
+            btnElement.classList.add('added');
+            btnElement.innerHTML = '<i class="fas fa-check"></i> Added!';
+            
+            setTimeout(() => {
+                btnElement.classList.remove('added');
+                btnElement.innerHTML = originalHTML;
+            }, 1500);
+        }
+        
+        // Show notification
+        showNotification(`${name} added to cart!`);
+        
+        // Optional: Auto open cart sidebar
+        // toggleCart();
+    }
 
-    // 1. OTT Dropdown Logic
+    function removeFromCart(itemId) {
+        cart = cart.filter(item => item.id !== itemId);
+        saveCart();
+    }
+
+    function updateCartUI() {
+        const cartCount = document.getElementById('cartCount');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        // Update badge
+        if (totalItems > 0) {
+            cartCount.textContent = totalItems;
+            cartCount.style.display = 'flex';
+        } else {
+            cartCount.style.display = 'none';
+        }
+        
+        // Update cart items
+        if (cart.length === 0) {
+            cartItems.innerHTML = `
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-basket"></i>
+                    <p>Your cart is empty</p>
+                    <small>Add some awesome cars!</small>
+                </div>
+            `;
+        } else {
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">PKR ${item.price.toLocaleString()} x ${item.quantity}</div>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart(${item.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+        
+        // Update total
+        cartTotal.textContent = `PKR ${totalPrice.toLocaleString()}`;
+    }
+
+    function toggleCart() {
+        const cartSidebar = document.getElementById('cartSidebar');
+        const overlay = document.querySelector('.overlay');
+        cartSidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+        
+        // Close OTT if open
+        document.getElementById('ottDropdown').classList.remove('active');
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            showNotification('Your cart is empty!', 'error');
+            return;
+        }
+        alert('Proceeding to checkout...\nTotal: ' + document.getElementById('cartTotal').textContent);
+    }
+
+    // ===== OTT DROPDOWN =====
     function toggleOTT() {
         const dropdown = document.getElementById('ottDropdown');
         dropdown.classList.toggle('active');
     }
 
-    // Close menu when clicking outside
+    // Close OTT when clicking outside
     window.addEventListener('click', function(e) {
         const dropdown = document.getElementById('ottDropdown');
         const trigger = document.querySelector('.ott-trigger');
-        if (!dropdown.contains(e.target) && !trigger.contains(e.target)) {
+        if (!dropdown.contains(e.target)) {
             dropdown.classList.remove('active');
         }
     });
 
-    // 2. AI CHAT LOGIC (CORRECTED)
+    // ===== SEARCH FUNCTION =====
+    function searchProducts() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const cards = document.querySelectorAll('.product-card');
+        
+        cards.forEach(card => {
+            const name = card.getAttribute('data-name').toLowerCase();
+            const brand = card.getAttribute('data-brand').toLowerCase();
+            
+            if (name.includes(searchTerm) || brand.includes(searchTerm)) {
+                card.classList.remove('hidden');
+                card.style.display = 'flex';
+            } else {
+                card.classList.add('hidden');
+                setTimeout(() => {
+                    if (card.classList.contains('hidden')) {
+                        card.style.display = 'none';
+                    }
+                }, 300);
+            }
+        });
+    }
+
+    // ===== BRAND FILTER (Hero ke neeche) =====
+    function filterByBrand(brand, btnElement) {
+        // Update active button state
+        document.querySelectorAll('.brand-btn').forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+        
+        const cards = document.querySelectorAll('.product-card');
+        
+        cards.forEach(card => {
+            if (brand === 'all' || card.getAttribute('data-brand') === brand) {
+                card.classList.remove('hidden');
+                card.style.display = 'flex';
+                // Re-trigger animation
+                card.style.animation = 'none';
+                setTimeout(() => {
+                    card.style.animation = '';
+                }, 10);
+            } else {
+                card.classList.add('hidden');
+                setTimeout(() => {
+                    if (card.classList.contains('hidden')) {
+                        card.style.display = 'none';
+                    }
+                }, 300);
+            }
+        });
+        
+        // Smooth scroll to products
+        document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ===== AI CHAT =====
     function toggleAI() {
         const chatWindow = document.getElementById('aiWindow');
-        if (!chatWindow) return; // Safety check
-
-        const currentDisplay = chatWindow.style.display;
-        if (currentDisplay === 'none' || currentDisplay === '') {
+        const aiFab = document.getElementById('aiFab');
+        
+        if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
             chatWindow.style.display = 'flex';
+            aiFab.classList.add('hidden');
         } else {
             chatWindow.style.display = 'none';
+            aiFab.classList.remove('hidden');
         }
     }
 
-    // Helper: Add Message
     function addMessage(text, type = 'ai') {
         const chatBody = document.getElementById('aiBody');
         const msgDiv = document.createElement('div');
         msgDiv.className = type === 'user' ? 'ai-msg user-msg' : 'ai-msg';
-        msgDiv.innerText = text;
+        msgDiv.innerHTML = text;
         chatBody.appendChild(msgDiv);
         chatBody.scrollTop = chatBody.scrollHeight;
     }
 
-    // Helper: Add Options
     function addOptions(options) {
         const chatBody = document.getElementById('aiBody');
         const optionsDiv = document.createElement('div');
         optionsDiv.className = 'ai-options';
-
+        
         options.forEach(opt => {
             const btn = document.createElement('button');
-            btn.innerText = opt.text;
+            btn.textContent = opt.text;
             btn.onclick = function() { 
                 handleSelection(opt.text, opt.action, optionsDiv); 
             };
             optionsDiv.appendChild(btn);
         });
-
+        
         chatBody.appendChild(optionsDiv);
         chatBody.scrollTop = chatBody.scrollHeight;
     }
 
-    // AI Logic Flow
-    function askAge() {
-        const oldOptions = document.querySelector('.ai-options');
-        if(oldOptions) oldOptions.remove();
-
+    function startRecommendation() {
+        clearChat();
         setTimeout(() => {
-            addMessage("Sabse pehle, yeh toy kiske liye hai?");
+            addMessage("Great! Let's find the perfect car. Who is this for?");
             addOptions([
-                { text: "Boy (Action Lover)", action: 'boy' },
-                { text: "Creative Kid (Builder)", action: 'creative' },
-                { text: "Superhero Fan", action: 'hero' },
-                { text: "Speed Racer (Car Lover)", action: 'racer' }
+                { text: "Kids (3-8 years)", action: 'kids' },
+                { text: "Collectors", action: 'collectors' },
+                { text: "Racing Fan", action: 'racing' },
+                { text: "Gift", action: 'gift' }
             ]);
         }, 500);
+    }
+
+    function showCategories() {
+        clearChat();
+        setTimeout(() => {
+            addMessage("Which category interests you?");
+            addOptions([
+                { text: "Super Cars", action: 'supercars' },
+                { text: "Classic Muscle", action: 'muscle' },
+                { text: "JDM Imports", action: 'jdm' },
+                { text: "Electric Vehicles", action: 'ev' }
+            ]);
+        }, 500);
+    }
+
+    function clearChat() {
+        document.getElementById('aiBody').innerHTML = '';
     }
 
     function handleSelection(text, action, parentDiv) {
         parentDiv.remove();
         addMessage(text, 'user');
-
+        
         setTimeout(() => {
-            if (action === 'boy') {
-                addMessage("Boys ke liye hamare paas WWE Figures best hain! 💪");
-                addMessage("Kya aap WWE collection dekhna chahenge?");
+            const responses = {
+                'kids': "For kids, I recommend the Bone Shaker or Twin Mill - durable and fun! 🚗",
+                'collectors': "Collectors love our Super Treasure Hunts like the '67 Camaro STH! ⭐",
+                'racing': "For racing fans, check out the Porsche 911 GT3 RS or Nissan Skyline! 🏁",
+                'gift': "Popular gifts include the Tesla Cybertruck or Lamborghini Revuelto! 🎁",
+                'supercars': "Check out our Lamborghini Revuelto and Porsche 911 GT3 RS! 🏎️",
+                'muscle': "Classic muscle cars: '70 Plymouth Superbird and '67 Camaro! 💪",
+                'jdm': "JDM legends: Nissan Skyline GT-R and Toyota Supra! 🇯🇵",
+                'ev': "Electric future: Tesla Cybertruck and Lucid Air Safari! ⚡"
+            };
+            
+            if (responses[action]) {
+                addMessage(responses[action]);
                 addOptions([
-                    { text: "Haan, WWE dikhao", action: 'goto_wwe' },
-                    { text: "Nahi, kuch aur", action: 'start_over' }
+                    { text: "Show me these", action: 'show_products' },
+                    { text: "Ask something else", action: 'restart' }
                 ]);
-            } 
-            else if (action === 'creative') {
-                addMessage("Creative bachon ke liye LEGO se behtar kuch nahi! 🧱");
-                addOptions([
-                    { text: "Lego Sets dikhao", action: 'goto_lego' },
-                    { text: "Wapis shuru karo", action: 'start_over' }
-                ]);
-            }
-            else if (action === 'hero') {
-                addMessage("Superheroes? Hamare paas Marvels ka poora universe hai! 🦸‍♂️");
-                addOptions([
-                    { text: "Marvels Collection", action: 'goto_marvel' },
-                    { text: "Start Over", action: 'start_over' }
-                ]);
-            }
-            else if (action === 'racer') {
-                addMessage("Speed Racer! Hamare paas HOT WHEELS ka ekdum fierce collection hai! 🏎️");
-                addMessage("Kya aap HOT WHEELS dekhna chahenge?");
-                addOptions([
-                    { text: "Haan, HOT WHEELS dikhao", action: 'goto_hotwheels' },
-                    { text: "Nahi, kuch aur", action: 'start_over' }
-                ]);
-            }
-            // --- LINKS ---
-            else if (action === 'goto_wwe') {
-                addMessage("Redirecting to WWE World...");
-                window.location.href = '/wwe/wwe.html';
-            }
-            else if (action === 'goto_lego') {
-                addMessage("Chalo Lego world chalte hain...");
-                window.location.href = '/lego/lego.htm';
-            }
-            else if (action === 'goto_marvel') {
-                addMessage("Avengers Assemble! Redirecting...");
-                window.location.href = '/marvels/index.html';
-            }
-            else if (action === 'goto_hotwheels') {
-                addMessage("Buckle up! Heading to HOT WHEELS track...");
-                window.location.href = '/HOT WHEELS/index.html';
-            }
-            else if (action === 'start_over') {
-                askAge();
+            } else if (action === 'show_products') {
+                addMessage("Scroll down to see our featured collection! 🎉");
+                document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+            } else if (action === 'restart') {
+                startRecommendation();
             }
         }, 600);
     }
 
-    // ===== SHOPPING CART SYSTEM FOR HOT WHEELS =====
-    let cart = [];
-
-    function addToCart(productName, price) {
-        cart.push({ name: productName, price: price, id: Date.now() });
-        showThankYouOverlay(productName, price);
-        console.log('Cart:', cart);
-    }
-
-    function removeFromCart(itemId) {
-        cart = cart.filter(item => item.id !== itemId);
-    }
-
-    function getCart() {
-        return cart;
-    }
-
-    function clearCart() {
-        cart = [];
-    }
-
-    function showThankYouOverlay(productName, price) {
-        const overlay = document.createElement('div');
-        overlay.className = 'thank-you-overlay';
-        overlay.innerHTML = `
-            <div class="thank-you-container">
-                <button class="close-thank-you" onclick="this.parentElement.parentElement.remove()">✕</button>
-                <div class="thank-you-icon">🎉</div>
-                <h2>Thank You For Your Purchase!</h2>
-                <p class="product-details">
-                    <strong>${productName}</strong><br>
-                    Price: <strong>${price}</strong>
-                </p>
-                <p class="thank-you-message">We appreciate your order. Your product will be delivered soon!</p>
-                <button class="continue-btn" onclick="this.parentElement.parentElement.remove()">Continue Shopping</button>
-            </div>
+    // ===== NOTIFICATION SYSTEM =====
+    function showNotification(message, type = 'success') {
+        // Remove existing notifications
+        const existing = document.querySelector('.notification');
+        if (existing) existing.remove();
+        
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i>
+            ${message}
         `;
-        document.body.appendChild(overlay);
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
     }
 
-    // Add CSS for Thank You Overlay & Cart Buttons
-    const style = document.createElement('style');
-    style.textContent = `
-        .thank-you-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10001;
-            animation: popUp 0.4s ease;
-        }
-        
-        .thank-you-container {
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            border: 2px solid #00ff9d;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            max-width: 400px;
-            position: relative;
-            box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
-            animation: slideUp 0.5s ease;
-        }
-        
-        .thank-you-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-            animation: bounce 0.6s ease;
-        }
-        
-        .thank-you-container h2 {
-            color: #00ff9d;
-            font-size: 1.8rem;
-            margin: 15px 0;
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: 1px;
-        }
-        
-        .product-details {
-            background: rgba(0, 255, 157, 0.1);
-            border-left: 3px solid #00ff9d;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            color: #e0e0e0;
-            font-size: 0.95rem;
-        }
-        
-        .thank-you-message {
-            color: #a0a0a0;
-            margin: 15px 0;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-        
-        .continue-btn {
-            background: linear-gradient(135deg, #00ff9d, #00cc7a);
-            color: #000;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .continue-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 255, 157, 0.4);
-        }
-        
-        .close-thank-you {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: transparent;
-            border: none;
-            color: #00ff9d;
-            font-size: 24px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        
-        .close-thank-you:hover {
-            color: #fff;
-            transform: scale(1.2);
-        }
+    function closeAllDrawers() {
+        document.getElementById('cartSidebar').classList.remove('active');
+        document.getElementById('ottDropdown').classList.remove('active');
+        document.querySelector('.overlay').classList.remove('active');
+    }
 
-        /* Add to Cart Button Hover Effects */
-        .doc-link {
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-        }
-
-        .doc-link:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 255, 157, 0.5);
-            letter-spacing: 1px;
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-    `;
-    document.head.appendChild(style);
+    // Initialize cart on load
+    updateCartUI();
 </script>
 </body>
 </html>
